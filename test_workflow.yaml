@@ -1,0 +1,19 @@
+name: "Protocol Enforcement Test Workflow"
+tasks:
+  - name: "test-protocol-task-1"
+    agent: "ai-ml-specialist"
+    script: "shared-workspace/aura-holistic-well-being-integration-task.md"
+    priority: "HIGH"
+    inputs: []
+    outputs:
+      - name: "result"
+        type: "string"
+  
+  - name: "test-protocol-task-2"
+    agent: "ai-ml-specialist"
+    script: "shared-workspace/aura-personalized-preventative-care-plans-task.md"
+    priority: "MEDIUM"
+    inputs: []
+    outputs:
+      - name: "result"
+        type: "string"

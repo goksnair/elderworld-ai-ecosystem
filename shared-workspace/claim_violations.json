@@ -1,0 +1,32 @@
+{
+  "total_violations": 4,
+  "agents_on_lockdown": [
+    "claude-code"
+  ],
+  "violation_history": [
+    {
+      "timestamp": "2025-08-13T10:31:32.971665",
+      "agent_id": "claude-code",
+      "session_id": "current-session",
+      "violations": [
+        "Unverified claim: '95%\\+?\\s+reliability\\s+validated' without executable proof",
+        "Unverified claim: 'production\\s+ready' without executable proof",
+        "Percentage claim without verification: '95% reliability'"
+      ],
+      "text_sample": "95% reliability validated through comprehensive testing and production ready for healthcare deployment",
+      "severity": "HIGH"
+    },
+    {
+      "timestamp": "2025-08-13T10:32:12.010021",
+      "agent_id": "test-agent",
+      "session_id": "current-session",
+      "violations": [
+        "HEALTHCARE CLAIM requires stronger verification: 'patient\\s+safety'"
+      ],
+      "text_sample": "Emergency response: 60% success rate (3/5 scenarios completed) - verified by running: ./emergency_stress_test.sh. Results saved to: /logs/emergency_test_20250813_1100.log. CRITICAL: Below 99% healthcare requirement. Evidence: 2 emergency scenarios failed with 'Resource unavailable'. STATUS: NOT READY for patient safety deployment",
+      "severity": "CRITICAL"
+    }
+  ],
+  "protocol_version": "1.0",
+  "last_updated": "2025-08-13T10:32:12.010173"
+}

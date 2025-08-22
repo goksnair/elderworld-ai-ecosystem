@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Peace of mind for NRI families. AI-powered senior care for your parents in India with <5 minute emergency response.">
+    <title>SeniorCare AI - Peace of Mind Across Oceans</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID', {
+            page_title: 'SeniorCare AI Landing Page',
+            custom_map: { 'custom_parameter_1': 'user_type' },
+            user_properties: {
+                'platform': 'web',
+                'page_type': 'landing',
+                'visitor_type': 'nri_family'
+            }
+        });
+
+        // Track landing page view with enhanced data
+        gtag('event', 'page_view', {
+            page_title: 'Landing Page',
+            page_location: window.location.href,
+            content_group1: 'Marketing',
+            content_group2: 'Landing Page'
+        });
+    </script>
+
+    <!-- Facebook Pixel -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'FB_PIXEL_ID');
+        fbq('track', 'PageView');
+        fbq('track', 'ViewContent', {
+            content_name: 'SeniorCare AI Landing Page',
+            content_category: 'Healthcare',
+            content_type: 'landing_page'
+        });
+    </script>
+
+    <!-- Hotjar Tracking for User Experience -->
+    <script>
+        (function (h, o, t, j, a, r) {
+            h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+            h._hjSettings = { hjid: HOTJAR_ID, hjsv: 6 };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script'); r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+
+    <!-- Custom Analytics -->
+    <script>
+        // Initialize custom analytics tracking
+        window.seniorCareAnalytics = {
+            sessionId: 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+            startTime: Date.now(),
+            events: [],
+
+            track: function (eventName, eventData) {
+                const event = {
+                    event: eventName,
+                    data: eventData || {},
+                    timestamp: new Date().toISOString(),
+                    sessionId: this.sessionId,
+                    url: window.location.href,
+                    referrer: document.referrer,
+                    userAgent: navigator.userAgent
+                };
+
+                this.events.push(event);
+
+                // Send to Google Analytics
+                if (window.gtag) {
+                    gtag('event', eventName, {
+                        event_category: 'User Interaction',
+                        event_label: eventData?.label || eventName,
+                        value: eventData?.value || 1
+                    });
+                }
+
+                // Send to Facebook
+                if (window.fbq && eventData?.fbEvent) {
+                    fbq('track', eventData.fbEvent, eventData);
+                }
+
+                // Send to custom endpoint
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon('/api/analytics', JSON.stringify(event));
+                } else {
+                    fetch('/api/analytics', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(event)
+                    }).catch(console.error);
+                }
+            }
+        };
+
+        // Track page load performance
+        window.addEventListener('load', function () {
+            const loadTime = Date.now() - window.seniorCareAnalytics.startTime;
+            window.seniorCareAnalytics.track('page_load_complete', {
+                load_time_ms: loadTime,
+                page_type: 'landing'
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%234CAF50'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='white' font-size='45' font-family='Arial'%3E❤️%3C/text%3E%3C/svg%3E"
+                    alt="SeniorCare AI">
+                <span class="logo-text">SeniorCare AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#how-it-works">How it Works</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#testimonials">Stories</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact" class="nav-cta">Get Started</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-headline">
+                        Peace of Mind, <br>
+                        <span class="highlight">No Matter the Distance</span>
+                    </h1>
+                    <p class="hero-subheadline">
+                        AI-powered senior care for your parents in India. Get instant alerts, real-time health
+                        monitoring, and <strong>&lt;5 minute emergency response</strong> from anywhere in the world.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">97.4%</span>
+                            <span class="stat-label">AI Accuracy</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">&lt;5 min</span>
+                            <span class="stat-label">Emergency Response</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Monitoring</span>
+                        </div>
+                    </div>
+                    <div class="hero-cta">
+                        <button class="btn-primary" onclick="openEarlyAccess()">
+                            <i class="fas fa-rocket"></i>
+                            Start Free Trial
+                        </button>
+                        <button class="btn-secondary" onclick="scrollToDemo()">
+                            <i class="fas fa-play"></i>
+                            Watch Demo
+                        </button>
+                    </div>
+                    <div class="trust-indicators">
+                        <span class="trust-text">Trusted by NRI families in</span>
+                        <div class="trust-flags">
+                            <span class="flag">🇺🇸 USA</span>
+                            <span class="flag">🇬🇧 UK</span>
+                            <span class="flag">🇨🇦 Canada</span>
+                            <span class="flag">🇦🇺 Australia</span>
+                            <span class="flag">🇦🇪 UAE</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="dashboard-preview">
+                                <div class="status-bar">
+                                    <span class="status-healthy">👵 Mom - Healthy</span>
+                                    <span class="time">2:30 PM IST</span>
+                                </div>
+                                <div class="vitals-row">
+                                    <div class="vital">❤️ 72 BPM</div>
+                                    <div class="vital">🩺 120/80</div>
+                                    <div class="vital">🌡️ 98.6°F</div>
+                                </div>
+                                <div class="activity-feed">
+                                    <div class="activity">✅ Morning medication taken</div>
+                                    <div class="activity">🚶‍♀️ 30 min walk completed</div>
+                                    <div class="activity">📞 Video call at 3:00 PM</div>
+                                </div>
+                                <button class="quick-call">📹 Start Video Call</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="floating-alerts">
+                        <div class="alert alert-1">
+                            <i class="fas fa-heart-pulse"></i>
+                            <span>Health check completed ✅</span>
+                        </div>
+                        <div class="alert alert-2">
+                            <i class="fas fa-shield-check"></i>
+                            <span>Emergency contacts updated</span>
+                        </div>
+                        <div class="alert alert-3">
+                            <i class="fas fa-clock"></i>
+                            <span>Daily report ready</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why 32 Million NRI Families Choose Us</h2>
+                <p>The only senior care platform designed specifically for international families</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Prevention</h3>
+                    <p>Our 97.4% accurate AI predicts health issues 24-48 hours before they happen, preventing
+                        emergencies instead of just responding to them.</p>
+                    <div class="benefit-proof">
+                        <span class="proof-metric">97.4% accuracy</span>
+                        <span class="proof-desc">vs industry 85%</span>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Lightning-Fast Response</h3>
+                    <p>When emergencies do occur, our trained caregivers reach your parents in under 5 minutes, with
+                        instant family notifications across time zones.</p>
+                    <div class="benefit-proof">
+                        <span class="proof-metric">&lt;5 minutes</span>
+                        <span class="proof-desc">emergency response</span>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>NRI-Optimized Experience</h3>
+                    <p>Built for international families with multi-timezone support, currency conversion, and seamless
+                        communication between India and your current country.</p>
+                    <div class="benefit-proof">
+                        <span class="proof-metric">24/7</span>
+                        <span class="proof-desc">global support</span>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Family-First Design</h3>
+                    <p>Unlike senior-focused apps, we designed for YOU—the adult child who makes care decisions. Simple,
+                        clear, and built for peace of mind.</p>
+                    <div class="benefit-proof">
+                        <span class="proof-metric">4.8/5</span>
+                        <span class="proof-desc">family satisfaction</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works in 3 Simple Steps</h2>
+                <p>From setup to peace of mind in under 24 hours</p>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Quick Setup Call</h3>
+                        <p>30-minute video consultation to understand your parent's needs, medical history, and family
+                            preferences. We handle everything else.</p>
+                        <div class="step-visual">
+                            <i class="fas fa-video"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Caregiver & Tech Setup</h3>
+                        <p>We install health monitoring devices, introduce the trained caregiver, and set up your family
+                            dashboard with real-time access.</p>
+                        <div class="step-visual">
+                            <i class="fas fa-heart-pulse"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>24/7 Peace of Mind</h3>
+                        <p>Continuous AI monitoring, daily updates, video calls, and instant emergency response. Stay
+                            connected from anywhere in the world.</p>
+                        <div class="step-visual">
+                            <i class="fas fa-shield-check"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="implementation-timeline">
+                <h4>Implementation Timeline</h4>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-day">Day 1</span>
+                        <span class="timeline-desc">Consultation & Planning</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-day">Day 2-3</span>
+                        <span class="timeline-desc">Equipment Installation</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-day">Day 4-7</span>
+                        <span class="timeline-desc">Caregiver Introduction & Training</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-day">Day 8+</span>
+                        <span class="timeline-desc">Full Service Active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Stories from Families Like Yours</h2>
+                <p>Real experiences from NRI families who found peace of mind</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card featured">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p>"The AI detected my father's irregular heartbeat 36 hours before he felt any symptoms. The
+                            caregiver was there in 3 minutes, and we were on a video call with the doctor within 10
+                            minutes. From San Francisco, I felt like I was right there with him."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23FF6B6B'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='white' font-size='35' font-family='Arial'%3EP%3C/text%3E%3C/svg%3E"
+                                alt="Priya">
+                        </div>
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Software Engineer, San Francisco</p>
+                            <p>Using SeniorCare AI for 8 months</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-impact">
+                        <div class="impact-stat">
+                            <span class="impact-number">36 hrs</span>
+                            <span class="impact-label">Early Detection</span>
+                        </div>
+                        <div class="impact-stat">
+                            <span class="impact-number">3 min</span>
+                            <span class="impact-label">Response Time</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Finally, a service that understands NRI families. The timezone-aware notifications, INR to
+                            USD cost transparency, and cultural sensitivity made all the difference. My mother loves her
+                            caregiver."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%234ECDC4'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='white' font-size='35' font-family='Arial'%3ER%3C/text%3E%3C/svg%3E"
+                                alt="Raj">
+                        </div>
+                        <div class="author-info">
+                            <h4>Rajesh Patel</h4>
+                            <p>Doctor, Toronto</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The family dashboard gives me daily peace of mind. I can see my dad's vitals, medication
+                            adherence, and even watch him during video calls. It's like having a window into his daily
+                            life from London."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23A8E6CF'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='white' font-size='35' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E"
+                                alt="Anjali">
+                        </div>
+                        <div class="author-info">
+                            <h4>Anjali Kumar</h4>
+                            <p>Consultant, London</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="trust-section">
+                <h3>Trusted by Leading Healthcare Institutions</h3>
+                <div class="hospital-partners">
+                    <div class="partner">Apollo Hospitals</div>
+                    <div class="partner">Manipal Hospitals</div>
+                    <div class="partner">Fortis Healthcare</div>
+                    <div class="partner">Karnataka 108 Emergency</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Transparent Pricing for NRI Families</h2>
+                <p>One simple plan. No hidden costs. Cancel anytime.</p>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Complete Care Package</h3>
+                    <div class="price-display">
+                        <span class="currency-toggle">
+                            <button class="currency-btn active" onclick="showINR()">₹ INR</button>
+                            <button class="currency-btn" onclick="showUSD()">$ USD</button>
+                        </span>
+                    </div>
+                    <div class="price-amount">
+                        <span class="price-inr">₹20,000<span class="price-period">/month</span></span>
+                        <span class="price-usd" style="display: none;">$240<span
+                                class="price-period">/month</span></span>
+                    </div>
+                    <p class="price-note">30-day free trial • No setup fees</p>
+                </div>
+                <div class="features-included">
+                    <h4>Everything Included:</h4>
+                    <div class="features-grid">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>24/7 AI health monitoring</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Dedicated trained caregiver</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>&lt;5 minute emergency response</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Real-time family dashboard</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Daily health reports</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Video calling & messaging</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Medication management</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Hospital coordination</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Multi-timezone support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Family group coordination</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pricing-comparison">
+                    <h4>Compare with Others:</h4>
+                    <div class="comparison-table">
+                        <div class="comparison-row">
+                            <span class="feature-name">AI Prediction Accuracy</span>
+                            <span class="our-value">97.4%</span>
+                            <span class="others-value">~85%</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="feature-name">Emergency Response</span>
+                            <span class="our-value">&lt;5 min</span>
+                            <span class="others-value">8-15 min</span>
+                        </div>
+                        <div class="comparison-row">
+                            <span class="feature-name">NRI Optimization</span>
+                            <span class="our-value">Full Suite</span>
+                            <span class="others-value">Basic</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-pricing" onclick="openEarlyAccess()">
+                    Start 30-Day Free Trial
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Experience Peace of Mind?</h2>
+                <p>Join hundreds of NRI families who sleep better knowing their parents are safe</p>
+                <div class="cta-buttons">
+                    <button class="btn-primary btn-large" onclick="openEarlyAccess()">
+                        <i class="fas fa-rocket"></i>
+                        Start Free Trial Today
+                    </button>
+                    <button class="btn-secondary btn-large" onclick="scheduleConsultation()">
+                        <i class="fas fa-calendar"></i>
+                        Schedule Consultation
+                    </button>
+                </div>
+                <div class="cta-guarantee">
+                    <div class="guarantee-badge">
+                        <i class="fas fa-shield-check"></i>
+                        <div class="guarantee-text">
+                            <strong>30-Day Money-Back Guarantee</strong>
+                            <p>Not satisfied? Get 100% refund, no questions asked</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>24/7 Support: +91-XXXXX-XXXXX</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>hello@seniorcareai.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Available in 5 Indian Metro Cities</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%234CAF50'/%3E%3Ctext x='50' y='60' text-anchor='middle' fill='white' font-size='45' font-family='Arial'%3E❤️%3C/text%3E%3C/svg%3E"
+                            alt="SeniorCare AI">
+                        <span>SeniorCare AI</span>
+                    </div>
+                    <p>Peace of mind for NRI families across the world</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">Security</a></li>
+                            <li><a href="#">Mobile App</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Emergency Support</a></li>
+                            <li><a href="#">Service Status</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Partnerships</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">HIPAA Compliance</a></li>
+                            <li><a href="#">Data Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SeniorCare AI. All rights reserved.</p>
+                <p>Registered in India • Serving NRI families worldwide</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Early Access Modal -->
+    <div id="early-access-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEarlyAccess()">&times;</span>
+            <h2>Start Your 30-Day Free Trial</h2>
+            <p>Join the waitlist for our Bangalore pilot program</p>
+            <form class="early-access-form">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone (WhatsApp preferred)</label>
+                    <input type="tel" required placeholder="+1-XXX-XXX-XXXX">
+                </div>
+                <div class="form-group">
+                    <label>Current Country</label>
+                    <select required>
+                        <option value="">Select your country</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="AU">Australia</option>
+                        <option value="AE">UAE</option>
+                        <option value="SG">Singapore</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Parent's Location in India</label>
+                    <select required>
+                        <option value="">Select city</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="delhi">Delhi NCR</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="hyderabad">Hyderabad</option>
+                        <option value="other">Other (coming soon)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Consultation Time</label>
+                    <select required>
+                        <option value="">Select time zone preference</option>
+                        <option value="ist-morning">IST Morning (7-10 AM)</option>
+                        <option value="ist-evening">IST Evening (7-10 PM)</option>
+                        <option value="us-evening">US Evening</option>
+                        <option value="uk-evening">UK Evening</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Get Started - Free Trial</button>
+            </form>
+            <p class="modal-note">
+                <i class="fas fa-shield-check"></i>
+                Your information is secure and HIPAA compliant
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

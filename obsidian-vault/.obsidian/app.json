@@ -1,0 +1,12 @@
+{
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "Daily",
+  "attachmentFolderPath": "Assets",
+  "promptDelete": false,
+  "showLineNumber": true,
+  "spellcheck": true,
+  "useMarkdownLinks": false,
+  "legacyEditor": false,
+  "livePreview": true
+}

@@ -1,0 +1,150 @@
+{
+  "tasks": {
+    "load-test-task-10": {
+      "state": "DEFINED",
+      "agent": "ai-ml-specialist",
+      "task_file": "shared-workspace/load-test-task-load-test-task-10.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T19:49:53.535694",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    },
+    "load-test-task-11": {
+      "state": "DEFINED",
+      "agent": "market-intelligence",
+      "task_file": "shared-workspace/load-test-task-load-test-task-11.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T19:49:53.548537",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    },
+    "load-test-task-12": {
+      "state": "DEFINED",
+      "agent": "senior-care-boss",
+      "task_file": "shared-workspace/load-test-task-load-test-task-12.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T19:49:53.812600",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    },
+    "load-test-task-13": {
+      "state": "DEFINED",
+      "agent": "ai-ml-specialist",
+      "task_file": "shared-workspace/load-test-task-load-test-task-13.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T19:49:54.136998",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    },
+    "load-test-task-15": {
+      "state": "DEFINED",
+      "agent": "senior-care-boss",
+      "task_file": "shared-workspace/load-test-task-load-test-task-15.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T19:49:54.253693",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    },
+    "load-test-task-14": {
+      "state": "DEFINED",
+      "agent": "market-intelligence",
+      "task_file": "shared-workspace/load-test-task-load-test-task-14.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T19:49:54.259045",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    },
+    "load-test-task-17": {
+      "state": "DEFINED",
+      "agent": "market-intelligence",
+      "task_file": "shared-workspace/load-test-task-load-test-task-17.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T19:49:54.308054",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    },
+    "load-test-task-16": {
+      "state": "DEFINED",
+      "agent": "ai-ml-specialist",
+      "task_file": "shared-workspace/load-test-task-load-test-task-16.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T19:49:54.318424",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    },
+    "load-test-task-18": {
+      "state": "DEFINED",
+      "agent": "senior-care-boss",
+      "task_file": "shared-workspace/load-test-task-load-test-task-18.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T19:49:54.740871",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    }
+  },
+  "last_updated": "2025-08-12T19:49:54.741111",
+  "protocol_violations": [
+    {
+      "timestamp": "2025-08-12T19:49:53.425920",
+      "operation": "transition_load-test-task-5",
+      "error": "Task load-test-task-5 not found for transition DEFINED -> DELEGATED",
+      "tasks_affected": []
+    },
+    {
+      "timestamp": "2025-08-12T19:49:53.573723",
+      "operation": "transition_load-test-task-4",
+      "error": "Task load-test-task-4 not found for transition DEFINED -> DELEGATED",
+      "tasks_affected": [
+        "load-test-task-10",
+        "load-test-task-11"
+      ]
+    },
+    {
+      "timestamp": "2025-08-12T19:49:53.763147",
+      "operation": "transition_load-test-task-6",
+      "error": "Task load-test-task-6 not found for transition DEFINED -> DELEGATED",
+      "tasks_affected": [
+        "load-test-task-10",
+        "load-test-task-11"
+      ]
+    }
+  ],
+  "escalated_tasks": [],
+  "session_id": "session_1755008393"
+}

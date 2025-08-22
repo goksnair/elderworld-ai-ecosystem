@@ -1,0 +1,16 @@
+[
+  {
+    "timestamp": "2025-08-12T11:39:43.674467",
+    "agent": "Claude Code",
+    "violation": "A2A Communication System BROKEN - network connectivity failure",
+    "severity": "CRITICAL",
+    "session_startup": true
+  },
+  {
+    "timestamp": "2025-08-20T13:55:04.497901",
+    "agent": "claude-code",
+    "violation": "Missing critical protocol section: BULLETPROOF VERIFICATION PROTOCOLS",
+    "severity": "CRITICAL",
+    "session_startup": true
+  }
+]

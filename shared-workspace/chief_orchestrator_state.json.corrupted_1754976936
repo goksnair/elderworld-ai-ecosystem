@@ -1,0 +1,87 @@
+{
+  "tasks": {
+    "aura-holistic-well-being-integration": {
+      "state": "DEFINED",
+      "agent": "ai-ml-specialist",
+      "task_file": "shared-workspace/aura-holistic-well-being-integration-task.md",
+      "priority": "HIGH",
+      "created_at": "2025-08-12T09:27:20.210527",
+      "delegation_attempts": 1,
+      "last_attempt": null,
+      "messages": [
+        {
+          "type": "DELEGATION_FAILED",
+          "timestamp": "2025-08-12T09:49:46.407331",
+          "error": "Delegation failed for task aura-holistic-well-being-integration: Failed to send A2A message: {\n  message: 'TypeError: fetch failed',\n  details: 'TypeError: fetch failed\n' +
+    '    at node:internal/deps/undici/undici:13510:13\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async A2ASupabaseClient.sendMessage (/Users/gokulnair/senior-care-startup/ai-ecosystem/mcp-bridge/services/a2a-supabase-client.js:62:37)\n' +
+    '    at async sendTask (/Users/gokulnair/senior-care-startup/ai-ecosystem/mcp-bridge/send_task.js:32:9)',\n  hint: '',\n  code: ''\n}\nA2A sendMessage error: Error: Message send failed: TypeError: fetch failed\n    at A2ASupabaseClient.sendMessage (/Users/gokulnair/senior-care-startup/ai-ecosystem/mcp-bridge/services/a2a-supabase-client.js:70:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async sendTask (/Users/gokulnair/senior-care-startup/ai-ecosystem/mcp-bridge/send_task.js:32:9)\nFailed to send task: Error: Message send failed: TypeError: fetch failed\n    at A2ASupabaseClient.sendMessage (/Users/gokulnair/senior-care-startup/ai-ecosystem/mcp-bridge/services/a2a-supabase-client.js:70:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async sendTask (/Users/gokulnair/senior-care-startup/ai-ecosystem/mcp-bridge/send_task.js:32:9)\n"
+        }
+      ],
+      "escalation_reason": null
+    },
+    "aura-personalized-preventative-care-plans": {
+      "state": "DEFINED",
+      "agent": "ai-ml-specialist",
+      "task_file": "shared-workspace/aura-personalized-preventative-care-plans-task.md",
+      "priority": "HIGH",
+      "created_at": "2025-08-12T09:27:26.163421",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "messages": [],
+      "escalation_reason": null
+    },
+    "review-phase2-roadmap": {
+      "state": "DELEGATED",
+      "agent": "senior-care-boss",
+      "task_file": "obsidian-vault/Strategy/AI_DRIVEN_TECH_ROADMAP_PHASE_2_PROPOSAL.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T10:26:05.958754",
+      "delegation_attempts": 2,
+      "last_attempt": "2025-08-12T11:04:50.036067",
+      "messages": [
+        {
+          "type": "DELEGATION_SENT",
+          "timestamp": "2025-08-12T10:26:12.368175",
+          "success": true,
+          "details": "A2A Client initialized for agent: Chief Orchestrator (Gemini)\nA2A Message sent: Chief Orchestrator (Gemini) → senior-care-boss [TASK_DELEGATION] { messageId: 'msg_1754974571042_d42d91c5', businessImpact: 'N/A' }\nTask 'review-phase2-roadmap' delegated to senior-care-boss"
+        },
+        {
+          "type": "MANUAL_RESET",
+          "timestamp": "2025-08-12T11:04:45.126959",
+          "reset_to": "DEFINED"
+        },
+        {
+          "type": "DELEGATION_SENT",
+          "timestamp": "2025-08-12T11:04:50.036124",
+          "success": true,
+          "details": "A2A Client initialized for agent: Chief Orchestrator (Gemini)\nA2A Message sent: Chief Orchestrator (Gemini) → senior-care-boss [TASK_DELEGATION] { messageId: 'msg_1754976889410_ef76b9c8', businessImpact: 'N/A' }\nTask 'review-phase2-roadmap' delegated to senior-care-boss"
+        }
+      ],
+      "escalation_reason": "No response after 300 seconds"
+    },
+    "formalize-multi-llm-protocols": {
+      "state": "DELEGATED",
+      "agent": "Claude Code",
+      "task_file": "shared-workspace/formalize-multi-llm-protocols.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T11:03:29.470957",
+      "delegation_attempts": 1,
+      "last_attempt": "2025-08-12T11:03:34.220345",
+      "messages": [
+        {
+          "type": "DELEGATION_SENT",
+          "timestamp": "2025-08-12T11:03:34.220383",
+          "success": true,
+          "details": "A2A Client initialized for agent: Chief Orchestrator (Gemini)\nA2A Message sent: Chief Orchestrator (Gemini) → Claude Code [TASK_DELEGATION] { messageId: 'msg_1754976813233_8322e5ba', businessImpact: 'N/A' }\nTask 'formalize-multi-llm-protocols' delegated to Claude Code"
+        }
+      ],
+      "escalation_reason": null
+    }
+  },
+  "last_updated": "2025-08-12T11:04:59.253529",
+  "protocol_violations": [],
+  "escalated_tasks": [],
+  "session_id": "session_1754971040"
+}

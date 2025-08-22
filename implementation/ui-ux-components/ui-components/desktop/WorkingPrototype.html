@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderWorld — Premium Family Care Platform</title>
+
+    <!-- Essential Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- ElderWorld Core Styles -->
+    <link rel="stylesheet" href="../css/ElderWorld">
+    <link rel="stylesheet" href="../css/elderbridge-components.css">
+
+    <!-- PWA Meta -->
+    <meta name="theme-color" content="#1e3a8a">
+    <link rel="manifest" href="../manifest.json">
+
+    <style>
+        /* Critical inline styles for immediate rendering */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e5e7eb;
+            border-left: 4px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .dashboard-container.loaded {
+            opacity: 1;
+        }
+
+        .sidebar {
+            background: #1e3a8a;
+            color: white;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .nav-section {
+            margin-bottom: 2rem;
+        }
+
+        .nav-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+            padding: 0 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .nav-link i {
+            width: 20px;
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .main-content {
+            padding: 2rem;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+
+        .header {
+            margin-bottom: 2rem;
+        }
+
+        .welcome-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .welcome-subtitle {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .emergency-section {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emergency-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20px;
+            width: 100px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(15deg);
+        }
+
+        .emergency-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .emergency-subtitle {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .emergency-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .emergency-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .health-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .metric:hover {
+            background: #e2e8f0;
+            transform: scale(1.02);
+        }
+
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+
+        .metric-trend {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .trend-up {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .trend-down {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .trend-stable {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 1rem;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .status-excellent {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-good {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .status-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e0f2fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0369a1;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .activity-time {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .care-member {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            background: #f8fafc;
+            margin-bottom: 1rem;
+        }
+
+        .care-member:last-child {
+            margin-bottom: 0;
+        }
+
+        .care-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .care-info {
+            flex: 1;
+        }
+
+        .care-name {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .care-role {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .care-status {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .status-online {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-offline {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .health-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div>
+            <div class="loading-spinner"></div>
+            <p style="margin-top: 1rem; color: #6b7280;">Loading ElderWorld...</p>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboardContainer" class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                ElderWorld
+            </div>
+
+            <nav>
+                <div class="nav-section">
+                    <div class="nav-title">Main</div>
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-calendar"></i>
+                        <span>Calendar</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-title">Communication</div>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Video Calls</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-comments"></i>
+                        <span>Messages</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-bell"></i>
+                        <span>Alerts</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-title">Services</div>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-pills"></i>
+                        <span>Medications</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-user-md"></i>
+                        <span>Care Team</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1 class="welcome-title">Good afternoon, Priya</h1>
+                <p class="welcome-subtitle">Here's how Papa is doing today. Everything looks great!</p>
+            </header>
+
+            <!-- Emergency Section -->
+            <section class="emergency-section">
+                <div class="emergency-content">
+                    <h4 class="emergency-title">Emergency Response</h4>
+                    <p class="emergency-subtitle">Average response time: &lt;3 minutes</p>
+                    <button class="emergency-btn" onclick="handleEmergency()">
+                        <i class="fas fa-phone"></i>
+                        Emergency Call
+                    </button>
+                </div>
+            </section>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Health Metrics Card -->
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-heartbeat" style="color: #dc2626;"></i>
+                        Today's Health
+                    </h2>
+                    <div class="health-metrics">
+                        <div class="metric" onclick="showMetricDetail('heartRate')">
+                            <div class="metric-value" id="heartRateValue">72</div>
+                            <div class="metric-label">Heart Rate</div>
+                            <div class="metric-trend trend-stable">Stable</div>
+                        </div>
+                        <div class="metric" onclick="showMetricDetail('steps')">
+                            <div class="metric-value" id="stepsValue">4,521</div>
+                            <div class="metric-label">Steps</div>
+                            <div class="metric-trend trend-up">+12%</div>
+                        </div>
+                        <div class="metric" onclick="showMetricDetail('sleep')">
+                            <div class="metric-value" id="sleepValue">7.2h</div>
+                            <div class="metric-label">Sleep</div>
+                            <div class="metric-trend trend-up">+5%</div>
+                        </div>
+                        <div class="metric" onclick="showMetricDetail('mood')">
+                            <div class="metric-value" id="moodValue">😊</div>
+                            <div class="metric-label">Mood</div>
+                            <div class="metric-trend trend-stable">Good</div>
+                        </div>
+                    </div>
+                    <div class="status-indicator status-excellent" style="margin-top: 1rem;">
+                        <div class="pulse-dot"></div>
+                        All vitals excellent
+                    </div>
+                </div>
+
+                <!-- Heart Rate Chart -->
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-chart-line" style="color: #3b82f6;"></i>
+                        Heart Rate Trends (7 Days)
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="heartRateChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Activity Timeline -->
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-clock" style="color: #10b981;"></i>
+                        Today's Activity
+                    </h2>
+                    <div class="activity-timeline">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Morning Medication Taken</div>
+                                <div class="activity-time">8:30 AM</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-walking"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Morning Walk Completed</div>
+                                <div class="activity-time">9:15 AM</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Video Call with Sarah</div>
+                                <div class="activity-time">2:00 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Care Team -->
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-users" style="color: #8b5cf6;"></i>
+                        Care Team
+                    </h2>
+                    <div class="care-team">
+                        <div class="care-member">
+                            <div class="care-avatar">Dr</div>
+                            <div class="care-info">
+                                <div class="care-name">Dr. Martinez</div>
+                                <div class="care-role">Primary Care Physician</div>
+                            </div>
+                            <div class="care-status status-online">Online</div>
+                        </div>
+                        <div class="care-member">
+                            <div class="care-avatar">RN</div>
+                            <div class="care-info">
+                                <div class="care-name">Sarah Johnson</div>
+                                <div class="care-role">Registered Nurse</div>
+                            </div>
+                            <div class="care-status status-online">Online</div>
+                        </div>
+                        <div class="care-member">
+                            <div class="care-avatar">CG</div>
+                            <div class="care-info">
+                                <div class="care-name">Maria Garcia</div>
+                                <div class="care-role">Caregiver</div>
+                            </div>
+                            <div class="care-status status-offline">Off Duty</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ElderWorld Prototype - Core Functionality
+        class ElderWorldPrototype {
+            constructor() {
+                this.data = {
+                    heartRate: [68, 72, 75, 71, 69, 73, 72],
+                    steps: [3200, 4100, 3800, 4521, 3900, 4200, 4521],
+                    sleep: [7.5, 6.8, 7.2, 7.2, 6.9, 7.1, 7.2],
+                    lastUpdate: new Date()
+                };
+                this.charts = {};
+                this.init();
+            }
+
+            async init() {
+                console.log('🚀 ElderWorld Prototype Loading...');
+
+                // Simulate loading time
+                await this.simulateLoading();
+
+                // Initialize components
+                this.initializeCharts();
+                this.initializeRealTimeUpdates();
+                this.initializeInteractions();
+                this.initializePWAFeatures();
+
+                // Show dashboard
+                this.showDashboard();
+
+                console.log('✅ ElderWorld Prototype Ready!');
+            }
+
+            async simulateLoading() {
+                return new Promise(resolve => {
+                    setTimeout(resolve, 2000);
+                });
+            }
+
+            showDashboard() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                const dashboardContainer = document.getElementById('dashboardContainer');
+
+                loadingScreen.style.opacity = '0';
+                dashboardContainer.classList.add('loaded');
+
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }
+
+            initializeCharts() {
+                // Heart Rate Chart
+                const ctx = document.getElementById('heartRateChart').getContext('2d');
+                this.charts.heartRate = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'Heart Rate (BPM)',
+                            data: this.data.heartRate,
+                            borderColor: '#dc2626',
+                            backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointBackgroundColor: '#dc2626',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                min: 60,
+                                max: 80,
+                                grid: {
+                                    color: '#f3f4f6'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        },
+                        elements: {
+                            point: {
+                                hoverRadius: 8
+                            }
+                        }
+                    }
+                });
+
+                console.log('📊 Charts initialized');
+            }
+
+            initializeRealTimeUpdates() {
+                // Simulate real-time data updates
+                setInterval(() => {
+                    this.updateHealthMetrics();
+                }, 30000); // Update every 30 seconds
+
+                console.log('🔄 Real-time updates enabled');
+            }
+
+            updateHealthMetrics() {
+                // Simulate small changes in metrics
+                const heartRateElement = document.getElementById('heartRateValue');
+                const stepsElement = document.getElementById('stepsValue');
+
+                // Heart rate variation (±2 BPM)
+                const currentHR = parseInt(heartRateElement.textContent);
+                const newHR = currentHR + (Math.random() > 0.5 ? 1 : -1) * Math.floor(Math.random() * 3);
+                heartRateElement.textContent = Math.max(65, Math.min(80, newHR));
+
+                // Steps increment
+                const currentSteps = parseInt(stepsElement.textContent.replace(',', ''));
+                const newSteps = currentSteps + Math.floor(Math.random() * 50);
+                stepsElement.textContent = newSteps.toLocaleString();
+
+                // Add subtle animation
+                heartRateElement.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    heartRateElement.style.transform = 'scale(1)';
+                }, 200);
+
+                console.log('📈 Metrics updated');
+            }
+
+            initializeInteractions() {
+                // Navigation links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+
+                        // Remove active class from all links
+                        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+
+                        // Add active class to clicked link
+                        link.classList.add('active');
+
+                        // Show notification
+                        this.showNotification(`Navigated to ${link.textContent.trim()}`, 'info');
+                    });
+                });
+
+                // Metric clicks
+                window.showMetricDetail = (metric) => {
+                    this.showNotification(`Viewing ${metric} details`, 'info');
+                };
+
+                // Emergency button
+                window.handleEmergency = () => {
+                    this.triggerEmergency();
+                };
+
+                console.log('🖱️ Interactions enabled');
+            }
+
+            triggerEmergency() {
+                // Emergency alert with realistic simulation
+                const emergency = {
+                    type: 'emergency',
+                    timestamp: new Date(),
+                    location: 'Home',
+                    severity: 'high'
+                };
+
+                // Show emergency modal
+                this.showEmergencyModal();
+
+                // Simulate emergency response
+                setTimeout(() => {
+                    this.showNotification('Emergency services contacted. ETA: 8 minutes', 'emergency');
+                }, 2000);
+
+                console.log('🚨 Emergency triggered', emergency);
+            }
+
+            showEmergencyModal() {
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                `;
+
+                modal.innerHTML = `
+                    <div style="
+                        background: white;
+                        border-radius: 16px;
+                        padding: 2rem;
+                        max-width: 400px;
+                        text-align: center;
+                        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                    ">
+                        <div style="
+                            width: 80px;
+                            height: 80px;
+                            background: #dc2626;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin: 0 auto 1.5rem;
+                            animation: pulse 1s infinite;
+                        ">
+                            <i class="fas fa-exclamation-triangle" style="color: white; font-size: 2rem;"></i>
+                        </div>
+                        <h2 style="color: #1f2937; margin-bottom: 1rem;">Emergency Alert Sent</h2>
+                        <p style="color: #6b7280; margin-bottom: 1.5rem;">Contacting emergency services and family members...</p>
+                        <button onclick="this.closest('[style*=fixed]').remove()" style="
+                            background: #3b82f6;
+                            color: white;
+                            border: none;
+                            padding: 0.75rem 2rem;
+                            border-radius: 8px;
+                            font-weight: 600;
+                            cursor: pointer;
+                        ">OK</button>
+                    </div>
+                `;
+
+                document.body.appendChild(modal);
+            }
+
+            showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                const colors = {
+                    info: '#3b82f6',
+                    success: '#10b981',
+                    warning: '#f59e0b',
+                    emergency: '#dc2626'
+                };
+
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${colors[type]};
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 8px;
+                    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+                    z-index: 9999;
+                    max-width: 300px;
+                    animation: slideIn 0.3s ease;
+                    font-weight: 600;
+                `;
+
+                notification.textContent = message;
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                }, 3000);
+            }
+
+            initializePWAFeatures() {
+                // Check for PWA support
+                if ('serviceWorker' in navigator) {
+                    this.registerServiceWorker();
+                }
+
+                // Install prompt
+                window.addEventListener('beforeinstallprompt', (e) => {
+                    e.preventDefault();
+                    this.showInstallPrompt(e);
+                });
+
+                console.log('📱 PWA features initialized');
+            }
+
+            async registerServiceWorker() {
+                try {
+                    const registration = await navigator.serviceWorker.register('../js/elderbridge-sw.js');
+                    console.log('✅ Service Worker registered');
+                } catch (error) {
+                    console.warn('❌ Service Worker registration failed:', error);
+                }
+            }
+
+            showInstallPrompt(installPrompt) {
+                const installBtn = document.createElement('button');
+                installBtn.textContent = 'Install ElderWorld App';
+                installBtn.style.cssText = `
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    background: #3b82f6;
+                    color: white;
+                    border: none;
+                    padding: 1rem 1.5rem;
+                    border-radius: 8px;
+                    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+                    cursor: pointer;
+                    font-weight: 600;
+                    z-index: 9999;
+                `;
+
+                installBtn.addEventListener('click', async () => {
+                    const result = await installPrompt.prompt();
+                    console.log('Install result:', result);
+                    installBtn.remove();
+                });
+
+                document.body.appendChild(installBtn);
+            }
+        }
+
+        // Add required CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize the prototype
+        document.addEventListener('DOMContentLoaded', () => {
+            window.elderBridgePrototype = new ElderWorldPrototype();
+        });
+
+        // Accessibility features
+        document.addEventListener('keydown', (e) => {
+            // Emergency shortcut: Ctrl+Shift+E
+            if (e.ctrlKey && e.shiftKey && e.key === 'E') {
+                e.preventDefault();
+                handleEmergency();
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderWorld - Emergency Help</title>
+    <link rel="stylesheet" href="/css/elderbridge-premium.css">
+    <style>
+        .emergency-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            padding: 1rem;
+        }
+
+        .emergency-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .emergency-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            background: #fee2e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-emergency 2s infinite;
+        }
+
+        .emergency-contacts {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .contact-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .contact-button:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.75rem;
+        }
+
+        .secondary-contacts {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .secondary-contact {
+            display: flex;
+            align-items: center;
+            justify-content: between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .secondary-contact:last-child {
+            border-bottom: none;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-name {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .contact-relation {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .contact-action {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            text-decoration: none;
+            margin-left: 0.5rem;
+        }
+
+        .medical-info {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .back-button {
+            background: #6b7280;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .back-button:hover {
+            background: #4b5563;
+        }
+
+        @keyframes pulse-emergency {
+
+            0%,
+            100% {
+                transform: scale(1);
+                background: #fee2e2;
+            }
+
+            50% {
+                transform: scale(1.05);
+                background: #fecaca;
+            }
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            background: #f3f4f6;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0.3;
+            }
+        }
+
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .emergency-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .emergency-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="emergency-container">
+        <div class="emergency-card">
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>Emergency Mode - Offline</span>
+            </div>
+
+            <div class="emergency-icon">
+                <svg class="w-12 h-12 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+
+            <h1 class="text-3xl font-bold text-red-600 mb-2">Emergency Help</h1>
+            <p class="text-gray-600 mb-6">
+                Immediate assistance is available even while offline. Use the contacts below or call emergency services.
+            </p>
+
+            <div class="emergency-contacts">
+                <div class="emergency-grid">
+                    <a href="tel:911" class="contact-button">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                        </svg>
+                        Call 911
+                    </a>
+
+                    <a href="tel:+15551234567" class="contact-button" style="background: #0891b2;">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Primary Contact
+                    </a>
+                </div>
+            </div>
+
+            <div class="medical-info">
+                <h3 class="font-semibold text-amber-800 mb-2">Important Medical Information</h3>
+                <div class="text-sm text-amber-700">
+                    <p><strong>Allergies:</strong> Penicillin, Shellfish</p>
+                    <p><strong>Medications:</strong> Lisinopril 10mg, Metformin 500mg</p>
+                    <p><strong>Medical ID:</strong> Diabetes Type 2, Hypertension</p>
+                    <p><strong>Emergency Contact:</strong> Sarah Johnson (Daughter) - (555) 123-4567</p>
+                </div>
+            </div>
+
+            <div class="secondary-contacts">
+                <h3 class="font-semibold text-gray-900 mb-3">Family Contacts</h3>
+
+                <div class="secondary-contact">
+                    <div class="contact-info">
+                        <div class="contact-name">Sarah Johnson</div>
+                        <div class="contact-relation">Daughter</div>
+                    </div>
+                    <a href="tel:+15551234567" class="contact-action">Call</a>
+                    <a href="sms:+15551234567" class="contact-action" style="background: #10b981;">Text</a>
+                </div>
+
+                <div class="secondary-contact">
+                    <div class="contact-info">
+                        <div class="contact-name">Michael Johnson</div>
+                        <div class="contact-relation">Son</div>
+                    </div>
+                    <a href="tel:+15559876543" class="contact-action">Call</a>
+                    <a href="sms:+15559876543" class="contact-action" style="background: #10b981;">Text</a>
+                </div>
+
+                <div class="secondary-contact">
+                    <div class="contact-info">
+                        <div class="contact-name">Dr. Martinez</div>
+                        <div class="contact-relation">Primary Care</div>
+                    </div>
+                    <a href="tel:+15555551234" class="contact-action">Call</a>
+                </div>
+
+                <div class="secondary-contact">
+                    <div class="contact-info">
+                        <div class="contact-name">ElderWorld Care Team</div>
+                        <div class="contact-relation">24/7 Support</div>
+                    </div>
+                    <a href="tel:+18001234567" class="contact-action">Call</a>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="back-button" onclick="goBack()">
+                    <svg class="inline w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Return to Dashboard
+                </button>
+            </div>
+
+            <p class="text-xs text-gray-500 mt-4">
+                Emergency contacts and medical information are stored locally for offline access.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            // Try to go to main dashboard, fallback to offline page
+            if (navigator.onLine) {
+                window.location.href = '/desktop/PremiumDashboard.html';
+            } else {
+                window.location.href = '/offline.html';
+            }
+        }
+
+        // Track emergency usage for analytics
+        function trackEmergencyContact(type, contact) {
+            // Store emergency event for later sync
+            const emergencyEvent = {
+                type: 'emergency_contact',
+                contact: contact,
+                timestamp: Date.now(),
+                offline: !navigator.onLine
+            };
+
+            // Store in localStorage for sync when online
+            const emergencyEvents = JSON.parse(localStorage.getItem('elderbridge_emergency_events') || '[]');
+            emergencyEvents.push(emergencyEvent);
+            localStorage.setItem('elderbridge_emergency_events', JSON.stringify(emergencyEvents));
+        }
+
+        // Add click tracking to all contact buttons
+        document.querySelectorAll('.contact-action, .contact-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const contact = e.target.closest('.secondary-contact')?.querySelector('.contact-name')?.textContent ||
+                    e.target.textContent.trim();
+                trackEmergencyContact('contact', contact);
+            });
+        });
+
+        // Auto-redirect to main app when connection restored
+        window.addEventListener('online', () => {
+            setTimeout(() => {
+                fetch('/api/health-check', { method: 'HEAD', cache: 'no-cache' })
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.href = '/desktop/PremiumDashboard.html';
+                        }
+                    })
+                    .catch(() => {
+                        // Still offline
+                    });
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

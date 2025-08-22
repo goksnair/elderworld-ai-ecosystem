@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderWorld — Advanced Features Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* Complete Inline CSS - No External Dependencies */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #eff6ff, #e0e7ff);
+            color: #1e293b;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 40px;
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            color: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            padding: 15px;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        /* Medication Timeline */
+        .medication-timeline {
+            position: relative;
+            padding: 20px 0 20px 50px;
+        }
+
+        .medication-timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #22c55e, #16a34a);
+            border-radius: 2px;
+        }
+
+        .medication-item {
+            position: relative;
+            margin-bottom: 20px;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #22c55e;
+        }
+
+        .medication-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 20px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #22c55e;
+            border: 3px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .medication-item.missed::before {
+            background: #ef4444;
+        }
+
+        .medication-item.missed {
+            border-left-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        .medication-name {
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 5px;
+        }
+
+        .medication-time {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .medication-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        .status-taken {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-missed {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Sleep Chart */
+        .sleep-chart {
+            height: 200px;
+            background: linear-gradient(180deg, #dbeafe, #bfdbfe);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .sleep-bars {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 10px;
+        }
+
+        .sleep-bar {
+            width: 30px;
+            background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+            border-radius: 6px 6px 0 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .sleep-bar:hover {
+            background: linear-gradient(180deg, #2563eb, #1e40af);
+            transform: scaleX(1.1);
+        }
+
+        .sleep-bar::after {
+            content: attr(data-hours);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e40af;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sleep-bar:hover::after {
+            opacity: 1;
+        }
+
+        /* Activity Ring */
+        .activity-ring {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: conic-gradient(#3b82f6 0deg,
+                    #3b82f6 calc(var(--progress, 78) * 3.6deg),
+                    #e2e8f0 calc(var(--progress, 78) * 3.6deg),
+                    #e2e8f0 360deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 20px auto;
+        }
+
+        .activity-ring::before {
+            content: '';
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: white;
+            position: absolute;
+        }
+
+        .activity-percentage {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #1e40af;
+            z-index: 1;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .progress-text .main {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        .progress-text .sub {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Emergency Button */
+        .emergency-trigger {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            border: none;
+            padding: 18px 36px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emergency-trigger:hover {
+            background: linear-gradient(135deg, #b91c1c, #991b1b);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+        }
+
+        .emergency-trigger.active {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            animation: emergencyPulse 2s infinite;
+        }
+
+        @keyframes emergencyPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        /* Voice Control */
+        .voice-control {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .voice-control:hover {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            transform: scale(1.05);
+        }
+
+        .voice-control.listening {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            animation: voicePulse 1.5s infinite;
+        }
+
+        @keyframes voicePulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+            }
+        }
+
+        .voice-response {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid #8b5cf6;
+        }
+
+        /* Family Members */
+        .family-member {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .family-member:hover {
+            background: #e0f2fe;
+        }
+
+        .family-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .family-info .name {
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 3px;
+        }
+
+        .family-info .role {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .family-status {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            margin-left: auto;
+        }
+
+        .status-online {
+            background: #22c55e;
+        }
+
+        .status-away {
+            background: #f59e0b;
+        }
+
+        .status-offline {
+            background: #6b7280;
+        }
+
+        /* AI Insights */
+        .ai-insight {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .ai-insight::before {
+            content: '🤖';
+            font-size: 2rem;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            opacity: 0.6;
+        }
+
+        .insight-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .insight-confidence {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Quick Actions Grid */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .quick-action-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .quick-action-btn:hover {
+            border-color: #3b82f6;
+            background: #f0f9ff;
+            transform: translateY(-2px);
+        }
+
+        .quick-action-btn i {
+            display: block;
+            font-size: 1.5rem;
+            color: #3b82f6;
+            margin-bottom: 8px;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .stats-row .label {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .stats-row .value {
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-rocket"></i> ElderWorld Advanced Features</h1>
+            <p>Premium Healthcare Monitoring & AI-Powered Family Care</p>
+        </div>
+
+        <div class="feature-grid">
+            <!-- Smart Medication Tracker -->
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="feature-title">Smart Medication Tracker</div>
+                </div>
+                <div class="medication-timeline">
+                    <div class="medication-item">
+                        <div class="medication-name">Lisinopril 10mg</div>
+                        <div class="medication-time">Taken at 8:00 AM</div>
+                        <span class="medication-status status-taken">✓ Taken</span>
+                    </div>
+                    <div class="medication-item">
+                        <div class="medication-name">Metformin 500mg</div>
+                        <div class="medication-time">Taken at 12:30 PM</div>
+                        <span class="medication-status status-taken">✓ Taken</span>
+                    </div>
+                    <div class="medication-item">
+                        <div class="medication-name">Aspirin 81mg</div>
+                        <div class="medication-time">Due at 6:00 PM</div>
+                        <span class="medication-status status-pending">⏳ Pending</span>
+                    </div>
+                    <div class="medication-item missed">
+                        <div class="medication-name">Vitamin D 1000IU</div>
+                        <div class="medication-time">Missed yesterday</div>
+                        <span class="medication-status status-missed">⚠ Missed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sleep Quality Analysis -->
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="feature-title">Sleep Quality Analysis</div>
+                </div>
+                <div class="sleep-chart">
+                    <div class="sleep-bars">
+                        <div class="sleep-bar" style="height: 65%;" data-hours="6.5h"></div>
+                        <div class="sleep-bar" style="height: 72%;" data-hours="7.2h"></div>
+                        <div class="sleep-bar" style="height: 81%;" data-hours="8.1h"></div>
+                        <div class="sleep-bar" style="height: 78%;" data-hours="7.8h"></div>
+                        <div class="sleep-bar" style="height: 69%;" data-hours="6.9h"></div>
+                        <div class="sleep-bar" style="height: 83%;" data-hours="8.3h"></div>
+                        <div class="sleep-bar" style="height: 75%;" data-hours="7.5h"></div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #1e40af;">7.5 hrs</div>
+                    <div style="color: #64748b;">Average sleep last week</div>
+                </div>
+            </div>
+
+            <!-- Daily Activity Goal -->
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-walking"></i>
+                    </div>
+                    <div class="feature-title">Daily Activity Goal</div>
+                </div>
+                <div class="activity-ring" style="--progress: 78">
+                    <div class="activity-percentage">78%</div>
+                </div>
+                <div class="progress-text">
+                    <div class="main">7,800 steps</div>
+                    <div class="sub">Goal: 10,000 steps</div>
+                    <div style="color: #22c55e; margin-top: 8px; font-weight: 500;">
+                        🎉 Great progress today!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Response -->
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="feature-title">Emergency Response</div>
+                </div>
+                <button class="emergency-trigger" onclick="triggerEmergency()">
+                    <i class="fas fa-phone"></i> Emergency Call
+                </button>
+                <div style="margin-top: 20px; color: #64748b; font-size: 0.9rem;">
+                    <div class="stats-row">
+                        <span class="label">Primary Contact:</span>
+                        <span class="value">Sarah (Daughter)</span>
+                    </div>
+                    <div class="stats-row">
+                        <span class="label">Response Time:</span>
+                        <span class="value">
+                            < 2 minutes</span>
+                    </div>
+                    <div class="stats-row">
+                        <span class="label">Backup System:</span>
+                        <span class="value">911 Auto-dial</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Voice Assistant -->
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <div class="feature-title">Voice Assistant</div>
+                </div>
+                <div style="text-align: center;">
+                    <button class="voice-control" onclick="activateVoice()">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <div style="color: #64748b; font-size: 0.9rem; margin-top: 10px;">
+                        <div><strong>Say:</strong> "How am I doing today?"</div>
+                        <div><strong>Or:</strong> "Call my daughter"</div>
+                        <div><strong>Or:</strong> "Remind me to take medicine"</div>
+                    </div>
+                    <div class="voice-response" id="voiceResponse" style="display: none;">
+                        <strong>AI Response:</strong>
+                        <div id="voiceText"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Family Circle -->
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="feature-title">Family Circle</div>
+                </div>
+                <div class="family-member">
+                    <div class="family-avatar">S</div>
+                    <div class="family-info">
+                        <div class="name">Sarah Johnson</div>
+                        <div class="role">Daughter</div>
+                    </div>
+                    <div class="family-status status-online"></div>
+                </div>
+                <div class="family-member">
+                    <div class="family-avatar">M</div>
+                    <div class="family-info">
+                        <div class="name">Michael Johnson</div>
+                        <div class="role">Son</div>
+                    </div>
+                    <div class="family-status status-away"></div>
+                </div>
+                <div class="family-member">
+                    <div class="family-avatar">D</div>
+                    <div class="family-info">
+                        <div class="name">Dr. Amanda Chen</div>
+                        <div class="role">Primary Care</div>
+                    </div>
+                    <div class="family-status status-offline"></div>
+                </div>
+            </div>
+
+            <!-- AI Health Insights -->
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="feature-title">AI Health Insights</div>
+                </div>
+                <div class="ai-insight">
+                    <div class="insight-text">
+                        Your heart rate has been consistently lower this week, which aligns with your improved sleep
+                        quality. Consider maintaining your current bedtime routine.
+                    </div>
+                    <div class="insight-confidence">Confidence: 92%</div>
+                </div>
+                <div class="ai-insight">
+                    <div class="insight-text">
+                        You've missed 2 Vitamin D doses this month. Setting a phone reminder for 9 AM might help
+                        establish a routine.
+                    </div>
+                    <div class="insight-confidence">Confidence: 87%</div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="feature-card">
+                <div class="feature-header">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="feature-title">Quick Actions</div>
+                </div>
+                <div class="quick-actions">
+                    <div class="quick-action-btn" onclick="quickAction('appointment')">
+                        <i class="fas fa-calendar"></i>
+                        Schedule Appointment
+                    </div>
+                    <div class="quick-action-btn" onclick="quickAction('prescription')">
+                        <i class="fas fa-prescription-bottle-alt"></i>
+                        Refill Prescription
+                    </div>
+                    <div class="quick-action-btn" onclick="quickAction('video')">
+                        <i class="fas fa-video"></i>
+                        Video Call Family
+                    </div>
+                    <div class="quick-action-btn" onclick="quickAction('report')">
+                        <i class="fas fa-chart-line"></i>
+                        Health Report
+                    </div>
+                    <div class="quick-action-btn" onclick="quickAction('reminder')">
+                        <i class="fas fa-bell"></i>
+                        Set Reminder
+                    </div>
+                    <div class="quick-action-btn" onclick="quickAction('hospital')">
+                        <i class="fas fa-hospital"></i>
+                        Find Hospital
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class ElderWorldAdvanced {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                this.startRealTimeUpdates();
+                console.log('✅ ElderWorld Advanced Features initialized');
+            }
+
+            startRealTimeUpdates() {
+                // Update activity ring progress
+                setInterval(() => {
+                    const ring = document.querySelector('.activity-ring');
+                    const current = parseInt(ring.style.getPropertyValue('--progress') || '78');
+                    const newProgress = Math.min(100, current + Math.floor(Math.random() * 3));
+
+                    ring.style.setProperty('--progress', newProgress);
+                    ring.querySelector('.activity-percentage').textContent = `${newProgress}%`;
+
+                    // Update step count
+                    const stepCount = Math.floor((newProgress / 100) * 10000);
+                    ring.parentElement.querySelector('.main').textContent = `${stepCount.toLocaleString()} steps`;
+                }, 30000);
+
+                // Update family status
+                setInterval(() => {
+                    const statuses = document.querySelectorAll('.family-status');
+                    const statusClasses = ['status-online', 'status-away', 'status-offline'];
+
+                    statuses.forEach(status => {
+                        if (Math.random() < 0.3) {
+                            const currentClass = Array.from(status.classList).find(c => c.startsWith('status-'));
+                            const newClass = statusClasses[Math.floor(Math.random() * statusClasses.length)];
+                            status.classList.remove(currentClass);
+                            status.classList.add(newClass);
+                        }
+                    });
+                }, 45000);
+            }
+
+            showNotification(message, type = 'success') {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#22c55e' : '#3b82f6'};
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                    z-index: 1000;
+                    animation: slideIn 0.3s ease;
+                `;
+
+                notification.innerHTML = `
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}" style="margin-right: 8px;"></i>
+                    ${message}
+                `;
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 4000);
+            }
+        }
+
+        // Global functions
+        function triggerEmergency() {
+            const btn = event.target;
+            btn.classList.add('active');
+            btn.innerHTML = '<i class="fas fa-phone"></i> Calling Emergency...';
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Emergency Services Contacted!';
+
+                setTimeout(() => {
+                    btn.classList.remove('active');
+                    btn.innerHTML = '<i class="fas fa-phone"></i> Emergency Call';
+                }, 3000);
+            }, 2000);
+
+            window.advancedDashboard?.showNotification('🚨 Emergency services contacted successfully!');
+        }
+
+        function activateVoice() {
+            const btn = event.target.closest('.voice-control');
+            const response = document.getElementById('voiceResponse');
+            const text = document.getElementById('voiceText');
+
+            btn.classList.add('listening');
+            btn.innerHTML = '<i class="fas fa-stop"></i>';
+
+            const responses = [
+                "Your health metrics look great today! Heart rate is stable and you've been active.",
+                "I'm calling Sarah now. She should be available in a moment.",
+                "I've set a reminder for 6 PM to take your evening medication.",
+                "Your sleep has improved 15% this week. Keep up the good bedtime routine!",
+                "I found 3 nearby hospitals. The closest is General Hospital, 2.3 miles away."
+            ];
+
+            setTimeout(() => {
+                btn.classList.remove('listening');
+                btn.innerHTML = '<i class="fas fa-microphone"></i>';
+
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                text.textContent = randomResponse;
+                response.style.display = 'block';
+
+                window.advancedDashboard?.showNotification('🎤 Voice command processed successfully!');
+            }, 3000);
+        }
+
+        function quickAction(action) {
+            const actions = {
+                appointment: 'Scheduling your next appointment...',
+                prescription: 'Processing prescription refill...',
+                video: 'Starting family video call...',
+                report: 'Generating your health report...',
+                reminder: 'Setting up medication reminder...',
+                hospital: 'Finding nearby hospitals...'
+            };
+
+            window.advancedDashboard?.showNotification(actions[action] || 'Action completed!');
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            window.advancedDashboard = new ElderWorldAdvanced();
+        });
+    </script>
+</body>
+
+</html>

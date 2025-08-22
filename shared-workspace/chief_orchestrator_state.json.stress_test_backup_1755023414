@@ -1,0 +1,60 @@
+{
+  "tasks": {
+    "quick-test-1": {
+      "state": "DEFINED",
+      "agent": "ai-ml-specialist",
+      "task_file": "/Users/gokulnair/senior-care-startup/ai-ecosystem/shared-workspace/quick-test-quick-test-1.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T23:57:43.297351",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    },
+    "quick-test-5": {
+      "state": "DEFINED",
+      "agent": "market-intelligence",
+      "task_file": "/Users/gokulnair/senior-care-startup/ai-ecosystem/shared-workspace/quick-test-quick-test-5.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T23:57:43.303216",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    },
+    "quick-test-8": {
+      "state": "DEFINED",
+      "agent": "market-intelligence",
+      "task_file": "/Users/gokulnair/senior-care-startup/ai-ecosystem/shared-workspace/quick-test-quick-test-8.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T23:57:43.327210",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    },
+    "quick-test-9": {
+      "state": "DEFINED",
+      "agent": "senior-care-boss",
+      "task_file": "/Users/gokulnair/senior-care-startup/ai-ecosystem/shared-workspace/quick-test-quick-test-9.md",
+      "priority": "MEDIUM",
+      "created_at": "2025-08-12T23:57:43.330926",
+      "delegation_attempts": 0,
+      "last_attempt": null,
+      "check_attempts": 0,
+      "next_check_time": null,
+      "messages": [],
+      "escalation_reason": null
+    }
+  },
+  "last_updated": "2025-08-12T23:57:43.297332",
+  "protocol_violations": [],
+  "escalated_tasks": [],
+  "session_id": "session_1755023263"
+}

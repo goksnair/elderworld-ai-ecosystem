@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "verification-enforcer": {
+      "command": "python3",
+      "args": [
+        "/Users/gokulnair/senior-care-startup/ai-ecosystem/gemini_verification_bridge.py"
+      ],
+      "env": {
+        "VERIFICATION_PROTOCOL": "ironclad",
+        "CROSS_LLM_ENFORCEMENT": "true",
+        "HEALTHCARE_STANDARD": "life_critical"
+      }
+    }
+  },
+  "verification_settings": {
+    "auto_verify_gemini": true,
+    "cross_llm_lockdown": true,
+    "healthcare_extra_scrutiny": true,
+    "violation_persistence": "cross_session"
+  }
+}

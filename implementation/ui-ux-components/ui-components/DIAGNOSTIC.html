@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderWorld - Diagnostic Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f8ff;
+            line-height: 1.6;
+        }
+
+        .diagnostic {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .url-test {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #007bff;
+        }
+
+        .test-button {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+
+        .test-button:hover {
+            background: #0056b3;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="diagnostic">
+        <h1>🔧 ElderWorld Phase 2 - Diagnostic Tool</h1>
+        <p><strong>Current Time:</strong> <span id="currentTime"></span></p>
+
+        <div class="url-test">
+            <h3>🏥 Working Prototype Test</h3>
+            <p><strong>URL:</strong> <code>http://localhost:8000/ui-components/desktop/WorkingPrototype.html</code></p>
+            <a href="http://localhost:8000/ui-components/desktop/WorkingPrototype.html" class="test-button"
+                target="_blank">
+                Test Working Prototype
+            </a>
+            <button class="test-button" onclick="testUrl('WorkingPrototype.html', 'workingTest')">
+                Check Status
+            </button>
+            <div id="workingTest"></div>
+        </div>
+
+        <div class="url-test">
+            <h3>🚀 Advanced Features Test</h3>
+            <p><strong>URL:</strong> <code>http://localhost:8000/ui-components/desktop/AdvancedFeaturesDemo.html</code>
+            </p>
+            <a href="http://localhost:8000/ui-components/desktop/AdvancedFeaturesDemo.html" class="test-button"
+                target="_blank">
+                Test Advanced Features
+            </a>
+            <button class="test-button" onclick="testUrl('AdvancedFeaturesDemo.html', 'advancedTest')">
+                Check Status
+            </button>
+            <div id="advancedTest"></div>
+        </div>
+
+        <div class="url-test">
+            <h3>🎨 CSS Files Test</h3>
+            <button class="test-button" onclick="testCss()">Test CSS Loading</button>
+            <div id="cssTest"></div>
+        </div>
+
+        <div class="url-test">
+            <h3>📊 Server Response Test</h3>
+            <button class="test-button" onclick="testServer()">Test Server Connection</button>
+            <div id="serverTest"></div>
+        </div>
+
+        <div class="url-test">
+            <h3>🔧 Direct Links (Force New Window)</h3>
+            <p>These links will open in new windows to bypass any caching issues:</p>
+            <a href="http://localhost:8000/ui-components/desktop/WorkingPrototype.html?t=12345" class="test-button"
+                target="_blank">
+                Working Prototype (Cache Bypass)
+            </a>
+            <a href="http://localhost:8000/ui-components/desktop/AdvancedFeaturesDemo.html?t=12345" class="test-button"
+                target="_blank">
+                Advanced Features (Cache Bypass)
+            </a>
+        </div>
+
+        <div class="url-test">
+            <h3>⚙️ Troubleshooting Steps</h3>
+            <ol>
+                <li><strong>Hard Refresh:</strong> Press Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)</li>
+                <li><strong>Clear Cache:</strong> F12 → Application → Clear Storage → Clear site data</li>
+                <li><strong>Try Incognito:</strong> Open a private/incognito browser window</li>
+                <li><strong>Check Console:</strong> F12 → Console → Look for error messages</li>
+                <li><strong>Different Browser:</strong> Try Chrome, Firefox, or Safari</li>
+            </ol>
+        </div>
+
+        <div id="diagnosticResults"></div>
+    </div>
+
+    <script>
+        // Update current time
+        document.getElementById('currentTime').textContent = new Date().toLocaleString();
+
+        async function testUrl(filename, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '<div class="warning">Testing...</div>';
+
+            try {
+                const response = await fetch(`/ui-components/desktop/${filename}?t=${Date.now()}`);
+                const content = await response.text();
+
+                if (response.ok) {
+                    const hasStyles = content.includes('elderworld-foundation.css');
+                    const hasComponents = content.includes('elderworld-components.css');
+                    const hasChart = content.includes('chart') || content.includes('Chart');
+                    const contentLength = content.length;
+
+                    container.innerHTML = `
+                        <div class="success">
+                            <strong>✅ Success!</strong><br>
+                            Status: ${response.status} OK<br>
+                            Content Length: ${contentLength} characters<br>
+                            Has Foundation CSS: ${hasStyles ? '✅' : '❌'}<br>
+                            Has Components CSS: ${hasComponents ? '✅' : '❌'}<br>
+                            Has Chart Code: ${hasChart ? '✅' : '❌'}
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = `<div class="error">❌ Error: ${response.status}</div>`;
+                }
+            } catch (error) {
+                container.innerHTML = `<div class="error">❌ Network Error: ${error.message}</div>`;
+            }
+        }
+
+        async function testCss() {
+            const container = document.getElementById('cssTest');
+            container.innerHTML = '<div class="warning">Testing CSS files...</div>';
+
+            const cssTests = [
+                'elderworld-foundation.css',
+                'elderworld-components.css'
+            ];
+
+            const results = [];
+
+            for (const cssFile of cssTests) {
+                try {
+                    const response = await fetch(`/ui-components/css/${cssFile}?t=${Date.now()}`);
+                    const content = await response.text();
+
+                    results.push({
+                        file: cssFile,
+                        status: response.ok ? 'OK' : 'Error ' + response.status,
+                        size: content.length,
+                        hasVariables: content.includes('--eb-primary')
+                    });
+                } catch (error) {
+                    results.push({
+                        file: cssFile,
+                        status: 'Failed',
+                        error: error.message
+                    });
+                }
+            }
+
+            const resultHtml = results.map(r =>
+                `<strong>${r.file}:</strong> ${r.status} (${r.size || 0} chars) ${r.hasVariables ? '✅ Has Variables' : ''}`
+            ).join('<br>');
+
+            container.innerHTML = `<div class="success">${resultHtml}</div>`;
+        }
+
+        async function testServer() {
+            const container = document.getElementById('serverTest');
+            container.innerHTML = '<div class="warning">Testing server...</div>';
+
+            try {
+                const response = await fetch('/ui-components/TEST_REPORT.html?t=' + Date.now());
+                const content = await response.text();
+
+                if (response.ok) {
+                    container.innerHTML = `
+                        <div class="success">
+                            ✅ Server is working!<br>
+                            Response time: ${Date.now() - startTime}ms<br>
+                            Server: ${response.headers.get('server') || 'Unknown'}<br>
+                            Content-Type: ${response.headers.get('content-type') || 'Unknown'}
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = `<div class="error">❌ Server Error: ${response.status}</div>`;
+                }
+            } catch (error) {
+                container.innerHTML = `<div class="error">❌ Connection Failed: ${error.message}</div>`;
+            }
+        }
+
+        let startTime = Date.now();
+
+        // Auto-run basic tests
+        setTimeout(() => {
+            testServer();
+            testCss();
+        }, 1000);
+    </script>
+</body>
+
+</html>

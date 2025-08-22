@@ -1,0 +1,25 @@
+{
+  "total_violations_all_llms": 3,
+  "llms_on_lockdown": [
+    "gemini-chief-orchestrator"
+  ],
+  "cross_llm_violation_history": [
+    {
+      "timestamp": "2025-08-13T10:35:00",
+      "llm_id": "gemini-chief-orchestrator",
+      "session_id": "current-session",
+      "violations": [
+        "Gemini-specific unverified claim: 'delegation.*successful.*validated'",
+        "Gemini-specific unverified claim: 'orchestration.*complete.*verified'",
+        "Gemini-specific unverified claim: 'agent.*performance.*validated'"
+      ],
+      "severity": "HIGH"
+    }
+  ],
+  "protocol_version": "1.0_cross_llm",
+  "enforcement_scope": [
+    "claude-code",
+    "gemini-chief-orchestrator",
+    "github-copilot"
+  ]
+}

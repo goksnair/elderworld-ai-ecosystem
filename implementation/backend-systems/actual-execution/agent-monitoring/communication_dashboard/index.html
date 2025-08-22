@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorCare AI - Multi-Agent Communication Monitor</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>🤖 Multi-Agent Communication Monitor</h1>
+                    <p class="header-subtitle">SeniorCare AI Ecosystem - Real-time Agent Coordination</p>
+                </div>
+                <div class="header-right">
+                    <div class="status-indicators">
+                        <div class="status-item">
+                            <span class="status-dot active"></span>
+                            <span>System Online</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-dot" id="a2a-status"></span>
+                            <span>A2A Communications</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-dot" id="mcp-status"></span>
+                            <span>MCP Tools</span>
+                        </div>
+                    </div>
+                    <div class="timestamp">
+                        Last Updated: <span id="last-updated"></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard-main">
+            <!-- Control Panel -->
+            <section class="control-panel">
+                <div class="controls-left">
+                    <button id="pause-monitoring" class="btn btn-secondary">⏸️ Pause</button>
+                    <button id="clear-logs" class="btn btn-outline">🗑️ Clear Logs</button>
+                    <select id="filter-agent" class="filter-select">
+                        <option value="">All Agents</option>
+                        <option value="claude-code">Claude Code CLI</option>
+                        <option value="gemini-prime">Gemini Prime</option>
+                        <option value="emergency-ai">Emergency AI</option>
+                        <option value="family-coordinator">Family Coordinator</option>
+                        <option value="health-monitor">Health Monitor</option>
+                    </select>
+                </div>
+                <div class="controls-right">
+                    <div class="metrics-summary">
+                        <div class="metric">
+                            <span class="metric-value" id="total-messages">0</span>
+                            <span class="metric-label">Messages</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value" id="active-agents">0</span>
+                            <span class="metric-label">Active Agents</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value" id="tool-calls">0</span>
+                            <span class="metric-label">Tool Calls</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- A2A Message Log -->
+                <section class="dashboard-section a2a-section">
+                    <div class="section-header">
+                        <h2>🔄 Agent-to-Agent Messages</h2>
+                        <div class="section-actions">
+                            <button class="btn-icon" id="export-a2a" title="Export A2A Logs">📤</button>
+                            <button class="btn-icon" id="refresh-a2a" title="Refresh">🔄</button>
+                        </div>
+                    </div>
+                    <div class="message-log" id="a2a-log">
+                        <div class="log-placeholder">
+                            <div class="placeholder-icon">📡</div>
+                            <p>Waiting for agent communications...</p>
+                            <small>A2A messages will appear here in real-time</small>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- MCP Tool Call Status -->
+                <section class="dashboard-section mcp-section">
+                    <div class="section-header">
+                        <h2>🛠️ MCP Tool Call Status</h2>
+                        <div class="section-actions">
+                            <button class="btn-icon" id="export-mcp" title="Export MCP Logs">📤</button>
+                            <button class="btn-icon" id="refresh-mcp" title="Refresh">🔄</button>
+                        </div>
+                    </div>
+                    <div class="tool-call-log" id="mcp-log">
+                        <div class="log-placeholder">
+                            <div class="placeholder-icon">⚡</div>
+                            <p>No tool calls detected...</p>
+                            <small>MCP tool executions will be tracked here</small>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Agent Status Overview -->
+                <section class="dashboard-section agents-section">
+                    <div class="section-header">
+                        <h2>🤖 Agent Status Overview</h2>
+                        <div class="section-actions">
+                            <button class="btn-icon" id="refresh-agents" title="Refresh">🔄</button>
+                        </div>
+                    </div>
+                    <div class="agents-grid" id="agents-overview">
+                        <!-- Agent status cards will be populated here -->
+                    </div>
+                </section>
+
+                <!-- System Health Metrics -->
+                <section class="dashboard-section metrics-section">
+                    <div class="section-header">
+                        <h2>📊 System Health Metrics</h2>
+                        <div class="section-actions">
+                            <select id="metrics-timeframe" class="filter-select">
+                                <option value="5m">Last 5 minutes</option>
+                                <option value="15m">Last 15 minutes</option>
+                                <option value="1h">Last hour</option>
+                                <option value="24h">Last 24 hours</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Response Time</span>
+                                <span class="metric-trend up">↗️</span>
+                            </div>
+                            <div class="metric-value">
+                                <span id="avg-response-time">125ms</span>
+                                <small>avg</small>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Success Rate</span>
+                                <span class="metric-trend stable">→</span>
+                            </div>
+                            <div class="metric-value">
+                                <span id="success-rate">97.4%</span>
+                                <small>success</small>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Messages/Min</span>
+                                <span class="metric-trend up">↗️</span>
+                            </div>
+                            <div class="metric-value">
+                                <span id="messages-per-min">42</span>
+                                <small>msg/min</small>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Error Rate</span>
+                                <span class="metric-trend down">↘️</span>
+                            </div>
+                            <div class="metric-value">
+                                <span id="error-rate">2.1%</span>
+                                <small>errors</small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Message Detail Modal -->
+        <div id="message-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">Message Details</h3>
+                    <button class="modal-close" id="close-modal">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- Message details will be populated here -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="modal-close-btn">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

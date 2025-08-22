@@ -1,0 +1,24 @@
+{
+  "session_id": "session_1754976942",
+  "last_updated": "2025-08-12T06:32:00.000Z",
+  "protocol_status": "ACTIVE",
+  "verification_cycles": 1,
+  "trust_protocol_enabled": true,
+  "mandatory_verification": true,
+  "circuit_breaker_status": "HEALTHY",
+  "last_verification_result": "PASSED",
+  "agent_communication_status": "OPERATIONAL",
+  "a2a_system_status": "FUNCTIONAL",
+  "state_management_status": "ACTIVE",
+  "infrastructure_health": "GOOD",
+  "protocol_violations": [],
+  "escalated_tasks": [],
+  "enforcement_history": [
+    {
+      "timestamp": "2025-08-12T06:32:00.000Z",
+      "action": "PROTOCOL_INITIALIZATION",
+      "status": "SUCCESS",
+      "details": "Session-persistent protocol enforcement activated"
+    }
+  ]
+}

@@ -1,0 +1,616 @@
+/* ElderWorld Advanced Animation System
+   Healthcare-Grade Micro-interactions and Transitions
+   Phase 2 Implementation - August 6, 2025
+*/
+
+:root {
+    /* Animation Timing Functions */
+    --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+    --ease-in: cubic-bezier(0.4, 0.0, 1, 1);
+    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Animation Durations */
+    --duration-fast: 150ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+    --duration-page: 800ms;
+
+    /* Animation Delays */
+    --delay-short: 50ms;
+    --delay-medium: 100ms;
+    --delay-long: 150ms;
+}
+
+/* ========================================
+   CARD ANIMATIONS
+   ======================================== */
+
+.card {
+    transition: all var(--duration-normal) var(--ease-out);
+    transform: translateZ(0);
+    /* Hardware acceleration */
+}
+
+.card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.card:active {
+    transform: translateY(-2px) scale(1.01);
+    transition-duration: var(--duration-fast);
+}
+
+/* Health Metrics Cards */
+.health-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.health-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--accent-500),
+            transparent);
+    transition: left var(--duration-slow) var(--ease-out);
+}
+
+.health-card:hover::before {
+    left: 100%;
+}
+
+/* Emergency Cards - Pulsing Animation */
+.emergency-card {
+    animation: emergencyPulse 2s infinite;
+}
+
+@keyframes emergencyPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+    }
+}
+
+/* ========================================
+   BUTTON ANIMATIONS
+   ======================================== */
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all var(--duration-normal) var(--ease-out);
+    transform: translateZ(0);
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+    transition-duration: var(--duration-fast);
+}
+
+/* Button Ripple Effect */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width var(--duration-normal) var(--ease-out),
+        height var(--duration-normal) var(--ease-out);
+}
+
+.btn:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Emergency Button - Enhanced */
+.btn-emergency {
+    animation: emergencyGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes emergencyGlow {
+    from {
+        box-shadow: 0 0 5px rgba(239, 68, 68, 0.5);
+    }
+
+    to {
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+    }
+}
+
+/* ========================================
+   LOADING ANIMATIONS
+   ======================================== */
+
+/* Skeleton Loading */
+.skeleton {
+    background: linear-gradient(90deg,
+            #f0f0f0 25%,
+            #e0e0e0 50%,
+            #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeletonShimmer 1.5s infinite;
+}
+
+@keyframes skeletonShimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Health Data Loading */
+.health-metric-skeleton {
+    height: 20px;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.chart-skeleton {
+    height: 200px;
+    border-radius: 8px;
+    margin: 16px 0;
+}
+
+/* Pulse Loading for Critical Elements */
+.pulse-loading {
+    animation: pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        opacity: 0.6;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   PAGE TRANSITIONS
+   ======================================== */
+
+/* Slide In Animations */
+.slide-in-right {
+    animation: slideInRight var(--duration-page) var(--ease-out);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft var(--duration-page) var(--ease-out);
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn var(--duration-slow) var(--ease-out);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Staggered Animations for Lists */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: staggerFadeIn var(--duration-normal) var(--ease-out) forwards;
+}
+
+.stagger-item:nth-child(1) {
+    animation-delay: 0ms;
+}
+
+.stagger-item:nth-child(2) {
+    animation-delay: 50ms;
+}
+
+.stagger-item:nth-child(3) {
+    animation-delay: 100ms;
+}
+
+.stagger-item:nth-child(4) {
+    animation-delay: 150ms;
+}
+
+.stagger-item:nth-child(5) {
+    animation-delay: 200ms;
+}
+
+@keyframes staggerFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   SIDEBAR ANIMATIONS
+   ======================================== */
+
+.sidebar-item {
+    transition: all var(--duration-normal) var(--ease-out);
+    position: relative;
+}
+
+.sidebar-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: var(--primary-500);
+    transform: scaleY(0);
+    transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.sidebar-item:hover::before,
+.sidebar-item.active::before {
+    transform: scaleY(1);
+}
+
+.sidebar-item:hover {
+    background: rgba(59, 130, 246, 0.05);
+    transform: translateX(4px);
+}
+
+/* ========================================
+   NOTIFICATION ANIMATIONS
+   ======================================== */
+
+.notification {
+    animation: notificationSlideIn var(--duration-slow) var(--ease-out);
+}
+
+@keyframes notificationSlideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.notification-exit {
+    animation: notificationSlideOut var(--duration-normal) var(--ease-in);
+}
+
+@keyframes notificationSlideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   MODAL ANIMATIONS
+   ======================================== */
+
+.modal-overlay {
+    animation: modalOverlayIn var(--duration-normal) var(--ease-out);
+}
+
+@keyframes modalOverlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    animation: modalContentIn var(--duration-normal) var(--ease-elastic);
+}
+
+@keyframes modalContentIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Emergency Modal - Special Animation */
+.emergency-modal .modal-content {
+    animation: emergencyModalIn var(--duration-slow) var(--ease-out);
+}
+
+@keyframes emergencyModalIn {
+    0% {
+        transform: scale(0.5) rotate(-5deg);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.05) rotate(1deg);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   FORM ANIMATIONS
+   ======================================== */
+
+.form-field {
+    transition: all var(--duration-normal) var(--ease-out);
+}
+
+.form-field:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.form-label {
+    transition: all var(--duration-normal) var(--ease-out);
+}
+
+.form-field:focus+.form-label,
+.form-field:not(:placeholder-shown)+.form-label {
+    transform: translateY(-20px) scale(0.85);
+    color: var(--primary-500);
+}
+
+/* ========================================
+   HEALTH METRICS ANIMATIONS
+   ======================================== */
+
+.health-progress-bar {
+    position: relative;
+    overflow: hidden;
+}
+
+.health-progress-fill {
+    transition: width var(--duration-slow) var(--ease-out);
+    position: relative;
+}
+
+.health-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    animation: progressShine 2s infinite;
+}
+
+@keyframes progressShine {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Heart Rate Animation */
+.heart-rate-indicator {
+    animation: heartbeat 1.2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* ========================================
+   UTILITY ANIMATIONS
+   ======================================== */
+
+/* Hover Grow */
+.hover-grow {
+    transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.hover-grow:hover {
+    transform: scale(1.05);
+}
+
+/* Bounce Animation */
+.bounce-in {
+    animation: bounceIn var(--duration-slow) var(--ease-elastic);
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Float Animation */
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+/* Hardware Acceleration for Smooth Animations */
+.gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+}
+
+/* Reduce Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ========================================
+   ANIMATION STATE CLASSES
+   ======================================== */
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all var(--duration-slow) var(--ease-out);
+}
+
+.animate-on-scroll.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.loading-state * {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.success-state {
+    animation: successPulse var(--duration-normal) var(--ease-out);
+}
+
+@keyframes successPulse {
+    0% {
+        background-color: var(--success-50);
+    }
+
+    50% {
+        background-color: var(--success-100);
+    }
+
+    100% {
+        background-color: var(--success-50);
+    }
+}
+
+.error-state {
+    animation: errorShake var(--duration-normal) var(--ease-out);
+}
+
+@keyframes errorShake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-4px);
+    }
+
+    75% {
+        transform: translateX(4px);
+    }
+}

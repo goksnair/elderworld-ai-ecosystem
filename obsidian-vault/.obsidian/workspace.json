@@ -1,0 +1,232 @@
+{
+  "main": {
+    "id": "3b9c11836dc180d2",
+    "type": "split",
+    "children": [
+      {
+        "id": "c9095256667c5657",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "797cacf444bb5524",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Daily/2025-08-08.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2025-08-08"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b1eae3417b94447c",
+    "type": "split",
+    "children": [
+      {
+        "id": "34c5f53e0b2ce206",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b2dcf3d44f3a8829",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "591ae2bcfcc4c965",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "88ae8262cd75bd29",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "3ee07a1c74351b3f",
+    "type": "split",
+    "children": [
+      {
+        "id": "6c2b65cad52e9b5c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "22effd7445fe35b1",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "OBSIDIAN-SETUP-GUIDE.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for OBSIDIAN-SETUP-GUIDE"
+            }
+          },
+          {
+            "id": "5bdf291ab67a14f7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "OBSIDIAN-SETUP-GUIDE.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from OBSIDIAN-SETUP-GUIDE"
+            }
+          },
+          {
+            "id": "0aede5a142ecb52d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "e25348dd6d0668bd",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "OBSIDIAN-SETUP-GUIDE.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of OBSIDIAN-SETUP-GUIDE"
+            }
+          },
+          {
+            "id": "c1f923fa72ddbdee",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          },
+          {
+            "id": "c737b3812c5856d6",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "templater-obsidian:Templater": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-kanban:Create new board": false
+    }
+  },
+  "active": "797cacf444bb5524",
+  "lastOpenFiles": [
+    "Dashboard/Phase-1-Implementation-Board.md",
+    "Daily/2025-08-08.md",
+    "06_SOPs/SOP_TEMPLATE.md",
+    "06_SOPs",
+    "05_Marketing_And_Branding/SOCIAL_MEDIA_PLAN.md",
+    "05_Marketing_And_Branding/MARKETING_ROADMAP.md",
+    "05_Marketing_And_Branding",
+    "02_Strategy_And_Roadmap/AI_DRIVEN_TECH_ROADMAP.md",
+    "00_Entry_Point.md",
+    "04_Daily_And_Weekly_Briefings/Dashboard-Update-20250805-Strategic-Session-Complete.md",
+    "03_Implementation_Details/AUTONOMOUS-IMPLEMENTATION-GUIDE.md",
+    "02_Strategy_And_Roadmap/implementation-roadmap.json",
+    "02_Strategy_And_Roadmap/README.md",
+    "01_Core_Protocols/MULTI-LLM-COORDINATION.md",
+    "01_Core_Protocols/BULLETPROOF-VERIFICATION-PROTOCOLS.md",
+    "04_Daily_And_Weekly_Briefings",
+    "03_Implementation_Details",
+    "02_Strategy_And_Roadmap",
+    "01_Core_Protocols",
+    "Dashboard-Update-20250805-Strategic-Session-Complete.md",
+    "Session-Handoff-20250805-Multi-Agent-Production-Optimization.md",
+    "Operations/Customer-Support-SOP-Test.md",
+    "Financial-Models/Unit Economics.md",
+    "Dashboard/Executive Summary.md",
+    "Strategy/Market Opportunity Analysis.md",
+    "Strategy/Hiring-Onboarding-SOP.md",
+    "BULLETPROOF-VERIFICATION-SUMMARY.md",
+    "MULTI-LLM-COORDINATION.md",
+    "OBSIDIAN-SETUP-GUIDE.md",
+    "Daily/Untitled Kanban 1.md",
+    "OBSIDIAN-CLAUDE-OPTIMIZATION.md",
+    "Strategy/Competitive-Analysis-Refresh.md",
+    "Strategy/Digital-Marketing-Plan.md",
+    "Untitled.canvas"
+  ]
+}

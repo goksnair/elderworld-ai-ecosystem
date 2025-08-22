@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderWorld — Family Care Command Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        ElderWorld
+        /* Based on Mayo Clinic, Kaiser Permanente, and premium healthcare patterns */
+
+        :root {
+            /* Research-Validated Healthcare Color Psychology */
+            --trust-blue: #0A4D68;
+            /* Deep medical trust (darker than generic blue) */
+            --clinical-blue: #1976D2;
+            /* Clinical authority */
+            --healing-teal: #0288D1;
+            /* Healing and recovery */
+            --wellness-green: #00897B;
+            /* Wellness and vitality */
+            --caution-amber: #FF8F00;
+            /* Medical caution (warmer than warning) */
+            --emergency-red: #C62828;
+            /* Emergency (deeper medical red) */
+            --pure-white: #FFFFFF;
+            /* Sterile clarity */
+            --warm-gray: #F8F9FA;
+            /* Comfortable background */
+            --text-primary: #1A1A1A;
+            /* High contrast readability */
+            --text-secondary: #666666;
+            /* Secondary information */
+
+            /* Premium Healthcare Gradients (Research Insight) */
+            --gradient-trust: linear-gradient(135deg, var(--trust-blue), var(--clinical-blue));
+            --gradient-healing: linear-gradient(135deg, var(--wellness-green), var(--healing-teal));
+            --gradient-premium: linear-gradient(135deg, #FFB300, #FF8F00);
+
+            /* Senior-First Typography Scale (40% increase from research) */
+            --font-base: 18px;
+            /* Increased from 16px */
+            --font-large: 22px;
+            /* Increased from 18px */
+            --font-xl: 28px;
+            /* Increased from 24px */
+            --font-senior: 32px;
+            /* New senior-optimized size */
+
+            /* Enhanced Touch Targets (64px from research) */
+            --touch-target: 64px;
+            --touch-target-small: 56px;
+
+            /* Medical-Grade Spacing */
+            --space-xs: 6px;
+            --space-sm: 12px;
+            --space-md: 24px;
+            --space-lg: 36px;
+            --space-xl: 48px;
+
+            /* Healthcare Shadow System */
+            --shadow-soft: 0 4px 12px rgba(10, 77, 104, 0.08);
+            --shadow-medium: 0 8px 24px rgba(10, 77, 104, 0.12);
+            --shadow-strong: 0 16px 48px rgba(10, 77, 104, 0.16);
+
+            /* Glass Morphism (Research-Enhanced) */
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-blur: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+            color: var(--text-primary);
+            font-size: var(--font-base);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* RESEARCH INSIGHT: Role-Based Header */
+        .header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border-bottom: 1px solid var(--glass-border);
+            padding: var(--space-md);
+            box-shadow: var(--shadow-soft);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .brand-icon {
+            font-size: var(--font-xl);
+            background: var(--gradient-trust);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .brand-text h1 {
+            font-size: var(--font-large);
+            font-weight: 700;
+            color: var(--trust-blue);
+            margin-bottom: 4px;
+        }
+
+        .brand-tagline {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* RESEARCH INSIGHT: Family Member Indicator */
+        .user-context {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--glass-bg);
+            border-radius: 32px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .role-badge {
+            background: var(--gradient-premium);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* RESEARCH INSIGHT: Persistent Emergency System */
+        .emergency-floating {
+            position: fixed;
+            bottom: var(--space-md);
+            right: var(--space-md);
+            z-index: 1000;
+        }
+
+        .emergency-button {
+            background: var(--emergency-red);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            font-size: var(--font-large);
+            cursor: pointer;
+            box-shadow: var(--shadow-strong);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: emergency-pulse 3s infinite;
+        }
+
+        .emergency-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 20px 60px rgba(198, 40, 40, 0.4);
+        }
+
+        @keyframes emergency-pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 20px rgba(198, 40, 40, 0);
+            }
+        }
+
+        /* Main Dashboard Layout */
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: var(--space-lg);
+        }
+
+        /* RESEARCH INSIGHT: Family Collaboration Sidebar */
+        .family-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border-radius: 20px;
+            padding: var(--space-md);
+            box-shadow: var(--shadow-medium);
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .family-panel h2 {
+            color: var(--trust-blue);
+            font-size: var(--font-large);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .family-member {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm);
+            border-radius: 12px;
+            margin-bottom: var(--space-sm);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: var(--touch-target-small);
+        }
+
+        .family-member:hover {
+            background: rgba(10, 77, 104, 0.05);
+            transform: translateX(4px);
+        }
+
+        .member-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-trust);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .member-status {
+            flex: 1;
+        }
+
+        .member-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .member-role {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--wellness-green);
+            animation: status-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes status-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 137, 123, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(0, 137, 123, 0);
+            }
+        }
+
+        /* Main Content Area */
+        .main-content {
+            display: grid;
+            gap: var(--space-lg);
+        }
+
+        /* RESEARCH INSIGHT: Health Metrics with Micro-Interactions */
+        .health-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-md);
+        }
+
+        .health-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border-radius: 20px;
+            padding: var(--space-md);
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .health-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        /* RESEARCH INSIGHT: Shimmer Effect for Data Updates */
+        .health-card.data-updated {
+            position: relative;
+        }
+
+        .health-card.data-updated::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: data-shimmer 2s ease-in-out;
+        }
+
+        @keyframes data-shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+        }
+
+        .card-title {
+            font-size: var(--font-large);
+            font-weight: 600;
+            color: var(--trust-blue);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-large);
+            color: white;
+        }
+
+        .vital-value {
+            font-size: var(--font-senior);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+
+        .vital-trend {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 14px;
+        }
+
+        /* RESEARCH INSIGHT: Vital Signs Pulse Animation */
+        .pulse-animation {
+            animation: vital-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes vital-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+
+        /* RESEARCH INSIGHT: Doctor Validation Badges */
+        .doctor-validated {
+            position: relative;
+        }
+
+        .doctor-validated::after {
+            content: '✓ Reviewed by Dr. Patel';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--wellness-green);
+            color: white;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* RESEARCH INSIGHT: Premium Feature Highlighting */
+        .premium-feature {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 179, 0, 0.1), rgba(255, 143, 0, 0.05));
+            border: 2px solid rgba(255, 179, 0, 0.3);
+        }
+
+        .premium-feature::before {
+            content: '👑 Premium';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--gradient-premium);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        /* Activity Feed with Cultural Context */
+        .activity-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border-radius: 20px;
+            padding: var(--space-md);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+        }
+
+        .section-title {
+            font-size: var(--font-large);
+            font-weight: 600;
+            color: var(--trust-blue);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            border-radius: 12px;
+            margin-bottom: var(--space-sm);
+            transition: all 0.3s ease;
+            min-height: var(--touch-target-small);
+        }
+
+        .activity-item:hover {
+            background: rgba(10, 77, 104, 0.05);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* RESEARCH INSIGHT: Cultural Adaptation Elements */
+        .namaste-greeting {
+            text-align: center;
+            padding: var(--space-md);
+            background: linear-gradient(135deg, rgba(255, 179, 0, 0.1), rgba(0, 137, 123, 0.1));
+            border-radius: 16px;
+            margin-bottom: var(--space-md);
+        }
+
+        .namaste-greeting .greeting-text {
+            font-size: var(--font-large);
+            font-weight: 500;
+            color: var(--trust-blue);
+            margin-bottom: var(--space-sm);
+        }
+
+        .namaste-greeting .greeting-subtitle {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Responsive Design for Senior Accessibility */
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                padding: var(--space-md);
+            }
+
+            .family-panel {
+                position: relative;
+                top: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --font-base: 20px;
+                /* Even larger for mobile seniors */
+                --font-large: 24px;
+                --font-xl: 30px;
+                --font-senior: 36px;
+            }
+
+            .health-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .emergency-button {
+                width: 100px;
+                height: 100px;
+                font-size: 28px;
+            }
+        }
+
+        /* RESEARCH INSIGHT: Senior Mode Toggle */
+        .accessibility-controls {
+            position: fixed;
+            top: 120px;
+            left: var(--space-md);
+            z-index: 200;
+        }
+
+        .senior-mode-toggle {
+            background: var(--trust-blue);
+            color: white;
+            border: none;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: var(--touch-target-small);
+        }
+
+        .senior-mode-toggle:hover {
+            background: var(--clinical-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Senior Mode Enhanced Styles */
+        body.senior-mode {
+            --font-base: 22px;
+            --font-large: 26px;
+            --font-xl: 32px;
+            --font-senior: 38px;
+            --touch-target: 72px;
+            --touch-target-small: 64px;
+        }
+
+        body.senior-mode .health-card {
+            padding: var(--space-lg);
+        }
+
+        body.senior-mode .family-member {
+            padding: var(--space-md);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- RESEARCH INSIGHT: Enhanced Header with Family Context -->
+    <header class="header">
+        <div class="header-content">
+            <div class="brand-section">
+                <div class="brand-icon">🌉</div>
+                <div class="brand-text">
+                    <h1>ElderWorld</h1>
+                    <p class="brand-tagline">Bridging Hearts, Guiding Care</p>
+                </div>
+            </div>
+
+            <div class="user-context">
+                <div class="role-badge">Family Dashboard</div>
+                <span>Priya Singh (Daughter)</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- RESEARCH INSIGHT: Senior Mode Accessibility -->
+    <div class="accessibility-controls">
+        <button class="senior-mode-toggle" onclick="toggleSeniorMode()">
+            <i class="fas fa-text-height"></i> Senior View
+        </button>
+    </div>
+
+    <!-- Cultural Greeting -->
+    <div class="dashboard">
+        <aside class="family-panel">
+            <div class="namaste-greeting">
+                <div class="greeting-text">नमस्ते, Singh Family</div>
+                <div class="greeting-subtitle">Your loved ones are in caring hands</div>
+            </div>
+
+            <!-- RESEARCH INSIGHT: Family Collaboration Tools -->
+            <h2><i class="fas fa-users"></i> Family Circle</h2>
+
+            <div class="family-member">
+                <div class="member-avatar">रा</div>
+                <div class="member-status">
+                    <div class="member-name">Ram Singh (Papa)</div>
+                    <div class="member-role">Elder • At Home</div>
+                </div>
+                <div class="status-indicator"></div>
+            </div>
+
+            <div class="family-member">
+                <div class="member-avatar">सु</div>
+                <div class="member-status">
+                    <div class="member-name">Sunita Singh (Mama)</div>
+                    <div class="member-role">Elder • At Home</div>
+                </div>
+                <div class="status-indicator"></div>
+            </div>
+
+            <div class="family-member">
+                <div class="member-avatar">प्र</div>
+                <div class="member-status">
+                    <div class="member-name">Priya Singh (You)</div>
+                    <div class="member-role">Daughter • NRI Canada</div>
+                </div>
+                <div class="status-indicator"></div>
+            </div>
+
+            <div class="family-member">
+                <div class="member-avatar">डॉ</div>
+                <div class="member-status">
+                    <div class="member-name">Dr. Rajesh Patel</div>
+                    <div class="member-role">Family Doctor</div>
+                </div>
+                <div class="status-indicator"></div>
+            </div>
+
+            <div class="family-member">
+                <div class="member-avatar">मी</div>
+                <div class="member-status">
+                    <div class="member-name">Meera Devi</div>
+                    <div class="member-role">Live-in Caregiver</div>
+                </div>
+                <div class="status-indicator"></div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <!-- RESEARCH INSIGHT: Health Metrics with Advanced Micro-Interactions -->
+            <section class="health-overview">
+                <div class="health-card doctor-validated pulse-animation"
+                    style="--card-gradient: var(--gradient-healing);">
+                    <div class="card-header">
+                        <h3 class="card-title">Papa's Heart Rate</h3>
+                        <div class="card-icon" style="background: var(--gradient-healing);">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                    </div>
+                    <div class="vital-value" style="color: var(--healing-teal);">78 BPM</div>
+                    <div class="vital-trend">
+                        <i class="fas fa-arrow-up" style="color: var(--wellness-green);"></i>
+                        <span>Normal rhythm • Last updated 2 min ago</span>
+                    </div>
+                </div>
+
+                <div class="health-card premium-feature data-updated" style="--card-gradient: var(--gradient-trust);">
+                    <div class="card-header">
+                        <h3 class="card-title">Blood Pressure</h3>
+                        <div class="card-icon" style="background: var(--gradient-trust);">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                    </div>
+                    <div class="vital-value" style="color: var(--trust-blue);">120/80</div>
+                    <div class="vital-trend">
+                        <i class="fas fa-check-circle" style="color: var(--wellness-green);"></i>
+                        <span>Perfect range • Morning reading</span>
+                    </div>
+                </div>
+
+                <div class="health-card doctor-validated" style="--card-gradient: var(--gradient-premium);">
+                    <div class="card-header">
+                        <h3 class="card-title">Medication Status</h3>
+                        <div class="card-icon" style="background: var(--gradient-premium);">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                    </div>
+                    <div class="vital-value" style="color: var(--caution-amber);">100% Adherence</div>
+                    <div class="vital-trend">
+                        <i class="fas fa-star" style="color: var(--caution-amber);"></i>
+                        <span>All medications taken on time</span>
+                    </div>
+                </div>
+
+                <div class="health-card pulse-animation" style="--card-gradient: var(--gradient-healing);">
+                    <div class="card-header">
+                        <h3 class="card-title">Today's Activity</h3>
+                        <div class="card-icon" style="background: var(--gradient-healing);">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                    </div>
+                    <div class="vital-value" style="color: var(--wellness-green);">3,247 Steps</div>
+                    <div class="vital-trend">
+                        <i class="fas fa-trophy" style="color: var(--caution-amber);"></i>
+                        <span>Daily goal achieved! 🎉</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RESEARCH INSIGHT: Cultural Activity Feed -->
+            <section class="activity-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-clock"></i>
+                        Today's Care Timeline
+                    </h2>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon" style="background: var(--gradient-healing);">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Morning Namaste & Health Check Complete</div>
+                        <div class="activity-time">8:30 AM • Blood pressure, weight recorded</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon" style="background: var(--gradient-premium);">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Healthy Breakfast - Dal Paratha with Sabzi</div>
+                        <div class="activity-time">9:15 AM • Nutritious meal as per diet plan</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon" style="background: var(--gradient-trust);">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Video Call with Priya (Canada)</div>
+                        <div class="activity-time">10:30 AM • 20 min family chat</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon" style="background: var(--gradient-healing);">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Morning Garden Walk & Yoga</div>
+                        <div class="activity-time">11:00 AM • Light exercise in fresh air</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- RESEARCH INSIGHT: Persistent Emergency System -->
+    <div class="emergency-floating">
+        <button class="emergency-button" onclick="triggerEmergency()" title="Emergency SOS - Press for immediate help">
+            <i class="fas fa-phone"></i>
+        </button>
+    </div>
+
+    <!-- RESEARCH INSIGHT: Advanced JavaScript for Micro-Interactions -->
+    <script>
+        // Senior Mode Toggle
+        function toggleSeniorMode() {
+            document.body.classList.toggle('senior-mode');
+            const button = document.querySelector('.senior-mode-toggle');
+            if (document.body.classList.contains('senior-mode')) {
+                button.innerHTML = '<i class="fas fa-text-height"></i> Normal View';
+            } else {
+                button.innerHTML = '<i class="fas fa-text-height"></i> Senior View';
+            }
+        }
+
+        // RESEARCH INSIGHT: Data Update Shimmer Effect
+        function triggerDataUpdate() {
+            const cards = document.querySelectorAll('.health-card');
+            cards.forEach(card => {
+                card.classList.add('data-updated');
+                setTimeout(() => {
+                    card.classList.remove('data-updated');
+                }, 2000);
+            });
+        }
+
+        // Emergency System
+        function triggerEmergency() {
+            if (confirm('🚨 EMERGENCY ALERT\n\nThis will immediately notify:\n• Family members\n• Dr. Patel\n• Local emergency services\n\nProceed?')) {
+                // Show emergency status
+                showEmergencyStatus('Emergency Activated - Connecting family and medical team...');
+
+                // Simulate emergency response
+                setTimeout(() => {
+                    showEmergencyStatus('✓ Family notified • Dr. Patel contacted • Help dispatched');
+                }, 3000);
+            }
+        }
+
+        function showEmergencyStatus(message) {
+            // Create or update status display
+            let statusDiv = document.querySelector('.emergency-status') || document.createElement('div');
+            statusDiv.className = 'emergency-status';
+            statusDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(198, 40, 40, 0.95);
+                color: white;
+                padding: 16px 32px;
+                border-radius: 12px;
+                font-weight: 600;
+                z-index: 2000;
+                box-shadow: 0 8px 32px rgba(198, 40, 40, 0.4);
+                backdrop-filter: blur(10px);
+            `;
+            statusDiv.textContent = message;
+
+            if (!document.querySelector('.emergency-status')) {
+                document.body.appendChild(statusDiv);
+            }
+
+            // Auto-remove after 10 seconds
+            setTimeout(() => {
+                statusDiv.remove();
+            }, 10000);
+        }
+
+        // Simulate real-time data updates every 30 seconds
+        setInterval(triggerDataUpdate, 30000);
+
+        // Initialize with a data update animation
+        setTimeout(triggerDataUpdate, 2000);
+
+        // Add doctor validation badges dynamically
+        document.addEventListener('DOMContentLoaded', function () {
+            const validatedCards = document.querySelectorAll('.doctor-validated');
+            validatedCards.forEach(card => {
+                // Already handled by CSS, but could add dynamic validation here
+            });
+        });
+    </script>
+</body>
+
+</html>

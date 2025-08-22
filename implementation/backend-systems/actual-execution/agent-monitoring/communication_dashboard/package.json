@@ -1,0 +1,53 @@
+{
+    "name": "agent-monitor-dashboard",
+    "version": "1.0.0",
+    "description": "Multi-Agent Communication Monitor Dashboard for SeniorCare AI",
+    "main": "src/index.js",
+    "private": true,
+    "dependencies": {
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-scripts": "5.0.1"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "dev": "react-scripts start",
+        "preview": "serve -s build"
+    },
+    "devDependencies": {
+        "serve": "^14.0.1"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "keywords": [
+        "agent-monitoring",
+        "multi-agent-system",
+        "communication-dashboard",
+        "mcp-tools",
+        "seniorcare-ai",
+        "react"
+    ],
+    "author": "SeniorCare AI Team",
+    "license": "MIT",
+    "homepage": ".",
+    "files": [
+        "src/**/*",
+        "public/**/*",
+        "*.jsx",
+        "*.css",
+        "*.html"
+    ]
+}

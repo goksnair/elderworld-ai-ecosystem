@@ -1,0 +1,538 @@
+/* FamilyDashboard.css - Production-ready styles for ElderWorld Family Dashboard */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.dashboard-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #333;
+}
+
+/* Header Styles */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    color: #2E7D32;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.family-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.timezone-display {
+    background: #E8F5E8;
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: #2E7D32;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* Main Grid Layout */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 350px;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+/* Parent Status Card */
+.parent-status-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.parent-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.parent-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4CAF50, #81C784);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.parent-info h2 {
+    color: #2E7D32;
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.status-safe {
+    background: #E8F5E8;
+    color: #2E7D32;
+}
+
+.online-status {
+    width: 12px;
+    height: 12px;
+    background: #4CAF50;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* Vital Statistics */
+.vital-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.vital-item {
+    background: #F8F9FA;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.vital-item:hover {
+    transform: translateY(-2px);
+}
+
+.vital-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2E7D32;
+    margin-bottom: 5px;
+}
+
+.vital-label {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* Action Buttons */
+.quick-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #45A049;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #E3F2FD;
+    color: #1976D2;
+}
+
+.btn-secondary:hover {
+    background: #BBDEFB;
+    transform: translateY(-2px);
+}
+
+/* Activity Feed */
+.activity-feed {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.activity-header {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    background: #F8F9FA;
+    transition: transform 0.2s ease;
+}
+
+.activity-item:hover {
+    transform: translateX(5px);
+    background: #F0F7FF;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.activity-positive {
+    background: #4CAF50;
+}
+
+.activity-neutral {
+    background: #FF9800;
+}
+
+.activity-medical {
+    background: #2196F3;
+}
+
+/* Communication Panel */
+.communication-panel {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.caregiver-info {
+    background: #E8F5E8;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.caregiver-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.caregiver-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #4CAF50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.emergency-contact {
+    background: #FFEBEE;
+    border: 2px solid #F44336;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.emergency-btn {
+    background: #F44336;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.emergency-btn:hover:not(:disabled) {
+    background: #D32F2F;
+    transform: scale(1.05);
+}
+
+.emergency-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.emergency-btn.pulsing {
+    animation: emergencyPulse 1s ease-in-out infinite;
+}
+
+@keyframes emergencyPulse {
+
+    0%,
+    100% {
+        background: #F44336;
+    }
+
+    50% {
+        background: #D32F2F;
+    }
+}
+
+.currency-converter {
+    background: #FFF3E0;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
+
+/* Bottom Grid */
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+/* Health Trends */
+.health-trends {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.trend-chart {
+    background: #F8F9FA;
+    height: 200px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    margin-top: 20px;
+    border: 2px dashed #ddd;
+}
+
+/* AI Insights */
+.ai-insights {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.insight-item {
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border-left: 4px solid #2196F3;
+    transition: transform 0.2s ease;
+}
+
+.insight-item:hover {
+    transform: translateX(5px);
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 1200px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 10px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .timezone-display {
+        font-size: 0.8rem;
+    }
+
+    .parent-status-card {
+        padding: 20px;
+    }
+
+    .parent-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .parent-photo {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .vital-stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .quick-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .activity-feed,
+    .communication-panel,
+    .health-trends,
+    .ai-insights {
+        padding: 20px;
+    }
+
+    .activity-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .caregiver-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-container {
+        padding: 5px;
+    }
+
+    .header,
+    .parent-status-card,
+    .activity-feed,
+    .communication-panel,
+    .health-trends,
+    .ai-insights {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .emergency-btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Accessibility Features */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+
+    .header,
+    .parent-status-card,
+    .activity-feed,
+    .communication-panel,
+    .health-trends,
+    .ai-insights {
+        border: 2px solid #000;
+    }
+
+    .action-btn {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Focus Styles for Keyboard Navigation */
+.action-btn:focus,
+.emergency-btn:focus {
+    outline: 3px solid #2196F3;
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white !important;
+    }
+
+    .dashboard-container {
+        background: white !important;
+        color: black !important;
+    }
+
+    .header,
+    .parent-status-card,
+    .activity-feed,
+    .communication-panel {
+        background: white !important;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+    }
+
+    .action-btn,
+    .emergency-btn {
+        display: none;
+    }
+}

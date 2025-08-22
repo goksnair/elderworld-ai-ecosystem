@@ -1,0 +1,155 @@
+import yaml
+import re
+import subprocess
+from resource_profiler import ResourceProfiler
+from task_parser import TaskParser
+from matching_scorer import MatchingScorer
+
+class WDLParser:
+    def __init__(self, wdl_file):
+        self.wdl_file = wdl_file
+        self.workflow = None
+
+    def parse(self):
+        with open(self.wdl_file, 'r') as f:
+            self.workflow = yaml.safe_load(f)
+
+    def get_workflow_name(self):
+        return self.workflow.get('name')
+
+    def get_tasks(self):
+        return self.workflow.get('tasks')
+
+class WorkflowExecutor:
+    def __init__(self, workflow):
+        self.workflow = workflow
+        self.task_graph = {}
+        self.resolved_tasks = set()
+        self.task_results = {}
+        self.resource_profiler = ResourceProfiler()
+        self.matching_scorer = MatchingScorer()
+
+    def build_dependency_graph(self):
+        for task in self.workflow.get('tasks'):
+            dependencies = []
+            for input in task.get('inputs', []):
+                value = input.get('value', '')
+                matches = re.findall(r'{{(.*_*.+)}}', str(value))
+                for match in matches:
+                    parts = match.strip().split('.')
+                    dependency = parts[1]
+                    dependencies.append(dependency)
+            self.task_graph[task.get('name')] = {'dependencies': dependencies, 'task': task}
+
+    def execute(self):
+        self.build_dependency_graph()
+        while len(self.resolved_tasks) < len(self.task_graph):
+            for task_name, task_info in self.task_graph.items():
+                if task_name not in self.resolved_tasks and all(dep in self.resolved_tasks for dep in task_info['dependencies']):
+                    self.execute_task(task_name, task_info['task'])
+                    self.resolved_tasks.add(task_name)
+
+    def execute_task(self, task_name, task):
+        print(f"Executing task: {task_name}")
+        agent = task.get('agent')
+        script = task.get('script')
+        sender = 'Chief Orchestrator (Gemini)'
+        task_management_system = task.get('task_management_system')
+
+        # Resolve inputs
+        inputs = {}
+        for input_def in task.get('inputs', []):
+            value = input_def.get('value')
+            matches = re.findall(r'{{(.*_*.+)}}', str(value))
+            if matches:
+                for match in matches:
+                    parts = match.strip().split('.')
+                    # Assuming format tasks.task_name.outputs.output_name
+                    if parts[0] == 'tasks' and parts[2] == 'outputs':
+                        prev_task_name = parts[1]
+                        output_name = parts[3]
+                        if prev_task_name in self.task_results and output_name in self.task_results[prev_task_name]:
+                            inputs[input_def.get('name')] = self.task_results[prev_task_name][output_name]
+                        else:
+                            raise Exception(f"Output {output_name} from task {prev_task_name} not found.")
+            else:
+                inputs[input_def.get('name')] = value
+
+        # Simulate task execution and output generation
+        # In a real scenario, this would involve communicating with the agent and getting actual results
+        outputs = {}
+        for output_def in task.get('outputs', []):
+            # For now, just create a dummy output based on input or a placeholder
+            if output_def.get('name') == 'predictions':
+                outputs['predictions'] = f"simulated_predictions_for_{task_name}"
+            else:
+                outputs[output_def.get('name')] = f"simulated_output_for_{task_name}"
+        
+        self.task_results[task_name] = outputs
+
+        # Adaptive Resource Optimization: Select the best agent
+        parsed_task = TaskParser(task).parse_task()
+        all_agents = self.resource_profiler.get_all_agent_profiles()
+        
+        best_agent = None
+        best_score = -1
+
+        for agent_profile in all_agents:
+            # Ensure the agent is available and has the required skills
+            if agent_profile['availability']:
+                skill_score = self.matching_scorer.score_skill_alignment(
+                    parsed_task['skills_required'], 
+                    agent_profile['skills']
+                )
+                workload_score = self.matching_scorer.score_workload_balance(
+                    agent_profile['current_workload']
+                )
+                
+                overall_score = self.matching_scorer.calculate_overall_score(
+                    skill_score, 
+                    workload_score, 
+                    parsed_task['priority']
+                )
+
+                if overall_score > best_score:
+                    best_score = overall_score
+                    best_agent = agent_profile
+        
+        if best_agent:
+            print(f"Assigned task {task_name} to {best_agent['name']} with score {best_score:.2f}")
+            # Update agent's workload and availability
+            self.resource_profiler.update_agent_profile(
+                best_agent['id'], 
+                {'current_workload': best_agent['current_workload'] + 1, 'availability': False}
+            )
+            agent = best_agent['name'] # Use the selected agent
+        else:
+            print(f"No suitable agent found for task {task_name}. Delegating to default agent: {agent}")
+
+        # Delegate task to agent
+        command = f"node /Users/gokulnair/senior-care-startup/ai-ecosystem/mcp-bridge/send_task.js '{sender}' '{agent}' '{task_name}' '{script}'"
+        subprocess.run(command, shell=True, check=True)
+
+        # Create task in task management system if specified
+        if task_management_system == 'jira':
+            print(f"Creating Jira issue for task: {task_name}")
+            # Here you would call the Jira API wrapper
+            # jira_api_wrapper.create_issue(...)
+            print(f"Updating Jira issue status for task: {task_name}")
+            # Here you would call the Jira API wrapper to update status
+            # jira_api_wrapper.update_issue_status(...)
+        elif task_management_system == 'asana':
+            print(f"Creating Asana task for task: {task_name}")
+            # Here you would call the Asana API wrapper
+            # asana_api_wrapper.create_task(...)
+            print(f"Updating Asana task status for task: {task_name}")
+            # Here you would call the Asana API wrapper to update status
+            # asana_api_wrapper.update_task(...)
+
+if __name__ == '__main__':
+    parser = WDLParser('/Users/gokulnair/senior-care-startup/ai-ecosystem/example.wdl')
+    parser.parse()
+    print(f"Workflow Name: {parser.get_workflow_name()}")
+
+    executor = WorkflowExecutor(parser.workflow)
+    executor.execute()

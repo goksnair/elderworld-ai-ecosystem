@@ -1,0 +1,740 @@
+/**
+ * ELDERWORLD UI THEME - BEACON.AI INSPIRED DESIGN SYSTEM
+ * Comprehensive CSS theme for family dashboard and app interfaces
+ * Implements guidance, connection, and trust-building design principles
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* =================================================================
+   ELDERWORLD CSS CUSTOM PROPERTIES (CSS VARIABLES)
+   ================================================================= */
+
+:root {
+    /* Primary Brand Colors - BEACON.AI Inspired */
+    --eb-primary: #1E3A8A;
+    /* Beacon Blue - Deep trust & reliability */
+    --eb-primary-light: #3B82F6;
+    /* Accessible blue */
+    --eb-primary-dark: #1E40AF;
+    /* Hover states */
+
+    --eb-secondary: #F59E0B;
+    /* Guiding Gold - Warmth & premium */
+    --eb-secondary-light: #FCD34D;
+    /* Light accent */
+    --eb-secondary-dark: #D97706;
+    /* Hover states */
+
+    --eb-white: #FFFFFF;
+    /* Pure clarity */
+    --eb-charcoal: #374151;
+    /* Sophisticated text */
+
+    /* Semantic Colors */
+    --eb-success: #10B981;
+    /* Health, positive states */
+    --eb-warning: #F59E0B;
+    /* Caution, attention needed */
+    --eb-error: #EF4444;
+    /* Emergency, critical alerts */
+    --eb-info: #3B82F6;
+    /* Information, navigation */
+
+    /* Neutral Gray Scale */
+    --eb-gray-50: #F9FAFB;
+    --eb-gray-100: #F3F4F6;
+    --eb-gray-200: #E5E7EB;
+    --eb-gray-300: #D1D5DB;
+    --eb-gray-400: #9CA3AF;
+    --eb-gray-500: #6B7280;
+    --eb-gray-600: #4B5563;
+    --eb-gray-700: #374151;
+    --eb-gray-800: #1F2937;
+    --eb-gray-900: #111827;
+
+    /* Background Colors */
+    --eb-bg-primary: #F9FAFB;
+    /* Main background */
+    --eb-bg-secondary: #FFFFFF;
+    /* Card backgrounds */
+    --eb-bg-accent: #F0F9FF;
+    /* Accent backgrounds */
+
+    /* Typography System */
+    --eb-font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --eb-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    /* Font Sizes */
+    --eb-text-xs: 0.75rem;
+    /* 12px */
+    --eb-text-sm: 0.875rem;
+    /* 14px */
+    --eb-text-base: 1rem;
+    /* 16px */
+    --eb-text-lg: 1.125rem;
+    /* 18px */
+    --eb-text-xl: 1.25rem;
+    /* 20px */
+    --eb-text-2xl: 1.5rem;
+    /* 24px */
+    --eb-text-3xl: 1.875rem;
+    /* 30px */
+    --eb-text-4xl: 2.25rem;
+    /* 36px */
+    --eb-text-5xl: 3rem;
+    /* 48px */
+
+    /* Senior-Friendly Larger Sizes */
+    --eb-text-senior-base: 1.25rem;
+    /* 20px - 25% larger */
+    --eb-text-senior-lg: 1.5rem;
+    /* 24px */
+    --eb-text-senior-xl: 1.75rem;
+    /* 28px */
+    --eb-text-senior-2xl: 2rem;
+    /* 32px */
+
+    /* Font Weights */
+    --eb-font-light: 300;
+    --eb-font-normal: 400;
+    --eb-font-medium: 500;
+    --eb-font-semibold: 600;
+    --eb-font-bold: 700;
+    --eb-font-extrabold: 800;
+
+    /* Line Heights */
+    --eb-leading-tight: 1.2;
+    --eb-leading-normal: 1.5;
+    --eb-leading-relaxed: 1.7;
+
+    /* Spacing Scale */
+    --eb-space-1: 0.25rem;
+    /* 4px */
+    --eb-space-2: 0.5rem;
+    /* 8px */
+    --eb-space-3: 0.75rem;
+    /* 12px */
+    --eb-space-4: 1rem;
+    /* 16px */
+    --eb-space-5: 1.25rem;
+    /* 20px */
+    --eb-space-6: 1.5rem;
+    /* 24px */
+    --eb-space-8: 2rem;
+    /* 32px */
+    --eb-space-10: 2.5rem;
+    /* 40px */
+    --eb-space-12: 3rem;
+    /* 48px */
+    --eb-space-16: 4rem;
+    /* 64px */
+    --eb-space-20: 5rem;
+    /* 80px */
+
+    /* Border Radius */
+    --eb-radius-none: 0;
+    --eb-radius-sm: 0.25rem;
+    /* 4px */
+    --eb-radius-md: 0.5rem;
+    /* 8px */
+    --eb-radius-lg: 0.75rem;
+    /* 12px */
+    --eb-radius-xl: 1rem;
+    /* 16px */
+    --eb-radius-2xl: 1.5rem;
+    /* 24px */
+    --eb-radius-full: 9999px;
+
+    /* Box Shadows */
+    --eb-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --eb-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --eb-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --eb-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --eb-shadow-beacon: 0 8px 32px rgba(30, 58, 138, 0.12);
+    --eb-shadow-gold: 0 8px 32px rgba(245, 158, 11, 0.12);
+
+    /* Transitions & Animations */
+    --eb-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --eb-transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --eb-transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Z-Index Scale */
+    --eb-z-dropdown: 1000;
+    --eb-z-sticky: 1020;
+    --eb-z-fixed: 1030;
+    --eb-z-modal-backdrop: 1040;
+    --eb-z-modal: 1050;
+    --eb-z-popover: 1060;
+    --eb-z-tooltip: 1070;
+    --eb-z-toast: 1080;
+}
+
+/* =================================================================
+   GLOBAL BASE STYLES
+   ================================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--eb-font-primary);
+    font-weight: var(--eb-font-normal);
+    color: var(--eb-charcoal);
+    background-color: var(--eb-bg-primary);
+    line-height: var(--eb-leading-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* =================================================================
+   ELDERWORLD COMPONENT CLASSES
+   ================================================================= */
+
+/* Header & Navigation */
+.eb-header {
+    background: var(--eb-bg-secondary);
+    border-bottom: 1px solid var(--eb-gray-200);
+    box-shadow: var(--eb-shadow-sm);
+}
+
+.eb-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--eb-space-3);
+    font-size: var(--eb-text-xl);
+    font-weight: var(--eb-font-bold);
+    color: var(--eb-primary);
+}
+
+.eb-logo::before {
+    content: "🌉";
+    font-size: var(--eb-text-2xl);
+}
+
+/* Card Components */
+.eb-card {
+    background: var(--eb-bg-secondary);
+    border: 1px solid var(--eb-gray-200);
+    border-radius: var(--eb-radius-lg);
+    box-shadow: var(--eb-shadow-md);
+    padding: var(--eb-space-6);
+    transition: all var(--eb-transition-normal);
+}
+
+.eb-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--eb-shadow-lg);
+}
+
+.eb-card-beacon {
+    border-left: 4px solid var(--eb-primary);
+    box-shadow: var(--eb-shadow-beacon);
+}
+
+.eb-card-gold {
+    border-left: 4px solid var(--eb-secondary);
+    box-shadow: var(--eb-shadow-gold);
+}
+
+/* Button Components */
+.eb-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--eb-space-2);
+    padding: var(--eb-space-3) var(--eb-space-6);
+    font-family: var(--eb-font-primary);
+    font-weight: var(--eb-font-medium);
+    font-size: var(--eb-text-base);
+    line-height: 1;
+    border: none;
+    border-radius: var(--eb-radius-lg);
+    cursor: pointer;
+    transition: all var(--eb-transition-normal);
+    text-decoration: none;
+    min-height: 44px;
+    /* Touch-friendly */
+}
+
+.eb-btn-primary {
+    background: linear-gradient(135deg, var(--eb-primary), var(--eb-primary-light));
+    color: var(--eb-white);
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+}
+
+.eb-btn-primary:hover {
+    background: linear-gradient(135deg, var(--eb-primary-dark), var(--eb-primary));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4);
+}
+
+.eb-btn-secondary {
+    background: linear-gradient(135deg, var(--eb-secondary), var(--eb-secondary-light));
+    color: var(--eb-white);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.eb-btn-secondary:hover {
+    background: linear-gradient(135deg, var(--eb-secondary-dark), var(--eb-secondary));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+}
+
+.eb-btn-emergency {
+    background: linear-gradient(135deg, var(--eb-error), #DC2626);
+    color: var(--eb-white);
+    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.4);
+    font-weight: var(--eb-font-bold);
+    min-height: 56px;
+    /* Larger for emergency actions */
+}
+
+.eb-btn-emergency:hover {
+    background: linear-gradient(135deg, #DC2626, #B91C1C);
+    transform: scale(1.02) translateY(-2px);
+    box-shadow: 0 12px 32px rgba(239, 68, 68, 0.5);
+}
+
+.eb-btn-senior {
+    min-height: 56px;
+    /* Senior-friendly size */
+    font-size: var(--eb-text-senior-base);
+    padding: var(--eb-space-4) var(--eb-space-8);
+}
+
+/* Status Indicators */
+.eb-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--eb-space-2);
+    padding: var(--eb-space-2) var(--eb-space-4);
+    border-radius: var(--eb-radius-full);
+    font-size: var(--eb-text-sm);
+    font-weight: var(--eb-font-medium);
+}
+
+.eb-status-active {
+    background: linear-gradient(135deg, var(--eb-success), #059669);
+    color: var(--eb-white);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.eb-status-inactive {
+    background: var(--eb-gray-100);
+    color: var(--eb-gray-600);
+}
+
+.eb-status-emergency {
+    background: linear-gradient(135deg, var(--eb-error), #DC2626);
+    color: var(--eb-white);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    animation: eb-pulse 2s infinite;
+}
+
+@keyframes eb-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Avatar Components */
+.eb-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--eb-radius-full);
+    font-weight: var(--eb-font-bold);
+    color: var(--eb-white);
+    background: linear-gradient(135deg, var(--eb-primary), var(--eb-primary-light));
+    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.2);
+}
+
+.eb-avatar-sm {
+    width: 40px;
+    height: 40px;
+    font-size: var(--eb-text-sm);
+}
+
+.eb-avatar-md {
+    width: 56px;
+    height: 56px;
+    font-size: var(--eb-text-lg);
+}
+
+.eb-avatar-lg {
+    width: 80px;
+    height: 80px;
+    font-size: var(--eb-text-2xl);
+}
+
+/* Typography Utilities */
+.eb-text-beacon {
+    color: var(--eb-primary);
+}
+
+.eb-text-gold {
+    color: var(--eb-secondary);
+}
+
+.eb-text-success {
+    color: var(--eb-success);
+}
+
+.eb-text-warning {
+    color: var(--eb-warning);
+}
+
+.eb-text-error {
+    color: var(--eb-error);
+}
+
+.eb-text-muted {
+    color: var(--eb-gray-500);
+}
+
+.eb-text-xs {
+    font-size: var(--eb-text-xs);
+}
+
+.eb-text-sm {
+    font-size: var(--eb-text-sm);
+}
+
+.eb-text-base {
+    font-size: var(--eb-text-base);
+}
+
+.eb-text-lg {
+    font-size: var(--eb-text-lg);
+}
+
+.eb-text-xl {
+    font-size: var(--eb-text-xl);
+}
+
+.eb-text-2xl {
+    font-size: var(--eb-text-2xl);
+}
+
+.eb-text-senior {
+    font-size: var(--eb-text-senior-base);
+}
+
+.eb-text-senior-lg {
+    font-size: var(--eb-text-senior-lg);
+}
+
+.eb-font-normal {
+    font-weight: var(--eb-font-normal);
+}
+
+.eb-font-medium {
+    font-weight: var(--eb-font-medium);
+}
+
+.eb-font-semibold {
+    font-weight: var(--eb-font-semibold);
+}
+
+.eb-font-bold {
+    font-weight: var(--eb-font-bold);
+}
+
+/* Layout Utilities */
+.eb-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--eb-space-4);
+}
+
+.eb-grid {
+    display: grid;
+    gap: var(--eb-space-6);
+}
+
+.eb-grid-cols-1 {
+    grid-template-columns: 1fr;
+}
+
+.eb-grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.eb-grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.eb-flex {
+    display: flex;
+}
+
+.eb-flex-col {
+    flex-direction: column;
+}
+
+.eb-items-center {
+    align-items: center;
+}
+
+.eb-justify-center {
+    justify-content: center;
+}
+
+.eb-justify-between {
+    justify-content: space-between;
+}
+
+.eb-gap-2 {
+    gap: var(--eb-space-2);
+}
+
+.eb-gap-4 {
+    gap: var(--eb-space-4);
+}
+
+.eb-gap-6 {
+    gap: var(--eb-space-6);
+}
+
+/* Spacing Utilities */
+.eb-p-4 {
+    padding: var(--eb-space-4);
+}
+
+.eb-p-6 {
+    padding: var(--eb-space-6);
+}
+
+.eb-p-8 {
+    padding: var(--eb-space-8);
+}
+
+.eb-m-4 {
+    margin: var(--eb-space-4);
+}
+
+.eb-m-6 {
+    margin: var(--eb-space-6);
+}
+
+.eb-mb-4 {
+    margin-bottom: var(--eb-space-4);
+}
+
+.eb-mb-6 {
+    margin-bottom: var(--eb-space-6);
+}
+
+/* =================================================================
+   RESPONSIVE DESIGN
+   ================================================================= */
+
+@media (max-width: 1024px) {
+    .eb-grid-cols-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .eb-grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .eb-container {
+        padding: 0 var(--eb-space-3);
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+        /* Smaller base size on mobile */
+    }
+
+    .eb-btn {
+        min-height: 48px;
+        /* Larger touch targets on mobile */
+    }
+
+    .eb-btn-senior {
+        min-height: 60px;
+        /* Even larger for seniors on mobile */
+    }
+}
+
+/* =================================================================
+   ACCESSIBILITY FEATURES
+   ================================================================= */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --eb-primary: #000080;
+        --eb-secondary: #FF8C00;
+        --eb-success: #006400;
+        --eb-error: #DC143C;
+    }
+
+    .eb-card {
+        border-width: 2px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus indicators */
+.eb-btn:focus,
+.eb-card:focus {
+    outline: 2px solid var(--eb-info);
+    outline-offset: 2px;
+}
+
+/* Screen reader only text */
+.eb-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* =================================================================
+   ELDERWORLD DASHBOARD SPECIFIC STYLES
+   ================================================================= */
+
+.eb-dashboard {
+    background: linear-gradient(135deg, var(--eb-primary) 0%, var(--eb-primary-light) 50%, var(--eb-secondary) 100%);
+    min-height: 100vh;
+}
+
+.eb-dashboard-header {
+    background: var(--eb-bg-secondary);
+    border-radius: var(--eb-radius-xl);
+    box-shadow: var(--eb-shadow-md);
+    backdrop-filter: blur(10px);
+    margin-bottom: var(--eb-space-6);
+}
+
+.eb-vital-card {
+    background: var(--eb-gray-50);
+    border-radius: var(--eb-radius-lg);
+    text-align: center;
+    transition: all var(--eb-transition-normal);
+}
+
+.eb-vital-card:hover {
+    background: var(--eb-bg-accent);
+    transform: translateY(-2px);
+}
+
+.eb-vital-value {
+    font-size: var(--eb-text-2xl);
+    font-weight: var(--eb-font-bold);
+    color: var(--eb-primary);
+}
+
+.eb-activity-item {
+    background: var(--eb-gray-50);
+    border-radius: var(--eb-radius-lg);
+    padding: var(--eb-space-4);
+    transition: all var(--eb-transition-normal);
+}
+
+.eb-activity-item:hover {
+    background: var(--eb-bg-accent);
+    transform: translateX(4px);
+}
+
+.eb-activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--eb-radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--eb-white);
+    font-weight: var(--eb-font-bold);
+}
+
+.eb-activity-positive {
+    background: linear-gradient(135deg, var(--eb-success), #059669);
+    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.2);
+}
+
+.eb-activity-neutral {
+    background: linear-gradient(135deg, var(--eb-secondary), var(--eb-secondary-dark));
+    box-shadow: 0 4px 8px rgba(245, 158, 11, 0.2);
+}
+
+.eb-activity-medical {
+    background: linear-gradient(135deg, var(--eb-info), #2563EB);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
+}
+
+/* Timezone display */
+.eb-timezone {
+    background: linear-gradient(135deg, var(--eb-secondary), var(--eb-secondary-dark));
+    color: var(--eb-white);
+    padding: var(--eb-space-2) var(--eb-space-4);
+    border-radius: var(--eb-radius-full);
+    font-weight: var(--eb-font-medium);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+/* Emergency contact section */
+.eb-emergency-contact {
+    background: linear-gradient(135deg, #FEF2F2, #FECACA);
+    border: 2px solid var(--eb-error);
+    border-radius: var(--eb-radius-xl);
+    text-align: center;
+    padding: var(--eb-space-6);
+}
+
+/* =================================================================
+   PRINT STYLES
+   ================================================================= */
+
+@media print {
+
+    .eb-btn,
+    .eb-btn-emergency {
+        display: none;
+    }
+
+    .eb-card {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+
+    * {
+        background: white !important;
+        color: black !important;
+    }
+}

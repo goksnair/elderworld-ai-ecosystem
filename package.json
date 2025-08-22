@@ -1,0 +1,54 @@
+{
+  "name": "senior-care-ai-ecosystem",
+  "version": "1.0.0",
+  "description": "AI Agent Ecosystem for Senior Care Startup - 10-agent coordination system",
+  "main": "start-autonomous-agents.js",
+  "scripts": {
+    "start": "node start-autonomous-agents.js",
+    "agents": "node start-autonomous-agents.js",
+    "dashboard": "node dashboards/dashboard-server.js",
+    "emergency": "node phase1-emergency-response/emergency-response-system.js",
+    "family": "node phase1-emergency-response/family-communication-platform.js",
+    "coordinator": "node agent-coordination-system.js",
+    "test": "npm run test:agents && npm run test:systems",
+    "test:agents": "node test-orchestration.js",
+    "test:systems": "node test-orchestration.js",
+    "setup-db": "psql -f supabase-setup.sql",
+    "dev": "nodemon start-autonomous-agents.js"
+  },
+  "keywords": [
+    "ai-agents",
+    "senior-care",
+    "eldercare",
+    "startup-automation",
+    "healthcare-ai",
+    "agent-coordination"
+  ],
+  "author": "Senior Care Startup Team",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "moment-timezone": "^0.5.45",
+    "node-fetch": "^3.3.2",
+    "pg": "^8.16.3",
+    "socket.io": "^4.7.4",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "senior-care-startup"
+  },
+  "config": {
+    "dashboard_port": 3001,
+    "test_timeout": 30000
+  }
+}

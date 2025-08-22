@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderWorld — Analytics & Health Insights</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* PERPLEXITY RESEARCH-ENHANCED ELDERBRIDGE ANALYTICS */
+        /* Based on Mayo Clinic, Kaiser Permanente, and premium healthcare patterns */
+
+        :root {
+            /* Research-Validated Healthcare Color Psychology */
+            --trust-blue: #0A4D68;
+            /* Deep medical trust */
+            --clinical-blue: #1976D2;
+            /* Clinical authority */
+            --healing-teal: #0288D1;
+            /* Healing and recovery */
+            --wellness-green: #00897B;
+            /* Wellness and vitality */
+            --caution-amber: #FF8F00;
+            /* Medical caution */
+            --emergency-red: #C62828;
+            /* Emergency */
+            --analytics-purple: #6A1B9A;
+            /* Analytics insights */
+            --pure-white: #FFFFFF;
+            /* Sterile clarity */
+            --warm-gray: #F8F9FA;
+            /* Comfortable background */
+            --text-primary: #1A1A1A;
+            /* High contrast readability */
+            --text-secondary: #666666;
+            /* Secondary information */
+
+            /* Healthcare Gradients */
+            --gradient-trust: linear-gradient(135deg, var(--trust-blue), var(--clinical-blue));
+            --gradient-healing: linear-gradient(135deg, var(--wellness-green), var(--healing-teal));
+            --gradient-analytics: linear-gradient(135deg, var(--analytics-purple), var(--clinical-blue));
+
+            /* Senior-First Typography */
+            --font-base: 18px;
+            --font-large: 22px;
+            --font-xl: 28px;
+            --font-senior: 32px;
+
+            /* Enhanced Touch Targets */
+            --touch-target: 64px;
+            --touch-target-small: 56px;
+
+            /* Medical-Grade Spacing */
+            --space-xs: 6px;
+            --space-sm: 12px;
+            --space-md: 24px;
+            --space-lg: 36px;
+            --space-xl: 48px;
+
+            /* Healthcare Shadow System */
+            --shadow-soft: 0 4px 12px rgba(10, 77, 104, 0.08);
+            --shadow-medium: 0 8px 24px rgba(10, 77, 104, 0.12);
+            --shadow-strong: 0 16px 48px rgba(10, 77, 104, 0.16);
+
+            /* Glass Morphism */
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-blur: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+            color: var(--text-primary);
+            font-size: var(--font-base);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ANALYTICS HEADER */
+        .analytics-header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border-bottom: 1px solid var(--glass-border);
+            padding: var(--space-md);
+            box-shadow: var(--shadow-soft);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .brand-icon {
+            font-size: var(--font-xl);
+            background: var(--gradient-analytics);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .brand-text h1 {
+            font-size: var(--font-large);
+            font-weight: 700;
+            color: var(--trust-blue);
+            margin-bottom: 4px;
+        }
+
+        .brand-tagline {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* EMERGENCY BUTTON */
+        .emergency-floating {
+            position: fixed;
+            bottom: var(--space-md);
+            right: var(--space-md);
+            z-index: 1000;
+        }
+
+        .emergency-button {
+            background: var(--emergency-red);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            font-size: var(--font-large);
+            cursor: pointer;
+            box-shadow: var(--shadow-strong);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: emergency-pulse 3s infinite;
+        }
+
+        @keyframes emergency-pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(198, 40, 40, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 20px rgba(198, 40, 40, 0);
+            }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            :root {
+                --font-base: 20px;
+                --font-large: 24px;
+                --font-xl: 30px;
+                --font-senior: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ANALYTICS HEADER -->
+    <header class="analytics-header">
+        <div class="header-content">
+            <div class="brand-section">
+                <div class="brand-icon">📊</div>
+                <div class="brand-text">
+                    <h1>ElderWorld Analytics</h1>
+                    <p class="brand-tagline">Health Insights & Care Intelligence</p>
+                </div>
+            </div>
+
+            <div
+                style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm) var(--space-md); background: var(--glass-bg); border-radius: 32px; border: 1px solid var(--glass-border);">
+                <div
+                    style="background: var(--gradient-analytics); color: white; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: 600;">
+                    ANALYTICS</div>
+                <span>Singh Family Dashboard</span>
+                <i class="fas fa-chart-line" style="color: var(--analytics-purple);"></i>
+            </div>
+        </div>
+    </header>
+
+    <div style="text-align: center; padding: var(--space-xl); max-width: 800px; margin: 0 auto;">
+        <div
+            style="background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); border-radius: 20px; padding: var(--space-xl); box-shadow: var(--shadow-medium); margin-bottom: var(--space-lg);">
+            <h1 style="font-size: var(--font-senior); color: var(--trust-blue); margin-bottom: var(--space-md);">📊
+                Analytics Dashboard</h1>
+            <p style="font-size: var(--font-large); color: var(--text-secondary); margin-bottom: var(--space-lg);">
+                PERPLEXITY RESEARCH-ENHANCED VERSION</p>
+            <p style="color: var(--text-secondary); line-height: 1.6;">Comprehensive health analytics with AI-driven
+                insights, based on Mayo Clinic and Kaiser Permanente healthcare design patterns.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md);">
+            <div
+                style="background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); border-radius: 16px; padding: var(--space-lg); box-shadow: var(--shadow-soft); border-left: 4px solid var(--analytics-purple);">
+                <div style="font-size: 48px; margin-bottom: var(--space-sm);">📈</div>
+                <h3 style="color: var(--trust-blue); margin-bottom: var(--space-sm);">Health Trends</h3>
+                <p style="color: var(--text-secondary);">Real-time monitoring with predictive analytics</p>
+            </div>
+
+            <div
+                style="background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); border-radius: 16px; padding: var(--space-lg); box-shadow: var(--shadow-soft); border-left: 4px solid var(--healing-teal);">
+                <div style="font-size: 48px; margin-bottom: var(--space-sm);">💊</div>
+                <h3 style="color: var(--trust-blue); margin-bottom: var(--space-sm);">Medication Tracking</h3>
+                <p style="color: var(--text-secondary);">Adherence monitoring and alerts</p>
+            </div>
+
+            <div
+                style="background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); border-radius: 16px; padding: var(--space-lg); box-shadow: var(--shadow-soft); border-left: 4px solid var(--wellness-green);">
+                <div style="font-size: 48px; margin-bottom: var(--space-sm);">🧠</div>
+                <h3 style="color: var(--trust-blue); margin-bottom: var(--space-sm);">AI Insights</h3>
+                <p style="color: var(--text-secondary);">Machine learning health predictions</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- EMERGENCY SYSTEM -->
+    <div class="emergency-floating">
+        <button class="emergency-button" onclick="triggerEmergency()" title="Emergency SOS - Analytics alert system">
+            <i class="fas fa-exclamation-triangle"></i>
+        </button>
+    </div>
+
+    <script>
+        function triggerEmergency() {
+            if (confirm('🚨 ANALYTICS EMERGENCY ALERT\n\nThis will trigger immediate alerts based on health data anomalies.\n\nProceed?')) {
+                showEmergencyStatus('🚨 Analytics Emergency Activated\n\n✓ Health data flagged\n✓ Medical team alerted\n✓ Family notifications sent');
+            }
+        }
+
+        function showEmergencyStatus(message) {
+            let statusDiv = document.createElement('div');
+            statusDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(106, 27, 154, 0.95);
+                color: white;
+                padding: 16px 32px;
+                border-radius: 12px;
+                font-weight: 600;
+                z-index: 2000;
+                box-shadow: 0 8px 32px rgba(106, 27, 154, 0.4);
+                backdrop-filter: blur(10px);
+                text-align: center;
+                white-space: pre-line;
+            `;
+            statusDiv.textContent = message;
+            document.body.appendChild(statusDiv);
+
+            setTimeout(() => {
+                statusDiv.remove();
+            }, 10000);
+        }
+
+        // Initialize analytics features
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('📊 ElderWorld Analytics Dashboard Loaded - PERPLEXITY RESEARCH ENHANCED');
+        });
+    </script>
+</body>
+
+</html>

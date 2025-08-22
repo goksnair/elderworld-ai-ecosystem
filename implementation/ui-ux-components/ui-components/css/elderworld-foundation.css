@@ -1,0 +1,580 @@
+/* ElderWorld Foundation CSS - Core Design System
+ * Healthcare-grade design tokens and foundational styles
+ */
+
+:root {
+    /* Color Palette - Healthcare Optimized */
+    --eb-primary-50: #eff6ff;
+    --eb-primary-100: #dbeafe;
+    --eb-primary-200: #bfdbfe;
+    --eb-primary-300: #93c5fd;
+    --eb-primary-400: #60a5fa;
+    --eb-primary-500: #3b82f6;
+    --eb-primary-600: #2563eb;
+    --eb-primary-700: #1d4ed8;
+    --eb-primary-800: #1e40af;
+    --eb-primary-900: #1e3a8a;
+
+    /* Emergency/Critical Colors */
+    --eb-emergency-50: #fef2f2;
+    --eb-emergency-100: #fee2e2;
+    --eb-emergency-200: #fecaca;
+    --eb-emergency-300: #fca5a5;
+    --eb-emergency-400: #f87171;
+    --eb-emergency-500: #ef4444;
+    --eb-emergency-600: #dc2626;
+    --eb-emergency-700: #b91c1c;
+    --eb-emergency-800: #991b1b;
+    --eb-emergency-900: #7f1d1d;
+
+    /* Success/Health Colors */
+    --eb-success-50: #ecfdf5;
+    --eb-success-100: #d1fae5;
+    --eb-success-200: #a7f3d0;
+    --eb-success-300: #6ee7b7;
+    --eb-success-400: #34d399;
+    --eb-success-500: #10b981;
+    --eb-success-600: #059669;
+    --eb-success-700: #047857;
+    --eb-success-800: #065f46;
+    --eb-success-900: #064e3b;
+
+    /* Warning Colors */
+    --eb-warning-50: #fffbeb;
+    --eb-warning-100: #fef3c7;
+    --eb-warning-200: #fde68a;
+    --eb-warning-300: #fcd34d;
+    --eb-warning-400: #fbbf24;
+    --eb-warning-500: #f59e0b;
+    --eb-warning-600: #d97706;
+    --eb-warning-700: #b45309;
+    --eb-warning-800: #92400e;
+    --eb-warning-900: #78350f;
+
+    /* Neutral Colors */
+    --eb-gray-50: #f9fafb;
+    --eb-gray-100: #f3f4f6;
+    --eb-gray-200: #e5e7eb;
+    --eb-gray-300: #d1d5db;
+    --eb-gray-400: #9ca3af;
+    --eb-gray-500: #6b7280;
+    --eb-gray-600: #4b5563;
+    --eb-gray-700: #374151;
+    --eb-gray-800: #1f2937;
+    --eb-gray-900: #111827;
+
+    /* Typography Scale */
+    --eb-font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --eb-font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+
+    --eb-text-xs: 0.75rem;
+    /* 12px */
+    --eb-text-sm: 0.875rem;
+    /* 14px */
+    --eb-text-base: 1rem;
+    /* 16px */
+    --eb-text-lg: 1.125rem;
+    /* 18px */
+    --eb-text-xl: 1.25rem;
+    /* 20px */
+    --eb-text-2xl: 1.5rem;
+    /* 24px */
+    --eb-text-3xl: 1.875rem;
+    /* 30px */
+    --eb-text-4xl: 2.25rem;
+    /* 36px */
+
+    /* Spacing Scale */
+    --eb-space-1: 0.25rem;
+    /* 4px */
+    --eb-space-2: 0.5rem;
+    /* 8px */
+    --eb-space-3: 0.75rem;
+    /* 12px */
+    --eb-space-4: 1rem;
+    /* 16px */
+    --eb-space-5: 1.25rem;
+    /* 20px */
+    --eb-space-6: 1.5rem;
+    /* 24px */
+    --eb-space-8: 2rem;
+    /* 32px */
+    --eb-space-10: 2.5rem;
+    /* 40px */
+    --eb-space-12: 3rem;
+    /* 48px */
+    --eb-space-16: 4rem;
+    /* 64px */
+
+    /* Border Radius */
+    --eb-radius-sm: 0.25rem;
+    /* 4px */
+    --eb-radius-md: 0.375rem;
+    /* 6px */
+    --eb-radius-lg: 0.5rem;
+    /* 8px */
+    --eb-radius-xl: 0.75rem;
+    /* 12px */
+    --eb-radius-2xl: 1rem;
+    /* 16px */
+    --eb-radius-3xl: 1.5rem;
+    /* 24px */
+    --eb-radius-full: 9999px;
+
+    /* Shadows */
+    --eb-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --eb-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --eb-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --eb-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --eb-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+    /* Animation Timing */
+    --eb-transition-fast: 0.15s ease;
+    --eb-transition-normal: 0.2s ease;
+    --eb-transition-slow: 0.3s ease;
+
+    /* Healthcare-Specific */
+    --eb-vital-critical: var(--eb-emergency-600);
+    --eb-vital-warning: var(--eb-warning-500);
+    --eb-vital-normal: var(--eb-success-600);
+    --eb-vital-excellent: var(--eb-success-700);
+
+    /* Accessibility */
+    --eb-focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    --eb-focus-ring-emergency: 0 0 0 3px rgba(220, 38, 38, 0.3);
+}
+
+/* CSS Reset and Base Styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--eb-font-family-sans);
+    font-size: var(--eb-text-base);
+    line-height: 1.6;
+    color: var(--eb-gray-800);
+    background-color: var(--eb-gray-50);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus Management */
+:focus {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--eb-primary-600);
+    outline-offset: 2px;
+}
+
+.focus-emergency:focus-visible {
+    outline-color: var(--eb-emergency-600);
+    box-shadow: var(--eb-focus-ring-emergency);
+}
+
+/* Typography Utilities */
+.text-xs {
+    font-size: var(--eb-text-xs);
+}
+
+.text-sm {
+    font-size: var(--eb-text-sm);
+}
+
+.text-base {
+    font-size: var(--eb-text-base);
+}
+
+.text-lg {
+    font-size: var(--eb-text-lg);
+}
+
+.text-xl {
+    font-size: var(--eb-text-xl);
+}
+
+.text-2xl {
+    font-size: var(--eb-text-2xl);
+}
+
+.text-3xl {
+    font-size: var(--eb-text-3xl);
+}
+
+.text-4xl {
+    font-size: var(--eb-text-4xl);
+}
+
+.font-thin {
+    font-weight: 100;
+}
+
+.font-light {
+    font-weight: 300;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-extrabold {
+    font-weight: 800;
+}
+
+/* Color Utilities */
+.text-primary {
+    color: var(--eb-primary-600);
+}
+
+.text-emergency {
+    color: var(--eb-emergency-600);
+}
+
+.text-success {
+    color: var(--eb-success-600);
+}
+
+.text-warning {
+    color: var(--eb-warning-600);
+}
+
+.text-gray-light {
+    color: var(--eb-gray-500);
+}
+
+.text-gray {
+    color: var(--eb-gray-700);
+}
+
+.text-gray-dark {
+    color: var(--eb-gray-800);
+}
+
+.bg-primary {
+    background-color: var(--eb-primary-600);
+}
+
+.bg-emergency {
+    background-color: var(--eb-emergency-600);
+}
+
+.bg-success {
+    background-color: var(--eb-success-600);
+}
+
+.bg-warning {
+    background-color: var(--eb-warning-500);
+}
+
+/* Spacing Utilities */
+.p-1 {
+    padding: var(--eb-space-1);
+}
+
+.p-2 {
+    padding: var(--eb-space-2);
+}
+
+.p-3 {
+    padding: var(--eb-space-3);
+}
+
+.p-4 {
+    padding: var(--eb-space-4);
+}
+
+.p-5 {
+    padding: var(--eb-space-5);
+}
+
+.p-6 {
+    padding: var(--eb-space-6);
+}
+
+.p-8 {
+    padding: var(--eb-space-8);
+}
+
+.m-1 {
+    margin: var(--eb-space-1);
+}
+
+.m-2 {
+    margin: var(--eb-space-2);
+}
+
+.m-3 {
+    margin: var(--eb-space-3);
+}
+
+.m-4 {
+    margin: var(--eb-space-4);
+}
+
+.m-5 {
+    margin: var(--eb-space-5);
+}
+
+.m-6 {
+    margin: var(--eb-space-6);
+}
+
+.m-8 {
+    margin: var(--eb-space-8);
+}
+
+/* Layout Utilities */
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+.hidden {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+.inline {
+    display: inline;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+.items-end {
+    align-items: flex-end;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.gap-1 {
+    gap: var(--eb-space-1);
+}
+
+.gap-2 {
+    gap: var(--eb-space-2);
+}
+
+.gap-3 {
+    gap: var(--eb-space-3);
+}
+
+.gap-4 {
+    gap: var(--eb-space-4);
+}
+
+.gap-6 {
+    gap: var(--eb-space-6);
+}
+
+/* Border Utilities */
+.rounded {
+    border-radius: var(--eb-radius-md);
+}
+
+.rounded-lg {
+    border-radius: var(--eb-radius-lg);
+}
+
+.rounded-xl {
+    border-radius: var(--eb-radius-xl);
+}
+
+.rounded-2xl {
+    border-radius: var(--eb-radius-2xl);
+}
+
+.rounded-3xl {
+    border-radius: var(--eb-radius-3xl);
+}
+
+.rounded-full {
+    border-radius: var(--eb-radius-full);
+}
+
+/* Shadow Utilities */
+.shadow-sm {
+    box-shadow: var(--eb-shadow-sm);
+}
+
+.shadow-md {
+    box-shadow: var(--eb-shadow-md);
+}
+
+.shadow-lg {
+    box-shadow: var(--eb-shadow-lg);
+}
+
+.shadow-xl {
+    box-shadow: var(--eb-shadow-xl);
+}
+
+.shadow-2xl {
+    box-shadow: var(--eb-shadow-2xl);
+}
+
+/* Animation Utilities */
+.transition {
+    transition: all var(--eb-transition-normal);
+}
+
+.transition-fast {
+    transition: all var(--eb-transition-fast);
+}
+
+.transition-slow {
+    transition: all var(--eb-transition-slow);
+}
+
+/* Healthcare-Specific Utilities */
+.vital-critical {
+    color: var(--eb-vital-critical);
+    font-weight: 700;
+}
+
+.vital-warning {
+    color: var(--eb-vital-warning);
+    font-weight: 600;
+}
+
+.vital-normal {
+    color: var(--eb-vital-normal);
+    font-weight: 600;
+}
+
+.vital-excellent {
+    color: var(--eb-vital-excellent);
+    font-weight: 700;
+}
+
+.pulse-indicator {
+    position: relative;
+}
+
+.pulse-indicator::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: currentColor;
+    border-radius: 50%;
+    opacity: 0.3;
+    transform: translate(-50%, -50%);
+    animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-contrast: high) {
+    :root {
+        --eb-primary-600: #0066cc;
+        --eb-emergency-600: #cc0000;
+        --eb-success-600: #006600;
+        --eb-warning-500: #cc6600;
+    }
+}
+
+/* Large text support */
+@media (min-resolution: 192dpi) {
+    body {
+        font-size: 18px;
+    }
+}
+
+/* Print styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .shadow-sm,
+    .shadow-md,
+    .shadow-lg,
+    .shadow-xl,
+    .shadow-2xl {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}

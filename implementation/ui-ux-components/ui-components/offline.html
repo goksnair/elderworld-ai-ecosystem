@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderWorld - Offline</title>
+    <link rel="stylesheet" href="/css/ElderWorld">
+    <link rel="stylesheet" href="/css/elderbridge-animations.css">
+    <style>
+        .offline-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .offline-card {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .offline-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: #f3f4f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .offline-features {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin: 0.75rem 0;
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+            color: #10b981;
+        }
+
+        .retry-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .retry-btn:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .emergency-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .emergency-btn:hover {
+            background: #b91c1c;
+        }
+
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="offline-container">
+        <div class="offline-card">
+            <div class="offline-icon">
+                <svg class="w-10 h-10 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 008.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+
+            <h1 class="text-2xl font-bold text-gray-900 mb-4">You're Currently Offline</h1>
+            <p class="text-gray-600 mb-6">
+                Don't worry - ElderWorld continues to work offline with essential features available.
+            </p>
+
+            <div class="offline-features">
+                <h3 class="font-semibold text-gray-900 mb-3">Available Offline:</h3>
+
+                <div class="feature-item">
+                    <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                    </svg>
+                    <span class="text-sm text-gray-700">Emergency calling</span>
+                </div>
+
+                <div class="feature-item">
+                    <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-700">Cached health data</span>
+                </div>
+
+                <div class="feature-item">
+                    <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-sm text-gray-700">Medication reminders</span>
+                </div>
+
+                <div class="feature-item">
+                    <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                        <path
+                            d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v8a1 1 0 001 1h2a1 1 0 001-1V8a1 1 0 00-1-1h-2z" />
+                    </svg>
+                    <span class="text-sm text-gray-700">Family contact list</span>
+                </div>
+
+                <div class="feature-item">
+                    <svg class="feature-icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-gray-700">Recent activity history</span>
+                </div>
+            </div>
+
+            <button class="retry-btn" onclick="retryConnection()">
+                <span class="retry-text">Check Connection</span>
+                <span class="retry-loading hidden">
+                    <svg class="inline w-4 h-4 mr-2 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                        </circle>
+                        <path class="opacity-75" fill="currentColor"
+                            d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                        </path>
+                    </svg>
+                    Checking...
+                </span>
+            </button>
+
+            <button class="emergency-btn pulse" onclick="handleEmergency()">
+                <svg class="inline w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                </svg>
+                Emergency Help Available
+            </button>
+
+            <p class="text-xs text-gray-500 mt-4">
+                Your data will sync automatically when connection is restored.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function retryConnection() {
+            const retryBtn = document.querySelector('.retry-btn');
+            const retryText = document.querySelector('.retry-text');
+            const retryLoading = document.querySelector('.retry-loading');
+
+            retryText.classList.add('hidden');
+            retryLoading.classList.remove('hidden');
+            retryBtn.disabled = true;
+
+            // Try to fetch a simple endpoint
+            fetch('/api/health-check', {
+                method: 'HEAD',
+                cache: 'no-cache'
+            }).then(response => {
+                if (response.ok) {
+                    // Connection restored
+                    window.location.href = '/desktop/PremiumDashboard.html';
+                } else {
+                    throw new Error('Still offline');
+                }
+            }).catch(() => {
+                // Still offline
+                setTimeout(() => {
+                    retryText.classList.remove('hidden');
+                    retryLoading.classList.add('hidden');
+                    retryBtn.disabled = false;
+                }, 1000);
+            });
+        }
+
+        function handleEmergency() {
+            // Redirect to emergency offline page
+            window.location.href = '/emergency-offline.html';
+        }
+
+        // Auto-retry connection every 30 seconds
+        setInterval(() => {
+            if (navigator.onLine) {
+                fetch('/api/health-check', { method: 'HEAD', cache: 'no-cache' })
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.href = '/desktop/PremiumDashboard.html';
+                        }
+                    })
+                    .catch(() => {
+                        // Still offline
+                    });
+            }
+        }, 30000);
+
+        // Listen for online events
+        window.addEventListener('online', () => {
+            // Brief delay to ensure connection is stable
+            setTimeout(() => {
+                window.location.href = '/desktop/PremiumDashboard.html';
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>

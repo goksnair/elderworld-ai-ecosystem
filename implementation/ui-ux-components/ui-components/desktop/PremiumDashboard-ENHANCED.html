@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderWorld Premium — Advanced Family Care Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        ElderWorld
+        /* Based on Mayo Clinic, Kaiser Permanente, and premium healthcare patterns */
+
+        :root {
+            /* Research-Validated Healthcare Color Psychology */
+            --trust-blue: #0A4D68;
+            --clinical-blue: #1976D2;
+            --healing-teal: #0288D1;
+            --wellness-green: #00897B;
+            --caution-amber: #FF8F00;
+            --emergency-red: #C62828;
+            --premium-gold: #FFB300;
+            /* Premium tier highlighting */
+            --pure-white: #FFFFFF;
+            --warm-gray: #F8F9FA;
+            --text-primary: #1A1A1A;
+            --text-secondary: #666666;
+
+            /* Premium-Enhanced Gradients */
+            --gradient-trust: linear-gradient(135deg, var(--trust-blue), var(--clinical-blue));
+            --gradient-healing: linear-gradient(135deg, var(--wellness-green), var(--healing-teal));
+            --gradient-premium: linear-gradient(135deg, #FFB300, #FF8F00);
+            --gradient-luxury: linear-gradient(135deg, #FFD700, #FFA000, #FF8F00);
+            --gradient-medical: linear-gradient(135deg, var(--trust-blue), var(--healing-teal));
+
+            /* Premium Typography Scale */
+            --font-base: 18px;
+            --font-large: 22px;
+            --font-xl: 28px;
+            --font-senior: 32px;
+            --font-premium: 36px;
+            /* Premium feature highlighting */
+
+            /* Enhanced Touch Targets */
+            --touch-target: 64px;
+            --touch-target-small: 56px;
+
+            /* Premium Medical-Grade Spacing */
+            --space-xs: 6px;
+            --space-sm: 12px;
+            --space-md: 24px;
+            --space-lg: 36px;
+            --space-xl: 48px;
+            --space-premium: 64px;
+
+            /* Premium Healthcare Shadow System */
+            --shadow-soft: 0 4px 12px rgba(10, 77, 104, 0.08);
+            --shadow-medium: 0 8px 24px rgba(10, 77, 104, 0.12);
+            --shadow-strong: 0 16px 48px rgba(10, 77, 104, 0.16);
+            --shadow-premium: 0 24px 64px rgba(255, 179, 0, 0.2);
+
+            /* Premium Glass Morphism */
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-blur: 20px;
+            --premium-glass: rgba(255, 179, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 50%, #FFF8E1 100%);
+            color: var(--text-primary);
+            font-size: var(--font-base);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* PREMIUM HEADER WITH TIER INDICATION */
+        .premium-header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border-bottom: 2px solid var(--premium-gold);
+            padding: var(--space-md);
+            box-shadow: var(--shadow-premium);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .premium-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .brand-icon-premium {
+            font-size: var(--font-premium);
+            background: var(--gradient-luxury);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: premium-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes premium-glow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 0px rgba(255, 179, 0, 0.5));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 20px rgba(255, 179, 0, 0.8));
+            }
+        }
+
+        .brand-text-premium h1 {
+            font-size: var(--font-xl);
+            font-weight: 800;
+            background: var(--gradient-luxury);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
+
+        .premium-tagline {
+            font-size: 16px;
+            color: var(--trust-blue);
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .premium-tier-badge {
+            background: var(--gradient-luxury);
+            color: white;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-premium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-tier-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: premium-shimmer 3s infinite;
+        }
+
+        @keyframes premium-shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* PREMIUM DASHBOARD LAYOUT */
+        .premium-dashboard {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: var(--space-premium);
+            display: grid;
+            grid-template-columns: 350px 1fr 300px;
+            gap: var(--space-lg);
+        }
+
+        /* ENHANCED FAMILY PANEL */
+        .premium-family-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border-radius: 24px;
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-premium);
+            height: fit-content;
+            position: sticky;
+            top: 140px;
+            border: 2px solid rgba(255, 179, 0, 0.2);
+        }
+
+        .premium-greeting {
+            text-align: center;
+            padding: var(--space-lg);
+            background: var(--gradient-luxury);
+            border-radius: 20px;
+            margin-bottom: var(--space-lg);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .greeting-text-premium {
+            font-size: var(--font-xl);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+            position: relative;
+            z-index: 1;
+        }
+
+        .greeting-subtitle-premium {
+            font-size: var(--font-base);
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* PREMIUM HEALTH METRICS */
+        .premium-health-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+
+        .premium-health-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border-radius: 24px;
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-premium);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 179, 0, 0.1);
+        }
+
+        .premium-health-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-strong), var(--shadow-premium);
+            border-color: var(--premium-gold);
+        }
+
+        .premium-health-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-luxury);
+        }
+
+        /* AI INSIGHTS PANEL */
+        .ai-insights-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border-radius: 24px;
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-premium);
+            height: fit-content;
+            position: sticky;
+            top: 140px;
+            border: 2px solid rgba(0, 137, 123, 0.2);
+        }
+
+        .ai-insights-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+
+        .ai-icon {
+            background: var(--gradient-medical);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-large);
+            animation: ai-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes ai-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(10, 77, 104, 0.3);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 20px rgba(10, 77, 104, 0);
+            }
+        }
+
+        /* PREMIUM EMERGENCY SYSTEM */
+        .premium-emergency-floating {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            z-index: 1000;
+        }
+
+        .premium-emergency-button {
+            background: var(--gradient-luxury);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            font-size: var(--font-xl);
+            cursor: pointer;
+            box-shadow: var(--shadow-premium);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: premium-emergency-pulse 4s infinite;
+        }
+
+        @keyframes premium-emergency-pulse {
+
+            0%,
+            100% {
+                box-shadow: var(--shadow-premium), 0 0 0 0 rgba(255, 179, 0, 0.4);
+                transform: scale(1);
+            }
+
+            50% {
+                box-shadow: var(--shadow-premium), 0 0 0 30px rgba(255, 179, 0, 0);
+                transform: scale(1.05);
+            }
+        }
+
+        .premium-emergency-button:hover {
+            transform: scale(1.15);
+            box-shadow: 0 25px 80px rgba(255, 179, 0, 0.5);
+        }
+
+        /* RESPONSIVE PREMIUM DESIGN */
+        @media (max-width: 1400px) {
+            .premium-dashboard {
+                grid-template-columns: 300px 1fr;
+                max-width: 1200px;
+            }
+
+            .ai-insights-panel {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .premium-dashboard {
+                grid-template-columns: 1fr;
+                padding: var(--space-lg);
+            }
+        }
+
+        /* Card styles */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .card-title {
+            font-size: var(--font-xl);
+            font-weight: 700;
+            color: var(--trust-blue);
+        }
+
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--font-xl);
+        }
+
+        .vital-value {
+            font-size: var(--font-premium);
+            font-weight: 800;
+            margin-bottom: var(--space-sm);
+        }
+
+        .vital-trend {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        /* Activity items */
+        .activity-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            border-radius: 24px;
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-premium);
+            border: 2px solid rgba(255, 179, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .section-title {
+            font-size: var(--font-xl);
+            font-weight: 700;
+            color: var(--trust-blue);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            padding: var(--space-lg);
+            border-radius: 16px;
+            margin-bottom: var(--space-md);
+            transition: all 0.3s ease;
+        }
+
+        .activity-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: var(--font-large);
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: var(--font-base);
+            margin-bottom: 4px;
+        }
+
+        .activity-time {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- PREMIUM HEADER -->
+    <header class="premium-header">
+        <div class="header-content">
+            <div class="premium-brand">
+                <div class="brand-icon-premium">👑</div>
+                <div class="brand-text-premium">
+                    <h1>ElderWorld Premium</h1>
+                    <p class="premium-tagline">Advanced Family Care Hub</p>
+                </div>
+            </div>
+
+            <div class="premium-tier-badge">
+                Premium Member
+            </div>
+
+            <div
+                style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md) var(--space-lg); background: var(--premium-glass); backdrop-filter: blur(var(--glass-blur)); border-radius: 32px; border: 2px solid var(--premium-gold);">
+                <span>Priya Singh (Premium Family)</span>
+                <i class="fas fa-crown" style="color: var(--premium-gold);"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- PREMIUM DASHBOARD -->
+    <div class="premium-dashboard">
+        <!-- ENHANCED FAMILY PANEL -->
+        <aside class="premium-family-panel">
+            <div class="premium-greeting">
+                <div class="greeting-text-premium">नमस्ते, Premium Singh Family</div>
+                <div class="greeting-subtitle-premium">Elite care, infinite peace of mind</div>
+            </div>
+
+            <h2
+                style="color: var(--trust-blue); font-size: var(--font-xl); font-weight: 700; margin-bottom: var(--space-lg); display: flex; align-items: center; gap: var(--space-sm);">
+                <i class="fas fa-users" style="color: var(--premium-gold);"></i>
+                Premium Family Circle
+            </h2>
+
+            <!-- Premium Family Members -->
+            <div
+                style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); border-radius: 16px; margin-bottom: var(--space-md); background: rgba(255, 179, 0, 0.05); border: 1px solid rgba(255, 179, 0, 0.2);">
+                <div
+                    style="width: 56px; height: 56px; border-radius: 50%; background: var(--gradient-luxury); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: var(--font-large);">
+                    रा</div>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; color: var(--text-primary); font-size: var(--font-base);">Ram Singh
+                        (Papa)</div>
+                    <div style="font-size: 14px; color: var(--text-secondary);">Elder • Premium Health Monitoring</div>
+                    <div style="font-size: 12px; color: var(--premium-gold); font-weight: 600; margin-top: 4px;">🏥 24/7
+                        Care Team Assigned</div>
+                </div>
+                <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--wellness-green);"></div>
+            </div>
+
+            <div
+                style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); border-radius: 16px; margin-bottom: var(--space-md); background: rgba(255, 179, 0, 0.05); border: 1px solid rgba(255, 179, 0, 0.2);">
+                <div
+                    style="width: 56px; height: 56px; border-radius: 50%; background: var(--gradient-luxury); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: var(--font-large);">
+                    सु</div>
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; color: var(--text-primary); font-size: var(--font-base);">Sunita Singh
+                        (Mama)</div>
+                    <div style="font-size: 14px; color: var(--text-secondary);">Elder • Premium Health Monitoring</div>
+                    <div style="font-size: 12px; color: var(--premium-gold); font-weight: 600; margin-top: 4px;">👩‍⚕️
+                        Specialist Team Access</div>
+                </div>
+                <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--wellness-green);"></div>
+            </div>
+        </aside>
+
+        <!-- MAIN PREMIUM CONTENT -->
+        <main>
+            <!-- PREMIUM HEALTH METRICS -->
+            <section class="premium-health-overview">
+                <div class="premium-health-card"
+                    style="background: linear-gradient(135deg, rgba(10, 77, 104, 0.05), rgba(2, 136, 209, 0.05));">
+                    <div class="card-header">
+                        <h3 class="card-title">Papa's Heart Health</h3>
+                        <div class="card-icon" style="background: var(--gradient-medical);">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                    </div>
+                    <div class="vital-value" style="color: var(--healing-teal);">78 BPM</div>
+                    <div class="vital-trend">
+                        <i class="fas fa-check-circle"
+                            style="color: var(--wellness-green); font-size: var(--font-large);"></i>
+                        <span style="color: var(--text-primary); font-weight: 500;">Optimal cardiac rhythm
+                            detected</span>
+                    </div>
+                    <div
+                        style="background: rgba(255, 179, 0, 0.1); padding: var(--space-sm); border-radius: 12px; border-left: 4px solid var(--premium-gold);">
+                        <div style="font-size: 12px; font-weight: 600; color: var(--premium-gold); margin-bottom: 4px;">
+                            👑 PREMIUM AI INSIGHT</div>
+                        <div style="font-size: 14px; color: var(--text-secondary);">Heart rate variability shows
+                            excellent recovery patterns. Meditation routine is highly effective.</div>
+                    </div>
+                </div>
+
+                <div class="premium-health-card"
+                    style="background: linear-gradient(135deg, rgba(0, 137, 123, 0.05), rgba(2, 136, 209, 0.05));">
+                    <div class="card-header">
+                        <h3 class="card-title">Blood Pressure Trends</h3>
+                        <div class="card-icon" style="background: var(--gradient-healing);">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                    </div>
+                    <div class="vital-value" style="color: var(--wellness-green);">118/76</div>
+                    <div class="vital-trend">
+                        <i class="fas fa-star" style="color: var(--premium-gold); font-size: var(--font-large);"></i>
+                        <span style="color: var(--text-primary); font-weight: 500;">Perfect range maintained for 30
+                            days</span>
+                    </div>
+                    <div
+                        style="background: rgba(0, 137, 123, 0.1); padding: var(--space-sm); border-radius: 12px; border-left: 4px solid var(--wellness-green);">
+                        <div
+                            style="font-size: 12px; font-weight: 600; color: var(--wellness-green); margin-bottom: 4px;">
+                            ✅ DOCTOR VERIFIED</div>
+                        <div style="font-size: 14px; color: var(--text-secondary);">Dr. Patel confirms: "Exceptional
+                            blood pressure control. Continue current lifestyle."</div>
+                    </div>
+                </div>
+
+                <div class="premium-health-card"
+                    style="background: linear-gradient(135deg, rgba(255, 179, 0, 0.1), rgba(255, 143, 0, 0.05));">
+                    <div class="card-header">
+                        <h3 class="card-title">Premium Medication Intelligence</h3>
+                        <div class="card-icon" style="background: var(--gradient-luxury);">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                    </div>
+                    <div class="vital-value" style="color: var(--premium-gold);">100% Perfect</div>
+                    <div class="vital-trend">
+                        <i class="fas fa-trophy" style="color: var(--premium-gold); font-size: var(--font-large);"></i>
+                        <span style="color: var(--text-primary); font-weight: 500;">90-day perfect adherence
+                            streak</span>
+                    </div>
+                    <div
+                        style="background: var(--gradient-luxury); padding: var(--space-sm); border-radius: 12px; color: white;">
+                        <div style="font-size: 12px; font-weight: 700; margin-bottom: 4px;">👑 PREMIUM FEATURE ACTIVE
+                        </div>
+                        <div style="font-size: 14px;">Smart pillbox with family notifications, pharmacist consultations,
+                            and predictive refill management.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PREMIUM ACTIVITY SECTION -->
+            <section class="activity-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-clock" style="color: var(--premium-gold);"></i>
+                        Premium Care Timeline Today
+                    </h2>
+                    <div
+                        style="background: var(--gradient-luxury); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 700;">
+                        LIVE MONITORING</div>
+                </div>
+
+                <div class="activity-item"
+                    style="background: rgba(255, 179, 0, 0.05); border-left: 4px solid var(--premium-gold);">
+                    <div class="activity-icon" style="background: var(--gradient-luxury);">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Premium Morning Health Assessment Complete</div>
+                        <div class="activity-time">8:30 AM • Comprehensive vitals, mood analysis, sleep quality review
+                        </div>
+                        <div style="color: var(--premium-gold); font-size: 12px; font-weight: 600; margin-top: 8px;">👑
+                            Advanced biometric analysis with family report sent</div>
+                    </div>
+                </div>
+
+                <div class="activity-item"
+                    style="background: rgba(0, 137, 123, 0.05); border-left: 4px solid var(--wellness-green);">
+                    <div class="activity-icon" style="background: var(--gradient-healing);">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Premium Family Video Session with Priya</div>
+                        <div class="activity-time">10:30 AM • 30-minute quality time with health discussion</div>
+                        <div style="color: var(--wellness-green); font-size: 12px; font-weight: 600; margin-top: 8px;">
+                            📹 HD quality call with health metrics sharing enabled</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- AI INSIGHTS PANEL -->
+        <aside class="ai-insights-panel">
+            <div class="ai-insights-header">
+                <div class="ai-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div>
+                    <h2
+                        style="font-size: var(--font-large); font-weight: 700; color: var(--trust-blue); margin-bottom: 4px;">
+                        AI Health Intelligence</h2>
+                    <p style="font-size: 14px; color: var(--text-secondary);">Premium insights powered by medical AI</p>
+                </div>
+            </div>
+
+            <div
+                style="background: rgba(10, 77, 104, 0.05); border-radius: 16px; padding: var(--space-md); margin-bottom: var(--space-md); border-left: 4px solid var(--healing-teal);">
+                <div style="font-weight: 600; color: var(--trust-blue); margin-bottom: var(--space-sm);">Health Trend
+                    Prediction</div>
+                <div style="color: var(--text-secondary); line-height: 1.5;">Based on 90 days of data, Papa's
+                    cardiovascular health shows excellent stability. Recommended to maintain current routine.</div>
+                <div
+                    style="display: flex; align-items: center; gap: var(--space-sm); margin-top: var(--space-sm); font-size: 12px; font-weight: 600;">
+                    <span style="color: var(--wellness-green);">Confidence:</span>
+                    <div
+                        style="height: 4px; background: var(--warm-gray); border-radius: 2px; flex: 1; overflow: hidden;">
+                        <div style="height: 100%; background: var(--gradient-healing); border-radius: 2px; width: 94%;">
+                        </div>
+                    </div>
+                    <span style="color: var(--wellness-green); font-weight: 700;">94%</span>
+                </div>
+            </div>
+
+            <div
+                style="background: rgba(255, 179, 0, 0.1); border-radius: 16px; padding: var(--space-md); border-left: 4px solid var(--premium-gold);">
+                <div style="font-weight: 600; color: var(--premium-gold); margin-bottom: var(--space-sm);">🚀 Premium AI
+                    Recommendation</div>
+                <div style="color: var(--text-secondary); line-height: 1.5;">Weather forecast shows ideal conditions for
+                    extended garden walks this week. Vitamin D synthesis will be optimal.</div>
+                <div
+                    style="display: flex; align-items: center; gap: var(--space-sm); margin-top: var(--space-sm); font-size: 12px; font-weight: 600;">
+                    <span style="color: var(--premium-gold);">Confidence:</span>
+                    <div
+                        style="height: 4px; background: var(--warm-gray); border-radius: 2px; flex: 1; overflow: hidden;">
+                        <div style="height: 100%; background: var(--gradient-luxury); border-radius: 2px; width: 89%;">
+                        </div>
+                    </div>
+                    <span style="color: var(--premium-gold); font-weight: 700;">89%</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- PREMIUM EMERGENCY SYSTEM -->
+    <div class="premium-emergency-floating">
+        <button class="premium-emergency-button" onclick="triggerPremiumEmergency()"
+            title="Premium Emergency - Instant family, medical team, and emergency services activation">
+            <i class="fas fa-phone-alt"></i>
+        </button>
+    </div>
+
+    <script>
+        function triggerPremiumEmergency() {
+            if (confirm('🚨 PREMIUM EMERGENCY ALERT\n\nThis will immediately activate:\n• Family instant notifications\n• Dr. Patel direct line\n• Specialist medical team\n• Priority emergency services\n• Live location sharing\n• Medical history access\n\nActivate Premium Emergency Response?')) {
+                showPremiumEmergencyStatus('🚨 PREMIUM EMERGENCY ACTIVATED\n\n✓ Family alerted via all channels\n✓ Dr. Patel connected\n✓ Medical team dispatched\n✓ Emergency services priority routing\n✓ Live vitals monitoring active');
+            }
+        }
+
+        function showPremiumEmergencyStatus(message) {
+            let statusDiv = document.createElement('div');
+            statusDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(135deg, rgba(198, 40, 40, 0.95), rgba(255, 179, 0, 0.9));
+                color: white;
+                padding: 24px 48px;
+                border-radius: 16px;
+                font-weight: 700;
+                z-index: 3000;
+                box-shadow: 0 16px 64px rgba(198, 40, 40, 0.4);
+                backdrop-filter: blur(20px);
+                border: 2px solid rgba(255, 179, 0, 0.3);
+                text-align: center;
+                white-space: pre-line;
+                max-width: 600px;
+            `;
+            statusDiv.textContent = message;
+            document.body.appendChild(statusDiv);
+
+            setTimeout(() => {
+                statusDiv.remove();
+            }, 15000);
+        }
+
+        // Initialize premium features
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('🌟 ElderWorld Premium Dashboard Loaded');
+        });
+    </script>
+</body>
+
+</html>

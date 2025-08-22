@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderWorld Premium - Advanced Features Demo</title>
+    <link rel="stylesheet" href="../css/elderbridge-foundation.css">
+    <link rel="stylesheet" href="../css/elderbridge-components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Advanced Features Specific Styles */
+        .advanced-demo {
+            background: linear-gradient(135deg, var(--eb-primary-50), var(--eb-secondary-50));
+            min-height: 100vh;
+            padding: var(--eb-spacing-lg);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--eb-spacing-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: var(--eb-border-radius-lg);
+            padding: var(--eb-spacing-lg);
+            box-shadow: var(--eb-shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid var(--eb-neutral-200);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--eb-shadow-lg);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: var(--eb-spacing-md);
+            margin-bottom: var(--eb-spacing-md);
+        }
+
+        .feature-icon {
+            background: var(--eb-primary-100);
+            padding: var(--eb-spacing-md);
+            border-radius: var(--eb-border-radius-md);
+            color: var(--eb-primary-600);
+            font-size: 1.5rem;
+        }
+
+        .medication-timeline {
+            position: relative;
+            padding: var(--eb-spacing-lg) 0;
+        }
+
+        .medication-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--eb-primary-200);
+        }
+
+        .medication-item {
+            position: relative;
+            margin-bottom: var(--eb-spacing-md);
+            padding-left: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .medication-item::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--eb-primary-500);
+        }
+
+        .medication-taken::before {
+            background: var(--eb-success-500);
+        }
+
+        .medication-missed::before {
+            background: var(--eb-error-500);
+        }
+
+        .sleep-chart {
+            height: 200px;
+            position: relative;
+            background: linear-gradient(180deg, var(--eb-primary-50) 0%, transparent 100%);
+            border-radius: var(--eb-border-radius-md);
+            margin: var(--eb-spacing-md) 0;
+            padding: var(--eb-spacing-md);
+        }
+
+        .sleep-bar {
+            position: absolute;
+            bottom: 20px;
+            width: 30px;
+            background: var(--eb-primary-400);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .sleep-bar:hover {
+            background: var(--eb-primary-600);
+            transform: scaleY(1.1);
+        }
+
+        .activity-ring {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(var(--eb-primary-500) 0deg,
+                    var(--eb-primary-500) calc(var(--progress, 75) * 3.6deg),
+                    var(--eb-neutral-200) calc(var(--progress, 75) * 3.6deg),
+                    var(--eb-neutral-200) 360deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 0 auto var(--eb-spacing-md);
+        }
+
+        .activity-ring::before {
+            content: '';
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            position: absolute;
+        }
+
+        .activity-percentage {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--eb-primary-600);
+            z-index: 1;
+        }
+
+        .emergency-trigger {
+            background: var(--eb-error-500);
+            color: white;
+            border: none;
+            padding: var(--eb-spacing-lg);
+            border-radius: var(--eb-border-radius-lg);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emergency-trigger:hover {
+            background: var(--eb-error-600);
+            transform: translateY(-2px);
+        }
+
+        .emergency-trigger.pulsing::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: emergencyPulse 2s infinite;
+        }
+
+        @keyframes emergencyPulse {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+
+            100% {
+                width: 200%;
+                height: 200%;
+                opacity: 0;
+            }
+        }
+
+        .voice-control {
+            background: var(--eb-secondary-500);
+            color: white;
+            border: none;
+            padding: var(--eb-spacing-lg);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .voice-control.listening {
+            background: var(--eb-success-500);
+            animation: voicePulse 1s infinite;
+        }
+
+        @keyframes voicePulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .family-member {
+            display: flex;
+            align-items: center;
+            gap: var(--eb-spacing-md);
+            padding: var(--eb-spacing-md);
+            background: var(--eb-neutral-50);
+            border-radius: var(--eb-border-radius-md);
+            margin-bottom: var(--eb-spacing-sm);
+            transition: all 0.3s ease;
+        }
+
+        .family-member:hover {
+            background: var(--eb-primary-50);
+        }
+
+        .family-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--eb-primary-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--eb-primary-700);
+        }
+
+        .family-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: auto;
+        }
+
+        .status-online {
+            background: var(--eb-success-500);
+        }
+
+        .status-away {
+            background: var(--eb-warning-500);
+        }
+
+        .status-offline {
+            background: var(--eb-neutral-400);
+        }
+
+        .ai-insight {
+            background: linear-gradient(135deg, var(--eb-primary-500), var(--eb-secondary-500));
+            color: white;
+            padding: var(--eb-spacing-lg);
+            border-radius: var(--eb-border-radius-lg);
+            margin-bottom: var(--eb-spacing-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-insight::before {
+            content: '🤖';
+            font-size: 2rem;
+            position: absolute;
+            top: var(--eb-spacing-md);
+            right: var(--eb-spacing-md);
+            opacity: 0.3;
+        }
+
+        .insight-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: var(--eb-spacing-sm);
+        }
+
+        .insight-confidence {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="advanced-demo">
+        <div class="eb-container">
+            <header class="eb-text-center eb-mb-xl">
+                <h1 class="eb-text-4xl eb-font-bold eb-text-primary-700">ElderWorld Advanced Features</h1>
+                <p class="eb-text-lg eb-text-neutral-600 eb-mt-md">Premium healthcare monitoring and AI assistance</p>
+            </header>
+
+            <div class="feature-grid">
+                <!-- Medication Management -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <h3 class="eb-text-xl eb-font-semibold">Smart Medication Tracker</h3>
+                    </div>
+                    <div class="medication-timeline">
+                        <div class="medication-item medication-taken">
+                            <div>
+                                <strong>Lisinopril 10mg</strong><br>
+                                <small class="eb-text-neutral-600">Taken at 8:00 AM</small>
+                            </div>
+                            <i class="fas fa-check-circle eb-text-success-500"></i>
+                        </div>
+                        <div class="medication-item medication-taken">
+                            <div>
+                                <strong>Metformin 500mg</strong><br>
+                                <small class="eb-text-neutral-600">Taken at 12:30 PM</small>
+                            </div>
+                            <i class="fas fa-check-circle eb-text-success-500"></i>
+                        </div>
+                        <div class="medication-item">
+                            <div>
+                                <strong>Aspirin 81mg</strong><br>
+                                <small class="eb-text-neutral-600">Due at 6:00 PM</small>
+                            </div>
+                            <button class="eb-btn eb-btn-sm eb-btn-primary">Take Now</button>
+                        </div>
+                        <div class="medication-item medication-missed">
+                            <div>
+                                <strong>Vitamin D 1000IU</strong><br>
+                                <small class="eb-text-error-600">Missed yesterday</small>
+                            </div>
+                            <i class="fas fa-exclamation-triangle eb-text-error-500"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sleep Analysis -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h3 class="eb-text-xl eb-font-semibold">Sleep Quality Analysis</h3>
+                    </div>
+                    <div class="sleep-chart" id="sleepChart">
+                        <div class="eb-text-sm eb-text-neutral-600 eb-mb-md">7-day sleep quality (hours)</div>
+                        <!-- Sleep bars will be generated by JavaScript -->
+                    </div>
+                    <div class="eb-text-center">
+                        <div class="eb-text-2xl eb-font-bold eb-text-primary-600">7.5 hrs</div>
+                        <div class="eb-text-sm eb-text-neutral-600">Average sleep last week</div>
+                    </div>
+                </div>
+
+                <!-- Activity Tracking -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <h3 class="eb-text-xl eb-font-semibold">Daily Activity Goal</h3>
+                    </div>
+                    <div class="activity-ring" style="--progress: 78">
+                        <div class="activity-percentage">78%</div>
+                    </div>
+                    <div class="eb-text-center">
+                        <div class="eb-text-lg eb-font-semibold">7,800 steps</div>
+                        <div class="eb-text-sm eb-text-neutral-600">Goal: 10,000 steps</div>
+                        <div class="eb-text-sm eb-text-success-600 eb-mt-sm">Great progress today! 🎉</div>
+                    </div>
+                </div>
+
+                <!-- Emergency System -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="eb-text-xl eb-font-semibold">Emergency Response</h3>
+                    </div>
+                    <button class="emergency-trigger" id="emergencyBtn">
+                        <i class="fas fa-phone eb-mr-sm"></i>
+                        Emergency Call
+                    </button>
+                    <div class="eb-mt-md eb-text-sm eb-text-neutral-600">
+                        <div><strong>Primary Contact:</strong> Sarah (Daughter)</div>
+                        <div><strong>Response Time:</strong> &lt; 2 minutes</div>
+                        <div><strong>Backup:</strong> 911 Auto-dial</div>
+                    </div>
+                </div>
+
+                <!-- Voice Control -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h3 class="eb-text-xl eb-font-semibold">Voice Assistant</h3>
+                    </div>
+                    <div class="eb-text-center eb-mb-md">
+                        <button class="voice-control" id="voiceBtn">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div class="eb-text-center eb-text-sm eb-text-neutral-600">
+                        <div><strong>Say:</strong> "How am I doing today?"</div>
+                        <div><strong>Or:</strong> "Call my daughter"</div>
+                        <div><strong>Or:</strong> "Remind me to take medicine"</div>
+                    </div>
+                    <div id="voiceResponse" class="eb-mt-md eb-p-md eb-bg-neutral-50 eb-rounded-md"
+                        style="display: none;">
+                        <div class="eb-text-sm"><strong>AI Response:</strong></div>
+                        <div id="voiceText" class="eb-text-sm eb-mt-sm"></div>
+                    </div>
+                </div>
+
+                <!-- Family Connection -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="eb-text-xl eb-font-semibold">Family Circle</h3>
+                    </div>
+                    <div class="family-member">
+                        <div class="family-avatar">S</div>
+                        <div>
+                            <div class="eb-font-semibold">Sarah Johnson</div>
+                            <div class="eb-text-sm eb-text-neutral-600">Daughter</div>
+                        </div>
+                        <div class="family-status status-online" title="Online"></div>
+                    </div>
+                    <div class="family-member">
+                        <div class="family-avatar">M</div>
+                        <div>
+                            <div class="eb-font-semibold">Michael Johnson</div>
+                            <div class="eb-text-sm eb-text-neutral-600">Son</div>
+                        </div>
+                        <div class="family-status status-away" title="Away"></div>
+                    </div>
+                    <div class="family-member">
+                        <div class="family-avatar">D</div>
+                        <div>
+                            <div class="eb-font-semibold">Dr. Amanda Chen</div>
+                            <div class="eb-text-sm eb-text-neutral-600">Primary Care</div>
+                        </div>
+                        <div class="family-status status-offline" title="Offline"></div>
+                    </div>
+                    <button class="eb-btn eb-btn-primary eb-w-full eb-mt-md">
+                        <i class="fas fa-plus eb-mr-sm"></i>
+                        Add Family Member
+                    </button>
+                </div>
+
+                <!-- AI Health Insights -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="eb-text-xl eb-font-semibold">AI Health Insights</h3>
+                    </div>
+                    <div class="ai-insight">
+                        <div class="insight-text">
+                            Your heart rate has been consistently lower this week, which aligns with your improved sleep
+                            quality. Consider maintaining your current bedtime routine.
+                        </div>
+                        <div class="insight-confidence">Confidence: 92%</div>
+                    </div>
+                    <div class="ai-insight">
+                        <div class="insight-text">
+                            You've missed 2 Vitamin D doses this month. Setting a phone reminder for 9 AM might help
+                            establish a routine.
+                        </div>
+                        <div class="insight-confidence">Confidence: 87%</div>
+                    </div>
+                    <button class="eb-btn eb-btn-outline eb-btn-primary eb-w-full">
+                        View All Insights
+                    </button>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="eb-text-xl eb-font-semibold">Quick Actions</h3>
+                    </div>
+                    <div class="eb-grid eb-grid-cols-2 eb-gap-md">
+                        <button class="eb-btn eb-btn-secondary eb-btn-sm">
+                            <i class="fas fa-calendar eb-mr-xs"></i>
+                            Schedule Appointment
+                        </button>
+                        <button class="eb-btn eb-btn-secondary eb-btn-sm">
+                            <i class="fas fa-prescription-bottle-alt eb-mr-xs"></i>
+                            Refill Prescription
+                        </button>
+                        <button class="eb-btn eb-btn-secondary eb-btn-sm">
+                            <i class="fas fa-video eb-mr-xs"></i>
+                            Video Call Family
+                        </button>
+                        <button class="eb-btn eb-btn-secondary eb-btn-sm">
+                            <i class="fas fa-chart-line eb-mr-xs"></i>
+                            Health Report
+                        </button>
+                        <button class="eb-btn eb-btn-secondary eb-btn-sm">
+                            <i class="fas fa-bell eb-mr-xs"></i>
+                            Set Reminder
+                        </button>
+                        <button class="eb-btn eb-btn-secondary eb-btn-sm">
+                            <i class="fas fa-ambulance eb-mr-xs"></i>
+                            Find Hospital
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class ElderWorldAdvanced {
+            constructor() {
+                this.initializeSleepChart();
+                this.initializeEmergencySystem();
+                this.initializeVoiceControl();
+                this.startRealTimeUpdates();
+            }
+
+            initializeSleepChart() {
+                const sleepData = [6.5, 7.2, 8.1, 7.8, 6.9, 8.3, 7.5]; // Last 7 days
+                const sleepChart = document.getElementById('sleepChart');
+                const maxHeight = 120;
+
+                sleepData.forEach((hours, index) => {
+                    const bar = document.createElement('div');
+                    bar.className = 'sleep-bar';
+                    bar.style.left = `${20 + index * 35}px`;
+                    bar.style.height = `${(hours / 10) * maxHeight}px`;
+                    bar.title = `${hours} hours`;
+
+                    // Add hover effect
+                    bar.addEventListener('mouseenter', () => {
+                        const tooltip = document.createElement('div');
+                        tooltip.textContent = `${hours} hrs`;
+                        tooltip.style.cssText = `
+                            position: absolute;
+                            top: -30px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            background: var(--eb-neutral-800);
+                            color: white;
+                            padding: 4px 8px;
+                            border-radius: 4px;
+                            font-size: 12px;
+                            white-space: nowrap;
+                        `;
+                        bar.appendChild(tooltip);
+                    });
+
+                    bar.addEventListener('mouseleave', () => {
+                        const tooltip = bar.querySelector('div');
+                        if (tooltip) tooltip.remove();
+                    });
+
+                    sleepChart.appendChild(bar);
+                });
+            }
+
+            initializeEmergencySystem() {
+                const emergencyBtn = document.getElementById('emergencyBtn');
+
+                emergencyBtn.addEventListener('click', () => {
+                    this.triggerEmergency();
+                });
+
+                // Keyboard shortcut
+                document.addEventListener('keydown', (e) => {
+                    if (e.ctrlKey && e.shiftKey && e.key === 'E') {
+                        e.preventDefault();
+                        this.triggerEmergency();
+                    }
+                });
+            }
+
+            triggerEmergency() {
+                const emergencyBtn = document.getElementById('emergencyBtn');
+                emergencyBtn.classList.add('pulsing');
+                emergencyBtn.innerHTML = '<i class="fas fa-phone eb-mr-sm"></i>Calling Sarah...';
+
+                // Simulate emergency call
+                setTimeout(() => {
+                    emergencyBtn.innerHTML = '<i class="fas fa-check eb-mr-sm"></i>Sarah Contacted!';
+                    emergencyBtn.style.background = 'var(--eb-success-500)';
+
+                    // Show notification
+                    this.showNotification('Emergency contact successful! Sarah has been notified and is responding.', 'success');
+
+                    setTimeout(() => {
+                        emergencyBtn.classList.remove('pulsing');
+                        emergencyBtn.innerHTML = '<i class="fas fa-phone eb-mr-sm"></i>Emergency Call';
+                        emergencyBtn.style.background = 'var(--eb-error-500)';
+                    }, 3000);
+                }, 2000);
+            }
+
+            initializeVoiceControl() {
+                const voiceBtn = document.getElementById('voiceBtn');
+                const voiceResponse = document.getElementById('voiceResponse');
+                const voiceText = document.getElementById('voiceText');
+
+                const responses = [
+                    "Your health metrics look great today! Your heart rate is stable and you've been active.",
+                    "I'm calling Sarah now. She should be available in a moment.",
+                    "I've set a reminder for 6 PM to take your evening medication.",
+                    "Your sleep has improved 15% this week. Keep up the good bedtime routine!",
+                    "I found 3 nearby hospitals. The closest is General Hospital, 2.3 miles away."
+                ];
+
+                voiceBtn.addEventListener('click', () => {
+                    voiceBtn.classList.add('listening');
+                    voiceBtn.innerHTML = '<i class="fas fa-stop"></i>';
+
+                    // Simulate listening
+                    setTimeout(() => {
+                        voiceBtn.classList.remove('listening');
+                        voiceBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+
+                        // Show random response
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        voiceText.textContent = randomResponse;
+                        voiceResponse.style.display = 'block';
+
+                        this.showNotification('Voice command processed successfully!', 'success');
+                    }, 3000);
+                });
+            }
+
+            startRealTimeUpdates() {
+                // Update activity ring progress
+                setInterval(() => {
+                    const activityRing = document.querySelector('.activity-ring');
+                    const currentProgress = parseInt(activityRing.style.getPropertyValue('--progress') || '78');
+                    const newProgress = Math.min(100, currentProgress + Math.floor(Math.random() * 3));
+
+                    activityRing.style.setProperty('--progress', newProgress);
+                    activityRing.querySelector('.activity-percentage').textContent = `${newProgress}%`;
+
+                    // Update step count
+                    const stepCount = Math.floor((newProgress / 100) * 10000);
+                    document.querySelector('.eb-text-lg.eb-font-semibold').textContent = `${stepCount.toLocaleString()} steps`;
+                }, 30000); // Update every 30 seconds
+
+                // Random family status updates
+                setInterval(() => {
+                    const statusElements = document.querySelectorAll('.family-status');
+                    const statuses = ['status-online', 'status-away', 'status-offline'];
+
+                    statusElements.forEach(status => {
+                        if (Math.random() < 0.3) { // 30% chance to change
+                            const currentClass = status.className.split(' ').find(c => c.startsWith('status-'));
+                            const newStatus = statuses[Math.floor(Math.random() * statuses.length)];
+                            status.classList.remove(currentClass);
+                            status.classList.add(newStatus);
+                        }
+                    });
+                }, 45000); // Update every 45 seconds
+            }
+
+            showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${type === 'success' ? 'var(--eb-success-500)' : 'var(--eb-primary-500)'};
+                    color: white;
+                    padding: var(--eb-spacing-md) var(--eb-spacing-lg);
+                    border-radius: var(--eb-border-radius-md);
+                    box-shadow: var(--eb-shadow-lg);
+                    z-index: 1000;
+                    max-width: 300px;
+                    animation: slideIn 0.3s ease;
+                `;
+
+                notification.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: var(--eb-spacing-sm);">
+                        <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                        <span>${message}</span>
+                    </div>
+                `;
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 4000);
+            }
+        }
+
+        // Add CSS animations for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize the advanced features when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new ElderWorldAdvanced();
+        });
+
+        // Add some interactive animations to buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('.eb-btn') || e.target.closest('.eb-btn')) {
+                const button = e.target.matches('.eb-btn') ? e.target : e.target.closest('.eb-btn');
+                button.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    button.style.transform = '';
+                }, 150);
+            }
+        });
+    </script>
+</body>
+
+</html>
