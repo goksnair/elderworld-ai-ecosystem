@@ -45,9 +45,11 @@ class MCPBridgeServer {
         this.vercel = null;
         this.railway = null;
         this.supabase = null;
-        
+    }
+
+    async init() {
         this.setupMiddleware();
-        this.initializeServices();
+        await this.initializeServices();
         this.setupRoutes();
         this.setupA2AEndpoints();
     }
@@ -56,9 +58,11 @@ class MCPBridgeServer {
         this.app.use(express.json({ limit: '10mb' }));
         this.app.use(express.urlencoded({ extended: true, limit: '10mb' }));
         
-        // Add request logging
+        // Add request ID and logging
         this.app.use((req, res, next) => {
+            req.id = crypto.randomUUID();
             this.logger.info(`${req.method} ${req.path}`, {
+                requestId: req.id,
                 ip: req.ip,
                 userAgent: req.get('User-Agent')?.substring(0, 100)
             });
@@ -161,10 +165,15 @@ class MCPBridgeServer {
         // Health check endpoint
         this.app.get('/health', async (req, res) => {
             const healthChecks = await this.performHealthChecks();
-            
-            res.status(200).json({
-                status: 'ok',
-                message: 'MCP Bridge Server is running',
+            const criticalServices = ['github', 'supabase'];
+            const isHealthy = criticalServices.every(service => healthChecks[service]?.success);
+
+            const status = isHealthy ? 200 : 503;
+            const responseMessage = isHealthy ? 'MCP Bridge Server is running and all critical services are healthy.' : 'One or more critical services are unavailable.';
+
+            res.status(status).json({
+                status: isHealthy ? 'ok' : 'error',
+                message: responseMessage,
                 services: healthChecks,
                 a2a_layer: this.a2aLayer.getStatus(),
                 timestamp: new Date().toISOString()
@@ -196,7 +205,7 @@ class MCPBridgeServer {
                 const result = await this.github.getRepository(owner, repo);
                 res.json(result);
             } catch (error) {
-                this.handleError(res, error, 'GitHub repository fetch');
+                this.handleError(res, error, 'GitHub repository fetch', req.id);
             }
         });
 
@@ -209,7 +218,7 @@ class MCPBridgeServer {
                 const result = await this.github.createOrUpdateFile(owner, repo, path, content, message, options);
                 res.json(result);
             } catch (error) {
-                this.handleError(res, error, 'GitHub file update');
+                this.handleError(res, error, 'GitHub file update', req.id);
             }
         });
 
@@ -217,11 +226,15 @@ class MCPBridgeServer {
             try {
                 const { owner, repo } = req.params;
                 const { title, body, head, base } = req.body;
+
+                if (!title || !body || !head || !base) {
+                    throw new Error('Missing required parameters for creating a pull request.');
+                }
                 
                 const result = await this.github.createPullRequest(owner, repo, title, body, head, base);
                 res.json(result);
             } catch (error) {
-                this.handleError(res, error, 'GitHub PR creation');
+                this.handleError(res, error, 'GitHub PR creation', req.id);
             }
         });
     }
@@ -234,7 +247,7 @@ class MCPBridgeServer {
                 const result = await this.vercel.listProjects(req.query);
                 res.json(result);
             } catch (error) {
-                this.handleError(res, error, 'Vercel projects list');
+                this.handleError(res, error, 'Vercel projects list', req.id);
             }
         });
 
@@ -243,7 +256,7 @@ class MCPBridgeServer {
                 const result = await this.vercel.createDeployment(req.body);
                 res.json(result);
             } catch (error) {
-                this.handleError(res, error, 'Vercel deployment creation');
+                this.handleError(res, error, 'Vercel deployment creation', req.id);
             }
         });
 
@@ -252,7 +265,7 @@ class MCPBridgeServer {
                 const result = await this.vercel.getDeploymentStatus(req.params.id);
                 res.json(result);
             } catch (error) {
-                this.handleError(res, error, 'Vercel deployment status');
+                this.handleError(res, error, 'Vercel deployment status', req.id);
             }
         });
     }
@@ -265,7 +278,7 @@ class MCPBridgeServer {
                 const result = await this.railway.listProjects();
                 res.json(result);
             } catch (error) {
-                this.handleError(res, error, 'Railway projects list');
+                this.handleError(res, error, 'Railway projects list', req.id);
             }
         });
 
@@ -277,7 +290,7 @@ class MCPBridgeServer {
                 const result = await this.railway.restartService(environmentId, serviceId);
                 res.json(result);
             } catch (error) {
-                this.handleError(res, error, 'Railway service restart');
+                this.handleError(res, error, 'Railway service restart', req.id);
             }
         });
     }
@@ -310,7 +323,7 @@ class MCPBridgeServer {
                 
                 res.json(result);
             } catch (error) {
-                this.handleError(res, error, 'Supabase operation');
+                this.handleError(res, error, 'Supabase operation', req.id);
             }
         });
     }
@@ -320,10 +333,13 @@ class MCPBridgeServer {
         this.app.post('/a2a/message', async (req, res) => {
             try {
                 const { from, to, type, payload } = req.body;
+                if (!from || !to || !type || !payload) {
+                    throw new Error('Missing required fields for A2A message.');
+                }
                 const result = await this.a2aLayer.sendMessage(from, to, type, payload);
                 res.json(result);
             } catch (error) {
-                this.handleError(res, error, 'A2A message sending');
+                this.handleError(res, error, 'A2A message sending', req.id);
             }
         });
 
@@ -333,7 +349,7 @@ class MCPBridgeServer {
                 const messages = await this.a2aLayer.getMessages(agentId);
                 res.json({ success: true, data: messages });
             } catch (error) {
-                this.handleError(res, error, 'A2A message retrieval');
+                this.handleError(res, error, 'A2A message retrieval', req.id);
             }
         });
 
@@ -343,7 +359,17 @@ class MCPBridgeServer {
                 const result = await this.a2aLayer.broadcast(from, type, payload, targets);
                 res.json(result);
             } catch (error) {
-                this.handleError(res, error, 'A2A broadcast');
+                this.handleError(res, error, 'A2A broadcast', req.id);
+            }
+        });
+
+        this.app.post('/a2a/register', async (req, res) => {
+            try {
+                const { agentId, metadata } = req.body;
+                const result = this.a2aLayer.registerAgent(agentId, metadata);
+                res.json({ success: true, data: result });
+            } catch (error) {
+                this.handleError(res, error, 'A2A agent registration', req.id);
             }
         });
     }
@@ -386,7 +412,7 @@ class MCPBridgeServer {
             
             res.json({ success: true, data: { results, context } });
         } catch (error) {
-            this.handleError(res, error, 'Tool chain execution');
+            this.handleError(res, error, 'Tool chain execution', req.id);
         }
     }
 
@@ -462,13 +488,23 @@ class MCPBridgeServer {
         return checks;
     }
 
-    handleError(res, error, context) {
-        this.logger.error(`${context} failed:`, error);
+    handleError(res, error, context, reqId) {
+        const timestamp = new Date().toISOString();
+        const logData = {
+            requestId: reqId,
+            context,
+            timestamp,
+            error: error.message,
+            stack: error.stack
+        };
+        this.logger.error(`${context} failed:`, logData);
+
         res.status(500).json({
             success: false,
             error: error.message,
             context,
-            timestamp: new Date().toISOString()
+            requestId: reqId,
+            timestamp
         });
     }
 
@@ -495,8 +531,13 @@ class MCPBridgeServer {
 // Initialize and start server if run directly
 if (require.main === module) {
     const server = new MCPBridgeServer();
-    server.start().catch(error => {
-        console.error('Failed to start server:', error);
+    server.init().then(() => {
+        server.start().catch(error => {
+            console.error('Failed to start server:', error);
+            process.exit(1);
+        });
+    }).catch(error => {
+        console.error('Failed to initialize server:', error);
         process.exit(1);
     });
 }

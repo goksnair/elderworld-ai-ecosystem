@@ -4,6 +4,8 @@
 
 const { createClient } = require('@supabase/supabase-js');
 const crypto = require('crypto');
+const fetch = require('node-fetch');
+const retry = require('async-retry');
 
 class A2ASupabaseClient {
     constructor(supabaseUrl, supabaseKey, options = {}) {
@@ -20,7 +22,8 @@ class A2ASupabaseClient {
                 headers: {
                     'X-A2A-Client': 'true',
                     'X-System': 'Senior-Care-AI-Ecosystem'
-                }
+                },
+                fetch
             },
             ...options
         });
@@ -41,34 +44,49 @@ class A2ASupabaseClient {
      * @returns {Object} Message data with ID
      */
     async sendMessage(sender, recipient, type, payload, contextId = null) {
+        const messageId = this.generateMessageId();
+        const timestamp = new Date().toISOString();
+
+        const message = {
+            sender,
+            recipient,
+            type,
+            timestamp,
+            context_id: contextId,
+            payload,
+            status: 'SENT',
+            updated_at: timestamp
+        };
+
+        // Validate message structure
+        this.validateMessage(message);
+
         try {
-            const messageId = this.generateMessageId();
-            const timestamp = new Date().toISOString();
+            const data = await retry(async bail => {
+                const { data, error } = await this.supabase
+                    .from(this.table)
+                    .insert(message)
+                    .select()
+                    .single();
 
-            const message = {
-                sender,
-                recipient,
-                type,
-                timestamp,
-                context_id: contextId,
-                payload,
-                status: 'SENT',
-                updated_at: timestamp
-            };
-
-            // Validate message structure
-            this.validateMessage(message);
-
-            const { data, error } = await this.supabase
-                .from(this.table)
-                .insert(message)
-                .select()
-                .single();
-
-            if (error) {
-                console.error('Failed to send A2A message:', error);
-                throw new Error(`Message send failed: ${error.message}`);
-            }
+                if (error) {
+                    // Don't retry on certain errors, e.g., unique constraint violations
+                    if (error.code === '23505') {
+                        bail(new Error(`Message send failed with non-retriable error: ${error.message}`));
+                        return;
+                    }
+                    throw new Error(`Message send failed: ${error.message}`);
+                }
+                return data;
+            }, {
+                retries: 3,
+                factor: 2,
+                minTimeout: 1000,
+                onRetry: (error, attempt) => {
+                    console.log(`Attempt ${attempt} to send message failed. Retrying...`);
+                    this.logger.warn(`A2A sendMessage retry attempt ${attempt}`, { error: error.message });
+                }
+            });
 
             console.log(`A2A Message sent: ${sender} → ${recipient} [${type}]`, {
                 messageId,
@@ -78,7 +96,7 @@ class A2ASupabaseClient {
             return data;
 
         } catch (error) {
-            console.error('A2A sendMessage error:', error);
+            console.error('A2A sendMessage error after retries:', error);
             throw error;
         }
     }

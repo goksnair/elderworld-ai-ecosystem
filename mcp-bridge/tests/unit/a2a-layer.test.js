@@ -430,6 +430,11 @@ describe('A2ACommunicationLayer', () => {
         beforeEach(() => {
             a2aLayer.registerAgent('agent1');
             a2aLayer.registerAgent('agent2');
+            jest.useFakeTimers();
+        });
+
+        afterEach(() => {
+            jest.useRealTimers();
         });
 
         it('should handle delivery confirmation timeout', (done) => {
@@ -447,6 +452,9 @@ describe('A2ACommunicationLayer', () => {
                 { requestType: 'health' },
                 { requiresConfirmation: true }
             );
+
+            // Fast-forward time to trigger the timeout
+            jest.runAllTimers();
         });
 
         it('should handle delivery confirmation', (done) => {

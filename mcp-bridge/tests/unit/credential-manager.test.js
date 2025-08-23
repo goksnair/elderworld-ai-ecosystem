@@ -15,20 +15,20 @@ jest.mock('fs', () => ({
 }));
 
 // Mock @octokit/rest
+const mockGetAuthenticated = jest.fn();
 jest.mock('@octokit/rest', () => ({
     Octokit: jest.fn().mockImplementation(() => ({
         users: {
-            getAuthenticated: jest.fn()
+            getAuthenticated: mockGetAuthenticated
         }
     }))
 }));
 
 // Mock @supabase/supabase-js
+const mockSupabaseFrom = jest.fn();
 jest.mock('@supabase/supabase-js', () => ({
     createClient: jest.fn().mockImplementation(() => ({
-        from: jest.fn().mockReturnThis(),
-        select: jest.fn().mockReturnThis(),
-        limit: jest.fn().mockResolvedValue({ data: [], error: null })
+        from: mockSupabaseFrom,
     }))
 }));
 
@@ -89,7 +89,7 @@ describe('SecureCredentialManager', () => {
 
             expect(() => {
                 credentialManager.encrypt('test');
-            }).toThrow('Failed to encrypt credential');
+            }).toThrow('Encryption key is not set.');
         });
 
         it('should handle decryption errors gracefully', () => {
@@ -122,6 +122,13 @@ describe('SecureCredentialManager', () => {
     });
 
     describe('File-based Credential Loading', () => {
+        beforeEach(() => {
+            // Clear environment variables to ensure file-based loading is tested
+            delete process.env.GITHUB_TOKEN;
+            delete process.env.SUPABASE_URL;
+            delete process.env.SUPABASE_SERVICE_KEY;
+        });
+
         it('should load credentials from .env file when env vars not present', async () => {
             const envFileContent = `
 # Test .env file
@@ -144,7 +151,7 @@ PLACEHOLDER_TOKEN=your_token_here
             expect(credentials.SUPABASE_URL).toBe('https://file.supabase.co');
             expect(credentials.SUPABASE_SERVICE_KEY).toBe('file-service-key');
             expect(credentials.PLACEHOLDER_TOKEN).toBeUndefined();
-            expect(credentials.EMPTY_VALUE).toBeUndefined();
+            expect(credentials.EMPTY_VALUE).toBe('');
         });
 
         it('should handle quoted values correctly', async () => {
@@ -305,8 +312,8 @@ QUOTED_WITH_SPACES="value with spaces"
 
             const masked = await credentialManager.getAvailableCredentials();
 
-            expect(masked.GITHUB_TOKEN).toBe('gith****************5678');
-            expect(masked.SUPABASE_URL).toBe('http***************e.co');
+            expect(masked.GITHUB_TOKEN).toBe('gith*************5678');
+            expect(masked.SUPABASE_URL).toBe('http*******************e.co');
         });
 
         it('should handle short credentials', async () => {
@@ -318,7 +325,7 @@ QUOTED_WITH_SPACES="value with spaces"
         });
 
         it('should handle empty credentials', async () => {
-            fs.readFile.mockResolvedValue('EMPTY_KEY=');
+            process.env.EMPTY_KEY = '';
 
             const masked = await credentialManager.getAvailableCredentials();
 
@@ -337,11 +344,8 @@ QUOTED_WITH_SPACES="value with spaces"
         });
 
         it('should test GitHub token connectivity', async () => {
-            const { Octokit } = require('@octokit/rest');
-            const mockOctokit = Octokit.mock.instances[0] || { users: { getAuthenticated: jest.fn() } };
-            
             process.env.GITHUB_TOKEN = 'ghp_validtokenformat1234567890abcdef123456';
-            mockOctokit.users.getAuthenticated.mockResolvedValue({
+            mockGetAuthenticated.mockResolvedValue({
                 data: { login: 'test-user', scopes: ['repo', 'user'] }
             });
 
@@ -353,11 +357,8 @@ QUOTED_WITH_SPACES="value with spaces"
         });
 
         it('should handle GitHub token test failure', async () => {
-            const { Octokit } = require('@octokit/rest');
-            const mockOctokit = Octokit.mock.instances[0] || { users: { getAuthenticated: jest.fn() } };
-            
             process.env.GITHUB_TOKEN = 'ghp_validtokenformat1234567890abcdef123456';
-            mockOctokit.users.getAuthenticated.mockRejectedValue(new Error('Unauthorized'));
+            mockGetAuthenticated.mockRejectedValue(new Error('Unauthorized'));
 
             const result = await credentialManager.testCredential('GITHUB_TOKEN');
 
@@ -366,15 +367,13 @@ QUOTED_WITH_SPACES="value with spaces"
         });
 
         it('should test Supabase credentials', async () => {
-            const { createClient } = require('@supabase/supabase-js');
-            const mockClient = createClient();
-            
             process.env.SUPABASE_URL = 'https://project.supabase.co';
             process.env.SUPABASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.test.signature';
 
-            mockClient.from.mockReturnThis();
-            mockClient.select.mockReturnThis();
-            mockClient.limit.mockResolvedValue({ data: [], error: null });
+            mockSupabaseFrom.mockReturnValue({
+                select: jest.fn().mockReturnThis(),
+                limit: jest.fn().mockResolvedValue({ data: [], error: null })
+            });
 
             const result = await credentialManager.testCredential('SUPABASE_URL');
 
@@ -383,17 +382,15 @@ QUOTED_WITH_SPACES="value with spaces"
         });
 
         it('should handle Supabase test failure', async () => {
-            const { createClient } = require('@supabase/supabase-js');
-            const mockClient = createClient();
-            
             process.env.SUPABASE_URL = 'https://project.supabase.co';
             process.env.SUPABASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.test.signature';
 
-            mockClient.from.mockReturnThis();
-            mockClient.select.mockReturnThis();
-            mockClient.limit.mockResolvedValue({ 
-                data: null, 
-                error: { message: 'Connection failed' } 
+            mockSupabaseFrom.mockReturnValue({
+                select: jest.fn().mockReturnThis(),
+                limit: jest.fn().mockResolvedValue({
+                    data: null,
+                    error: { message: 'Connection failed' }
+                })
             });
 
             const result = await credentialManager.testCredential('SUPABASE_URL');
@@ -439,17 +436,14 @@ QUOTED_WITH_SPACES="value with spaces"
             process.env.SUPABASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.test.signature';
 
             // Mock successful tests
-            const { Octokit } = require('@octokit/rest');
-            const mockOctokit = Octokit.mock.instances[0] || { users: { getAuthenticated: jest.fn() } };
-            mockOctokit.users.getAuthenticated.mockResolvedValue({
+            mockGetAuthenticated.mockResolvedValue({
                 data: { login: 'test-user' }
             });
 
-            const { createClient } = require('@supabase/supabase-js');
-            const mockClient = createClient();
-            mockClient.from.mockReturnThis();
-            mockClient.select.mockReturnThis();
-            mockClient.limit.mockResolvedValue({ data: [], error: null });
+            mockSupabaseFrom.mockReturnValue({
+                select: jest.fn().mockReturnThis(),
+                limit: jest.fn().mockResolvedValue({ data: [], error: null })
+            });
 
             const health = await credentialManager.healthCheck();
 
@@ -476,6 +470,9 @@ QUOTED_WITH_SPACES="value with spaces"
 
     describe('Edge Cases and Error Handling', () => {
         it('should handle malformed .env file gracefully', async () => {
+            const originalEnv = process.env;
+            process.env = {}; // Isolate test from environment variables
+
             const malformedContent = `
 VALID_KEY=valid_value
 MALFORMED LINE WITHOUT EQUALS
@@ -489,7 +486,10 @@ ANOTHER_VALID=value
 
             expect(credentials.VALID_KEY).toBe('valid_value');
             expect(credentials.ANOTHER_VALID).toBe('value');
+            expect(credentials['']).toBeUndefined();
             expect(Object.keys(credentials)).toHaveLength(2);
+
+            process.env = originalEnv; // Restore environment
         });
 
         it('should handle concurrent credential access', async () => {

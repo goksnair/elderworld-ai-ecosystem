@@ -4,7 +4,7 @@
  * Implements minimum necessary scopes and comprehensive error handling
  */
 
-const fetch = require('node-fetch');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 class VercelWrapper {
     constructor(token, options = {}) {
