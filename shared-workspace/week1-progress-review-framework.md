@@ -6,7 +6,7 @@
 **OBJECTIVE:** Comprehensive assessment, strategic pivots, stakeholder communication
 
 ## STRATEGIC CONTEXT
-Week 1 establishes the foundation for our ₹500Cr revenue trajectory. This review determines our competitive positioning against Emoha (₹54Cr), KITES (₹65Cr funding), and Primus ($20M funding) while validating our path to Phase 2 expansion.
+Week 1 establishes the foundation for our revenue scale milestones revenue trajectory. This review determines our competitive positioning against Emoha (₹54Cr), KITES (₹65Cr funding), and Primus ($20M funding) while validating our path to Phase 2 expansion.
 
 ## COMPREHENSIVE PROGRESS ASSESSMENT
 
@@ -211,7 +211,7 @@ Week 1 establishes the foundation for our ₹500Cr revenue trajectory. This revi
 - **Cross-functional Teams:** Integration planning and resource coordination
 
 ### External Stakeholders (Future):
-- **Investors:** Progress toward ₹500Cr revenue trajectory and market validation
+- **Investors:** Progress toward revenue scale milestones revenue trajectory and market validation
 - **Hospital Partners:** Partnership progress and mutual value creation
 - **Pilot Families:** Service quality and satisfaction feedback
 - **NRI Community:** Market education and brand building progress

@@ -12,5 +12,19 @@
     "violation": "Missing critical protocol section: BULLETPROOF VERIFICATION PROTOCOLS",
     "severity": "CRITICAL",
     "session_startup": true
+  },
+  {
+    "timestamp": "2025-08-23T14:21:41.997746",
+    "agent": "Claude_Code",
+    "violation": "CLAUDE.md protocol file not found",
+    "severity": "CRITICAL",
+    "session_startup": true
+  },
+  {
+    "timestamp": "2025-08-23T14:22:17.220993",
+    "agent": "Claude_Code",
+    "violation": "Missing critical protocol section: BULLETPROOF VERIFICATION PROTOCOLS",
+    "severity": "CRITICAL",
+    "session_startup": true
   }
 ]

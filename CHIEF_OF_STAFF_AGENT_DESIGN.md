@@ -197,7 +197,7 @@ OPTIMIZE CRITERIA (3+ required):
 - Positioning: "Your Best Years, Now" (locked)
 - Mission: Conversational, human-first approach
 - Market: Subtle NRI targeting with universal appeal
-- Revenue Target: ₹500Cr (internal planning, not customer messaging)
+- Revenue Target: Strategic growth achievements (internal planning, not customer messaging)
 
 ### **Framework Applications:**
 
@@ -207,7 +207,7 @@ OPTIMIZE CRITERIA (3+ required):
 - **Decision Matrix:** Evaluate positioning options against customer resonance criteria
 
 #### **For Market Expansion:**
-- **Working Backwards:** Start with ₹500Cr revenue press release
+- **Working Backwards:** Start with strategic growth achievement press release
 - **First Principles:** What are fundamental eldercare needs vs assumed solutions?
 - **PESTLE Analysis:** Political, economic, social factors affecting eldercare in India
 

@@ -1,6 +1,6 @@
 # 🏢 Senior Care Startup - Organizational Protocols
 
-**Purpose**: Master organizational guidelines embedded at agent level for consistent execution toward ₹500Cr revenue target in India's ₹19.6B eldercare market.
+**Purpose**: Master organizational guidelines embedded at agent level for consistent execution toward revenue scale milestones revenue target in India's ₹19.6B eldercare market.
 
 ---
 
@@ -29,7 +29,7 @@
 ### **Hierarchical Context Management (ALL AGENTS):**
 
 **Level 1 - Core Context (Always Load):**
-- Business model and ₹500Cr revenue target
+- Business model and revenue scale milestones revenue target
 - Competitive positioning vs Emoha (₹54Cr), KITES (₹65Cr funding), Primus ($20M funding)
 - Current phase objectives and constraints
 - Agent-specific core competencies and success metrics
@@ -68,7 +68,7 @@
 
 **Financial Planning & Fundraising:**
 - Load: Unit economics + competitive analysis + market opportunity context
-- Focus: ₹500Cr revenue pathway, Series A preparation, LTV:CAC optimization
+- Focus: revenue scale milestones revenue pathway, Series A preparation, LTV:CAC optimization
 - Agents: finance-strategy, market-intelligence, senior-care-boss
 
 **AI Model Development:**
@@ -136,7 +136,7 @@
 - **Healthcare Compliance**: Maintain HIPAA and regulatory standards at all times
 - **Family-First Design**: Prioritize family experience and senior accessibility
 - **Competitive Advantage**: Ensure all work advances competitive positioning
-- **Revenue Alignment**: Verify all work supports ₹500Cr revenue target
+- **Revenue Alignment**: Verify all work supports revenue scale milestones revenue target
 
 ---
 
@@ -158,7 +158,7 @@
 - ⏸️ Automated context optimization and efficiency monitoring
 - ⏸️ Advanced semantic search and knowledge discovery
 - ⏸️ Real-time agent coordination and performance dashboards
-- ⏸️ End-to-end workflow optimization for ₹500Cr revenue acceleration
+- ⏸️ End-to-end workflow optimization for revenue scale milestones revenue acceleration
 
 ---
 
@@ -180,7 +180,7 @@
 - Knowledge management efficiency >95%
 - Process adherence and quality >98%
 - Cross-functional coordination effectiveness >90%
-- Strategic alignment with ₹500Cr target >95%
+- Strategic alignment with revenue scale milestones target >95%
 
 ---
 
@@ -188,4 +188,4 @@
 
 ---
 
-*These protocols ensure consistent, efficient, and strategically aligned execution across all agents working toward the ₹500Cr senior care startup revenue target in India's eldercare market.*
+*These protocols ensure consistent, efficient, and strategically aligned execution across all agents working toward the revenue scale milestones senior care startup revenue target in India's eldercare market.*

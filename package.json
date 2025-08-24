@@ -10,7 +10,7 @@
     "emergency": "node phase1-emergency-response/emergency-response-system.js",
     "family": "node phase1-emergency-response/family-communication-platform.js",
     "coordinator": "node agent-coordination-system.js",
-    "test": "npm run test:agents && npm run test:systems",
+    "test": "npm test --workspaces --if-present",
     "test:agents": "node test-orchestration.js",
     "test:systems": "node test-orchestration.js",
     "setup-db": "psql -f supabase-setup.sql",
@@ -38,6 +38,7 @@
     "ws": "^8.18.0"
   },
   "devDependencies": {
+    "jest": "^30.0.5",
     "nodemon": "^3.0.2"
   },
   "engines": {
@@ -50,5 +51,8 @@
   "config": {
     "dashboard_port": 3001,
     "test_timeout": 30000
-  }
+  },
+  "workspaces": [
+    "mcp-bridge"
+  ]
 }

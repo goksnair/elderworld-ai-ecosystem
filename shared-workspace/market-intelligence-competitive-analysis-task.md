@@ -5,7 +5,7 @@
 **Success Required:** Competitive advantage validation, market opportunity analysis, customer insights
 
 ## EXECUTIVE MANDATE
-Provide strategic intelligence for ₹500Cr revenue scaling and competitive positioning. Critical for maintaining family-first advantage vs Emoha, KITES, and Primus in ₹19.6B market.
+Provide strategic intelligence for revenue scale milestones revenue scaling and competitive positioning. Critical for maintaining family-first advantage vs Emoha, KITES, and Primus in ₹19.6B market.
 
 ## COMPETITIVE INTELLIGENCE REQUIREMENTS
 1. **Emoha Analysis (₹54Cr Revenue Leader)**

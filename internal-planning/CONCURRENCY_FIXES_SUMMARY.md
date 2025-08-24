@@ -98,4 +98,4 @@ Please implement these fixes systematically, ensuring proper indentation and syn
 - Zero JSON corruption
 - Graceful error handling
 
-**Business Impact:** Unblocks ₹500Cr revenue pathway by achieving healthcare-grade system reliability.
+**Business Impact:** Unblocks revenue scale milestones revenue pathway by achieving healthcare-grade system reliability.

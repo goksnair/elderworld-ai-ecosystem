@@ -1,6 +1,6 @@
 # 🧠 Obsidian + Claude Code Optimization Framework
 
-**Purpose**: Maximize AI development efficiency through strategic Obsidian integration for the ₹500Cr senior care startup targeting India's ₹19.6B eldercare market.
+**Purpose**: Maximize AI development efficiency through strategic Obsidian integration for the revenue scale milestones senior care startup targeting India's ₹19.6B eldercare market.
 
 ---
 
@@ -259,7 +259,7 @@ SORT efficiency_score DESC
 - [ ] Implement healthcare compliance workflows
 - [ ] Optimize for Bangalore pilot requirements  
 - [ ] Deploy production knowledge management
-- [ ] Test end-to-end ₹500Cr revenue workflows
+- [ ] Test end-to-end revenue scale milestones revenue workflows
 
 ---
 
@@ -292,7 +292,7 @@ SORT efficiency_score DESC
 2. **Memory Persistence**: 100% context retention across sessions
 3. **Knowledge Management**: Real-time access to all project knowledge
 4. **Compliance Ready**: All outputs meet healthcare standards
-5. **Revenue Acceleration**: Development speed supports ₹500Cr target
+5. **Revenue Acceleration**: Development speed supports revenue scale milestones target
 
 ---
 

@@ -6,7 +6,7 @@
 **REVENUE TARGET:** ₹50L pilot revenue from 100 families
 
 ## STRATEGIC IMPORTANCE
-Bangalore pilot is our proof-of-concept for the entire ₹500Cr business model. Success here directly impacts our ability to secure Series A funding and expand to Delhi NCR. This is where we prove our competitive advantages against Emoha, KITES, and Primus work in real market conditions.
+Bangalore pilot is our proof-of-concept for the entire revenue scale milestones business model. Success here directly impacts our ability to secure Series A funding and expand to Delhi NCR. This is where we prove our competitive advantages against Emoha, KITES, and Primus work in real market conditions.
 
 ## PRIMARY AGENT: operations-chief
 **Responsibility:** Ground operations, service delivery, operational excellence

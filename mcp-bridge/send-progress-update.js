@@ -50,7 +50,7 @@ async function sendProgressUpdate() {
                     'Send task completion message via A2A system'
                 ]
             },
-            business_impact: 'Formalized coordination protocols enable 3x development velocity and healthcare-grade quality standards for ₹500Cr revenue achievement'
+            business_impact: 'Formalized coordination protocols enable 3x development velocity and healthcare-grade quality standards for revenue scale milestones revenue achievement'
         };
 
         const message = await client.sendMessage(

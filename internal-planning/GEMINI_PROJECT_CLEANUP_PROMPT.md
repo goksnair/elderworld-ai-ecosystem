@@ -33,7 +33,7 @@ You are tasked with systematically cleaning up and restructuring the ElderWorld 
 
 ### INTERNAL FILES (Backend/Planning/Agent Coordination):
 **Can Include:**
-- ✅ Business metrics and revenue targets (₹500Cr preliminary 5-year target)
+- ✅ Business metrics and revenue targets (revenue scale milestones preliminary 5-year target)
 - ✅ ARPU models and market analysis
 - ✅ Technical specifications and AI capabilities
 - ✅ Explicit targeting strategies and competitive analysis

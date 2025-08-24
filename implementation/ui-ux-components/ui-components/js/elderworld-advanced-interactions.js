@@ -1,5 +1,5 @@
 // ElderWorld Advanced Micro-Interactions System
-// Based on Perplexity research insights from Mayo Clinic, Kaiser Permanente patterns
+// Based on Perplexity research insights from Premium healthcare, Kaiser Permanente patterns
 
 class ElderWorldInteractions {
     constructor() {

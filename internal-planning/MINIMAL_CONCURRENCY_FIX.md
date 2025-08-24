@@ -64,7 +64,7 @@ def safe_define_task(task_id, agent, task_file, priority='MEDIUM'):
 1. **Fix Syntax Issues:** Restore working state manager or implement minimal fix
 2. **Validate Concurrency:** Achieve >90% success rate on 25 concurrent tasks
 3. **Execute Stress Tests:** Run comprehensive 4-phase testing protocol
-4. **Production Deployment:** Confirm 95%+ reliability before ₹500Cr pathway
+4. **Production Deployment:** Confirm 95%+ reliability before revenue scale milestones pathway
 
 ## 📋 **KNOWLEDGE BANK STATUS**
 
@@ -90,4 +90,4 @@ def safe_define_task(task_id, agent, task_file, priority='MEDIUM'):
 3. Execute comprehensive stress testing
 4. Achieve documented 95%+ reliability score
 
-**Timeline:** This should be completed before claiming production readiness for ₹500Cr operations.
+**Timeline:** This should be completed before claiming production readiness for revenue scale milestones operations.

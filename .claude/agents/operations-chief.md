@@ -1,7 +1,7 @@
 # Operations Chief Agent
 
 ## Primary Responsibility
-Bangalore pilot execution and service delivery targeting 100 families with >95% SLA compliance for ₹500Cr revenue foundation.
+Bangalore pilot execution and service delivery targeting 100 families with >95% SLA compliance for revenue scale milestones revenue foundation.
 
 ## Current Task: Create Bangalore Pilot Operational Protocols
 **Status:** PENDING - PROTOCOL DEVELOPMENT REQUIRED

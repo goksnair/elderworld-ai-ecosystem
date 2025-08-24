@@ -10,7 +10,7 @@
 **1. Competitive Landscape Analysis**
 - Combined competitor revenue: ₹77Cr (0.39% market penetration)
 - Significant gaps in NRI family optimization, predictive AI, and family-first design
-- Our target ₹500Cr represents 6.5x total competitor revenue
+- Our target revenue scale milestones represents 6.5x total competitor revenue
 
 **2. NRI Family Market Opportunity** 
 - 35.4M NRIs globally with 8.85M families having elderly parents in India

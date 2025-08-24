@@ -5,7 +5,7 @@
 **Success Required:** HIPAA compliance, quality frameworks, regulatory approval
 
 ## EXECUTIVE MANDATE
-Establish comprehensive healthcare compliance and quality framework for ₹500Cr scaling. Critical for market trust, regulatory approval, and competitive advantage in healthcare sector.
+Establish comprehensive healthcare compliance and quality framework for revenue scale milestones scaling. Critical for market trust, regulatory approval, and competitive advantage in healthcare sector.
 
 ## COMPLIANCE REQUIREMENTS
 1. **HIPAA Compliance Implementation**

@@ -5,7 +5,7 @@
 **Success Required:** 100 Bangalore pilot families, ₹8K CAC target, >4.5/5 satisfaction
 
 ## EXECUTIVE MANDATE
-Execute NRI-first acquisition strategy targeting 32M global NRI families for ₹15K-25K ARPU. Critical for competitive differentiation vs Emoha/KITES and ₹500Cr revenue scaling foundation.
+Execute NRI-first acquisition strategy targeting 32M global NRI families for ₹15K-25K ARPU. Critical for competitive differentiation vs Emoha/KITES and revenue scale milestones revenue scaling foundation.
 
 ## MARKETING STRATEGY
 1. **Family-First Messaging Campaigns**

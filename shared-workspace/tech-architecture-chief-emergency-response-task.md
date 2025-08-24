@@ -5,7 +5,7 @@
 **Success Required:** <5 minute emergency response time
 
 ## EXECUTIVE MANDATE
-Build production-ready 24/7 emergency response system as Phase 1 foundation for ₹500Cr revenue target. This system is CRITICAL PATH for Bangalore pilot launch with 100 families.
+Build production-ready 24/7 emergency response system as Phase 1 foundation for revenue scale milestones revenue target. This system is CRITICAL PATH for Bangalore pilot launch with 100 families.
 
 ## TECHNICAL REQUIREMENTS
 1. **24/7 Health Monitoring with IoT Integration**

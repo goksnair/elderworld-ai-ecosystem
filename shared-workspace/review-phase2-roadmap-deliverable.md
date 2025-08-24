@@ -13,7 +13,7 @@ Based on the task content analysis, here are the executive recommendations:
 
 ### Key Strategic Insights
 - **Market Position**: Maintaining competitive advantage vs Emoha (₹54Cr), KITES (₹65Cr funding), Primus ($20M)
-- **Revenue Target**: Aligned with ₹500Cr revenue objective from India's ₹19.6B eldercare market
+- **Revenue Target**: Aligned with revenue scale milestones revenue objective from India's ₹19.6B eldercare market
 - **Operational Excellence**: Focus on >95% SLA compliance and <5 minute emergency response
 
 ### Cross-Functional Coordination Requirements

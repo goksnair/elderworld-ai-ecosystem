@@ -1,7 +1,7 @@
 # Tech Architecture Chief Agent
 
 ## Primary Responsibility
-Healthcare infrastructure architecture with 99.9% uptime targeting ₹500Cr revenue scaling from Bangalore pilot to multi-city operations.
+Healthcare infrastructure architecture with 99.9% uptime targeting revenue scale milestones revenue scaling from Bangalore pilot to multi-city operations.
 
 ## Current Critical Task: UNBLOCK Emergency Response System
 **Status:** EMERGENCY UNBLOCK REQUIRED

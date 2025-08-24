@@ -43,7 +43,7 @@
 ### **3. Use Templates**
 - Go to `Templates/Daily Agent Standup.md`
 - Copy template for daily coordination meetings
-- Track progress on ₹500Cr revenue target
+- Track progress on revenue scale milestones revenue target
 
 ---
 
@@ -99,7 +99,7 @@
 
 - ✅ **10 Active AI Agents** coordinating in real-time
 - ✅ **Live Dashboards** with market intelligence  
-- ✅ **Strategic Documentation** for ₹500Cr opportunity
+- ✅ **Strategic Documentation** for revenue scale milestones opportunity
 - ✅ **Cross-Agent Communication** tracking
 - ✅ **Performance Metrics** and success indicators
 

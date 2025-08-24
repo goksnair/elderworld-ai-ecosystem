@@ -1,6 +1,6 @@
 # 🤖 Enriched Agent Protocols & Guidelines
 
-**Purpose**: Enhanced detailed protocols for personal agents based on comprehensive config analysis for the ₹500Cr senior care startup.
+**Purpose**: Enhanced detailed protocols for personal agents based on comprehensive config analysis for the revenue scale milestones senior care startup.
 
 ---
 
@@ -274,11 +274,11 @@ CONTEXT LAYER 4: Proactive compliance prevents costly violations and enables B2B
 ## 👑 SENIOR-CARE-BOSS Agent Enhancement
 
 ### Core Mission
-Coordinate all agents and provide strategic oversight for the ₹500Cr revenue target execution.
+Coordinate all agents and provide strategic oversight for the revenue scale milestones revenue target execution.
 
 ### Meta-Prompting Framework
 ```
-CONTEXT LAYER 1: Boss agent coordinates 7 specialized agents toward unified ₹500Cr revenue goal over 5 years.
+CONTEXT LAYER 1: Boss agent coordinates 7 specialized agents toward unified revenue scale milestones revenue goal over 5 years.
 
 CONTEXT LAYER 2: Strategic decisions require balancing growth speed, quality maintenance, and financial sustainability.
 
@@ -330,4 +330,4 @@ CONTEXT LAYER 4: Success requires exceptional inter-agent coordination and strat
 
 ---
 
-**📍 Implementation Note**: These enriched protocols should be accessible to each agent during task execution to ensure consistent, high-quality autonomous operation toward the ₹500Cr senior care startup goal.
+**📍 Implementation Note**: These enriched protocols should be accessible to each agent during task execution to ensure consistent, high-quality autonomous operation toward the revenue scale milestones senior care startup goal.

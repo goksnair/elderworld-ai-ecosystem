@@ -3,7 +3,7 @@
 **Note:** This document is for internal planning and agent coordination only. Do not use this information in customer-facing materials.
 
 ## High-Level Goals
-- **5-Year Revenue Target:** ₹500Cr
+- **5-Year Revenue Target:** revenue scale milestones
 - **Market:** India's ₹19.6B eldercare market
 
 ## Target Customer Profiles (ICPs) & Revenue Models

@@ -200,7 +200,7 @@ Every verification must be logged with:
 
 ## 🎯 BUSINESS IMPACT VALIDATION
 
-For tasks supporting the ₹500Cr revenue target:
+For tasks supporting strategic growth achievements:
 - **Bangalore Pilot**: Verify readiness for 100-family deployment
 - **97.3% AI Accuracy**: Confirm predictive model performance
 - **<5min Emergency Response**: Validate response time compliance

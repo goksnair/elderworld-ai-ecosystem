@@ -75,7 +75,7 @@
 - **Current Capacity:** Tested and ready for Bangalore 100-family pilot
 - **Growth Path:** Architecture supports scaling to 25,000+ families
 - **Real-time Processing:** <5min emergency response integration ready
-- **Revenue Impact:** Enables ₹500Cr pathway through superior AI accuracy
+- **Revenue Impact:** Enables revenue scale milestones pathway through superior AI accuracy
 
 ## File Locations
 - **Aura™ Scripts:** `/ai-ecosystem/ai-models/aura_*.py`

@@ -3,7 +3,7 @@
 ## EXECUTIVE DIRECTIVE FROM CEO (knowledge-chief)
 **PRIORITY:** MEDIUM - STRATEGIC PLANNING
 **TARGET:** Maintain decisive advantage vs Emoha, KITES, Primus
-**OBJECTIVE:** Position for ₹500Cr revenue capture from ₹19.6B market
+**OBJECTIVE:** Position for revenue scale milestones revenue capture from ₹19.6B market
 
 ## STRATEGIC IMPORTANCE
 Understanding competitor capabilities, market positioning, and strategic vulnerabilities is critical for maintaining our competitive advantages and identifying market opportunities for rapid growth and differentiation.

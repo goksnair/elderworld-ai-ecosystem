@@ -5,7 +5,7 @@
 **Success Required:** 100 families onboarded, >95% SLA compliance, >4.2/5 satisfaction
 
 ## EXECUTIVE MANDATE
-Launch operational foundation for ₹500Cr revenue scaling. Bangalore pilot success determines market expansion strategy and investor confidence for Series A fundraising.
+Launch operational foundation for revenue scale milestones revenue scaling. Bangalore pilot success determines market expansion strategy and investor confidence for Series A fundraising.
 
 ## OPERATIONAL REQUIREMENTS
 1. **Recruit and Train 50 Caregivers in Bangalore**

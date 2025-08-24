@@ -1,6 +1,6 @@
 {
   "session_id": "session_1754976942",
-  "last_updated": "2025-08-12T06:32:00.000Z",
+  "last_updated": "2025-08-23T16:24:14.105446",
   "protocol_status": "ACTIVE",
   "verification_cycles": 1,
   "trust_protocol_enabled": true,
@@ -20,5 +20,9 @@
       "status": "SUCCESS",
       "details": "Session-persistent protocol enforcement activated"
     }
-  ]
+  ],
+  "enforcement_active": true,
+  "updated_by": "claude-code",
+  "Claude_Code_last_successful_startup": "2025-08-23T14:22:49.427385",
+  "claude-code_last_successful_startup": "2025-08-23T16:24:14.104804"
 }

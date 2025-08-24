@@ -5,7 +5,7 @@
 **Success Required:** >12:1 LTV:CAC ratio, ₹50L pilot revenue tracking, Series A readiness
 
 ## EXECUTIVE MANDATE
-Optimize unit economics for ₹500Cr revenue scaling and prepare financial foundation for Series A fundraising. Critical for investor confidence and sustainable growth trajectory.
+Optimize unit economics for revenue scale milestones revenue scaling and prepare financial foundation for Series A fundraising. Critical for investor confidence and sustainable growth trajectory.
 
 ## FINANCIAL STRATEGY REQUIREMENTS
 1. **LTV:CAC Ratio Optimization (Target >12:1)**
@@ -36,7 +36,7 @@ Optimize unit economics for ₹500Cr revenue scaling and prepare financial found
 1. **Revenue Projections**
    - Bangalore pilot: ₹50L (100 families × ₹5K average ARPU)
    - Phase 2 scaling: ₹2Cr (1,000 families across 2 cities)
-   - 5-year target: ₹500Cr revenue with market expansion
+   - 5-year target: revenue scale milestones revenue with market expansion
 
 2. **Cost Structure Optimization**
    - Caregiver costs (50% of revenue)

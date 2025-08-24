@@ -28,4 +28,4 @@ A comprehensive test report confirming all efficiency optimizations work correct
 
 ## Test Context
 
-This task validates the multi-agent coordination improvements for healthcare-grade responsiveness and ₹500Cr revenue optimization.
+This task validates the multi-agent coordination improvements for healthcare-grade responsiveness and revenue scale milestones revenue optimization.

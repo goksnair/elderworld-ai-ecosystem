@@ -3,7 +3,7 @@
 ## EXECUTIVE DIRECTIVE FROM CEO (knowledge-chief)
 **PRIORITY:** CRITICAL - IMMEDIATE ACTION REQUIRED
 **DEADLINE:** 2025-08-10 (7 days remaining)
-**BLOCKING:** ₹500Cr revenue pathway, competitive advantage vs Emoha/KITES/Primus
+**BLOCKING:** revenue scale milestones revenue pathway, competitive advantage vs Emoha/KITES/Primus
 
 ## CURRENT STATUS: BLOCKED
 The Emergency Response System is the cornerstone of our premium NRI pricing strategy (₹15K-25K ARPU) and our primary differentiator in the ₹19.6B eldercare market. This system MUST achieve <5 minute response time to justify premium pricing and outcompete established players.

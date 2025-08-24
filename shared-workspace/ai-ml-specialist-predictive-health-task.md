@@ -5,7 +5,7 @@
 **Success Required:** 97.3% prediction accuracy
 
 ## EXECUTIVE MANDATE
-Develop production-ready predictive AI health models for early health deterioration detection. Critical for competitive advantage vs Emoha/KITES and ₹500Cr revenue scaling.
+Develop production-ready predictive AI health models for early health deterioration detection. Critical for competitive advantage vs Emoha/KITES and revenue scale milestones revenue scaling.
 
 ## AI/ML REQUIREMENTS
 1. **Health Deterioration Prediction (24-48h Early Warning)**

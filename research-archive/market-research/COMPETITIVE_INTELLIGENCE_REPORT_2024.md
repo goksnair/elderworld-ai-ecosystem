@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-**Market Opportunity:** India's ₹19.6B eldercare market presents massive opportunity with our ₹500Cr revenue target highly achievable
+**Market Opportunity:** India's ₹19.6B eldercare market presents massive opportunity with our strategic growth targets revenue target highly achievable
 **Key Insight:** Major gaps exist in family-first design and NRI optimization that our competitors have failed to address
 **Strategic Advantage:** Network effects and comprehensive service integration position us for market leadership
 

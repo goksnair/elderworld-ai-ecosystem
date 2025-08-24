@@ -2,7 +2,7 @@
 
 ## **Research Mission**
 
-ElderBridge is developing world-class healthcare UI/UX for premium family eldercare platform (₹500Cr revenue target, ₹15K-25K ARPU). We need cutting-edge research to elevate our design system beyond current industry standards and avoid AI-generated appearance.
+ElderBridge is developing world-class healthcare UI/UX for premium family eldercare platform (strategic growth targets revenue target, ₹15K-25K ARPU). We need cutting-edge research to elevate our design system beyond current industry standards and avoid AI-generated appearance.
 
 ---
 
@@ -210,7 +210,7 @@ ElderBridge is developing world-class healthcare UI/UX for premium family elderc
 - **Detailed but Actionable**: Deep research with clear implementation guidance
 - **Source-Rich**: Credible sources, latest research papers, industry reports
 - **Visual Examples**: Screenshots, code examples, design pattern references where possible
-- **Business Impact Focus**: How each insight connects to our ₹500Cr revenue target
+- **Business Impact Focus**: How each insight connects to our strategic growth targets revenue target
 
 ---
 
@@ -250,7 +250,7 @@ ElderBridge is developing world-class healthcare UI/UX for premium family elderc
 
 ---
 
-**RESEARCH MISSION**: Help ElderBridge create the most advanced, culturally-sensitive, premium healthcare interface system in the world that serves as the foundation for our ₹500Cr revenue target while genuinely improving family healthcare coordination globally.
+**RESEARCH MISSION**: Help ElderBridge create the most advanced, culturally-sensitive, premium healthcare interface system in the world that serves as the foundation for our strategic growth targets revenue target while genuinely improving family healthcare coordination globally.
 
 **DEADLINE**: ASAP for Phase 2 development integration  
 **FOLLOW-UP**: Implementation support and additional research as needed

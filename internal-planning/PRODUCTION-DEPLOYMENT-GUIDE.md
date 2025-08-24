@@ -53,7 +53,7 @@
 
 ### **Target Market Analysis**
 - **Total Market**: ₹19.6 billion eldercare market with 96% supply gap
-- **Revenue Target**: ₹500Cr+ over 5 years with clear path to profitability
+- **Revenue Target**: revenue scale milestones+ over 5 years with clear path to profitability
 - **Primary Segments**: 
   - NRI Families: ₹15K-25K ARPU (32M families)
   - Urban Affluent: ₹5K-8K ARPU (50M households)
@@ -232,7 +232,7 @@ git checkout -b feature/predictive-ai
 
 ### **Business Status: 🚀 LAUNCH READY**
 - 💰 **₹19.6B Market**: Validated opportunity
-- 🎯 **₹500Cr Target**: Clear revenue path
+- 🎯 **revenue scale milestones Target**: Clear revenue path
 - 🏆 **Competitive Moats**: Technology + positioning
 - 📈 **Growth Strategy**: Multi-city expansion ready
 
@@ -242,7 +242,7 @@ git checkout -b feature/predictive-ai
 
 🎯 **Next Command**: Begin Phase 1 feature development  
 🚀 **Deployment Status**: Production-ready and operational  
-💎 **Market Impact**: Ready to capture ₹500Cr+ opportunity  
+💎 **Market Impact**: Ready to capture revenue scale milestones+ opportunity  
 
 ---
 

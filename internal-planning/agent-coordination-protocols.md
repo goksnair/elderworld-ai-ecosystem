@@ -16,3 +16,22 @@ This document outlines the core protocols for all multi-LLM agents working on th
 -   Agents must follow the phased execution plans provided in prompts.
 -   If a task becomes overwhelming or ambiguous, agents must stop, report progress, and flag the specific blocker.
 -   Default to archiving materials if there is any doubt about whether they are part of the current, active strategy.
+
+## Standardized Command Execution
+To ensure reliability, all commands intended for a sub-directory (npm workspace) MUST be executed from the project root using the `run-in-workspace.sh` script.
+
+**Usage:**
+`./run-in-workspace.sh <workspace_dir> "<command>"`
+
+**Example:**
+`./run-in-workspace.sh mcp-bridge "npm test"`
+
+This prevents `cd` failures and ensures a consistent environment.
+
+## Available Resources & Tools
+
+### Jules Coding Agent
+- **Purpose:** An autonomous, asynchronous coding agent for well-defined implementation tasks.
+- **Usage:** To accelerate development of backend logic, frontend components, and bug fixes.
+- **Activation:** Delegate tasks to the `jules-code-proxy` agent.
+- **Protocol:** All delegations MUST adhere to the `internal-planning/JULES_INTEGRATION_PROTOCOL.md`.
