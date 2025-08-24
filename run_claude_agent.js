@@ -106,7 +106,7 @@ class ClaudeAgentRunner {
             const result = response.content[0].text;
             console.log(`[${this.agentName}] Task ${taskId} processed. Result: ${result.substring(0, 100)}...`);
             
-            await this.sendAcknowledgement(taskId, 'TASK_COMPLETED', from);
+            await this.sendAcknowledgement(taskId, 'TASK_COMPLETED', from, result);
             console.log(`[${this.agentName}] Task ${taskId} completed.`);
 
         } catch (error) {
@@ -115,12 +115,22 @@ class ClaudeAgentRunner {
         }
     }
 
-    async sendAcknowledgement(taskId, status, recipient) {
-        const payload = {
-            taskId,
-            status,
-            // Add more details based on status if needed
-        };
+    async sendAcknowledgement(taskId, status, recipient, result = null) {
+        let payload = { taskId };
+        
+        // Add required fields based on message type
+        switch (status) {
+            case 'TASK_ACCEPTED':
+                payload.estimatedCompletion = new Date(Date.now() + 3600 * 1000).toISOString();
+                break;
+            case 'TASK_COMPLETED':
+                payload.result = result || 'Task completed successfully';
+                payload.completedAt = new Date().toISOString();
+                break;
+            case 'TASK_ERROR':
+                payload.reason = result || 'Task processing error';
+                break;
+        }
         
         try {
             await fetch(`${MCP_BRIDGE_URL}/a2a/message`, {

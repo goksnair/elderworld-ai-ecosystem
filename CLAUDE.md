@@ -103,10 +103,14 @@ python3 ai-models/session_protocol_enforcer.py --agent "$(whoami)" --check-all
 - **3 violations = IMMEDIATE AGENT LOCKDOWN**
 - Cross-session persistence - violations carry forward
 
-### **MANDATORY VERIFICATION COMMAND:**
+### **MANDATORY VERIFICATION COMMANDS:**
 ```bash
 # EXECUTE BEFORE EVERY CLAIM:
 python3 verify_agent_claims.py --agent [AGENT_ID] --text "[CLAIM]" --session [SESSION_ID]
+
+# EXECUTE BEFORE ANY A2A SYSTEM "COMPLETION" CLAIMS:
+./verify_a2a_system.sh
+# Must return: "✅ A2A SYSTEM VERIFICATION PASSED"
 ```
 
 ### **REQUIRED CLAIM FORMAT:**
@@ -313,6 +317,33 @@ Every agent MUST execute on first message of new session:
 - Boss agent (knowledge-chief) coordinates and escalates
 - Progress tracked in Obsidian vault and Supabase
 - GitHub integration for code collaboration
+
+## 🔧 A2A SYSTEM VERIFICATION REQUIREMENTS (v2.0)
+
+**MANDATORY FOR ALL A2A COMMUNICATION CLAIMS**
+
+Before marking any A2A-related task as complete, MUST execute:
+```bash
+./verify_a2a_system.sh
+```
+
+### Critical Fixes Applied (Reference):
+1. **Gemini Agent State Update Error Handling** - Fixed stderr/logging misinterpretation
+2. **Claude Agent Message Payload Validation** - Enhanced payload construction per A2A schema  
+3. **Python Subprocess Error Handling** - Proper distinction between logs and errors
+
+### Required Verification Steps:
+- ✅ End-to-end message flow (DELEGATION → ACCEPTED → COMPLETED)
+- ✅ State management without errors  
+- ✅ Proper error handling and logging
+- ✅ Message payload validation
+- ✅ Graceful failure handling
+
+**Documentation:** See `A2A_SYSTEM_VERIFICATION_PROTOCOL.md` for complete requirements.
+
+**ZERO TOLERANCE:** Any A2A system claims without verification evidence will result in immediate task rejection.
+
+---
 
 **Remember: We are helping families. All implementations must be production-ready, reliable, and compassionate.**
 
