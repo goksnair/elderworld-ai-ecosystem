@@ -98,7 +98,7 @@ echo "📋 Step 5: End-to-End Message Flow Test"
 
 # Create a test task file
 TEST_TASK_ID="VERIFY-E2E-$(date +%s)"
-cat > "/tmp/test_task_${TEST_TASK_ID}.md" << EOF
+cat > "shared-workspace/test_task_${TEST_TASK_ID}.md" << EOF
 # TEST TASK FOR A2A VERIFICATION
 
 **Priority:** HIGH  
@@ -109,7 +109,7 @@ EOF
 
 # Test delegation
 echo "Testing task delegation..."
-if node mcp-bridge/send_task.js "Chief Orchestrator (Gemini)" senior-care-boss "$TEST_TASK_ID" "/tmp/test_task_${TEST_TASK_ID}.md" > /tmp/delegation_test.log 2>&1; then
+if node mcp-bridge/send_task.js "Chief Orchestrator (Gemini)" senior-care-boss "$TEST_TASK_ID" "shared-workspace/test_task_${TEST_TASK_ID}.md" > /tmp/delegation_test.log 2>&1; then
     report_test "Task Delegation" "PASS" ""
 else
     report_test "Task Delegation" "FAIL" "$(cat /tmp/delegation_test.log)"
@@ -117,7 +117,10 @@ fi
 
 # Wait for task processing
 echo "Waiting for task processing..."
-sleep 15
+sleep 25
+
+# Cleanup test file
+rm -f "shared-workspace/test_task_${TEST_TASK_ID}.md" 2>/dev/null || true
 
 # Check for completion in logs
 if grep -q "🎉 Task $TEST_TASK_ID completed" /tmp/gemini_verify.log && \
