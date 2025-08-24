@@ -456,6 +456,7 @@ class ChiefOrchestratorStateManager:
             self._acquire_lock()
             if task_id in self.state['tasks']:
                 self.state['tasks'][task_id]['state'] = to_state.value
+                self.state['tasks'][task_id]['delegation_attempts'] = 0 # Reset attempts
                 self.state['tasks'][task_id]['messages'].append({
                     'type': 'MANUAL_RESET',
                     'timestamp': datetime.now()

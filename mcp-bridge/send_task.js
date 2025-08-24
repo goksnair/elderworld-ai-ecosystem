@@ -1,52 +1,47 @@
-#!/usr/bin/env node
-
-const A2ASupabaseClient = require('./services/a2a-supabase-client.js');
 require('dotenv').config();
 
-// Environment variables
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
-
-if (!SUPABASE_URL || !SUPABASE_KEY) {
-    console.error('SUPABASE_URL and SUPABASE_SERVICE_KEY environment variables are required');
-    process.exit(1);
-}
+const MCP_BRIDGE_URL = 'http://localhost:3050';
 
 async function sendTask() {
     try {
-        const [,, sender, recipient, taskName, taskScript] = process.argv;
+        const [,, from, to, taskId, taskFile] = process.argv;
 
-        if (!sender || !recipient || !taskName || !taskScript) {
-            console.error('Usage: node send_task.js <sender> <recipient> <taskName> <taskScript>');
+        if (!from || !to || !taskId || !taskFile) {
+            console.error('Usage: node send_task.js <from> <to> <taskId> <taskFile>');
             process.exit(1);
         }
 
-        const a2aClient = new A2ASupabaseClient(
-            SUPABASE_URL,
-            SUPABASE_KEY,
-            {
-                agentId: sender,
-                tableName: 'agent_messages'
-            }
-        );
-
         const payload = {
-            task_name: taskName,
-            script: taskScript,
+            taskId,
+            description: `Task delegation for ${taskId}. Please process the instructions in the task file.`,
+            priority: 'high',
+            deadline: new Date(Date.now() + 3600 * 1000).toISOString(),
+            context: {
+                taskFile: taskFile
+            }
         };
 
-        await a2aClient.sendMessage(
-            sender,
-            recipient,
-            'TASK_DELEGATION',
-            payload,
-            `task_${Date.now()}`  // Context ID, not message ID - this is fine
-        );
+        const response = await fetch(`${MCP_BRIDGE_URL}/a2a/message`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                from,
+                to,
+                type: 'TASK_DELEGATION',
+                payload
+            }),
+        });
 
-        console.log(`Task '${taskName}' delegated to ${recipient}`);
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            throw new Error(data.error || `Failed to send task with status ${response.status}`);
+        }
+
+        console.log(`Task '${taskId}' delegated to ${to} via MCP Bridge. Message ID: ${data.messageId}`);
 
     } catch (error) {
-        console.error('Failed to send task:', error);
+        console.error('Failed to send task:', error.message);
         process.exit(1);
     }
 }

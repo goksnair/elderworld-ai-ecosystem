@@ -6,6 +6,7 @@
 
 const EventEmitter = require('events');
 const crypto = require('crypto');
+// Using built-in Node.js fetch (v18+)
 
 class A2ACommunicationLayer extends EventEmitter {
     constructor(options = {}) {
@@ -141,18 +142,17 @@ class A2ACommunicationLayer extends EventEmitter {
     /**
      * Register an agent in the communication layer
      */
-    registerAgent(agentId, metadata = {}) {
+    registerAgent(agentId, endpoint) {
         const registration = {
             agentId,
+            endpoint,
             registeredAt: new Date().toISOString(),
             lastSeen: new Date().toISOString(),
-            capabilities: metadata.capabilities || [],
-            status: metadata.status || 'active',
-            ...metadata
+            status: 'active',
         };
 
         this.registeredAgents.set(agentId, registration);
-        this.logger.info(`Agent registered: ${agentId}`, { capabilities: registration.capabilities });
+        this.logger.info(`Agent registered: ${agentId}`, { endpoint });
         
         // Initialize message queue for the agent
         if (!this.storage.has(agentId)) {
@@ -160,7 +160,7 @@ class A2ACommunicationLayer extends EventEmitter {
         }
 
         this.emit('agentRegistered', registration);
-        return registration;
+        return { success: true, ...registration };
     }
 
     /**
@@ -254,33 +254,21 @@ class A2ACommunicationLayer extends EventEmitter {
      */
     async sendMessage(from, to, type, payload, options = {}) {
         try {
-            // Validate that agents are registered
-            if (!this.registeredAgents.has(from)) {
-                throw new Error(`Sender agent not registered: ${from}`);
-            }
-            
-            if (!this.registeredAgents.has(to) && to !== '*') {
-                throw new Error(`Recipient agent not registered: ${to}`);
+            const recipient = this.registeredAgents.get(to);
+            if (!recipient || !recipient.endpoint) {
+                throw new Error(`Recipient agent not registered or has no endpoint: ${to}`);
             }
 
             const message = this.createMessage(from, to, type, payload, options);
             
-            // Store message in recipient's queue
-            if (to === '*') {
-                // Broadcast message
-                for (const [agentId] of this.registeredAgents) {
-                    if (agentId !== from) {
-                        const broadcastMessage = { ...message, to: agentId };
-                        this.storeMessage(agentId, broadcastMessage);
-                    }
-                }
-            } else {
-                this.storeMessage(to, message);
-            }
+            const response = await fetch(recipient.endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(message),
+            });
 
-            // Set up delivery confirmation if required
-            if (message.requiresConfirmation) {
-                this.setupDeliveryConfirmation(message.id, from, to);
+            if (!response.ok) {
+                throw new Error(`Agent ${to} responded with status ${response.status}`);
             }
 
             this.logger.info(`Message sent: ${type}`, {

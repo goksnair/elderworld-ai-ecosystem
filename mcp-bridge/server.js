@@ -316,6 +316,16 @@ class MCPBridgeServer {
     }
 
     setupA2AEndpoints() {
+        this.app.post('/a2a/register', async (req, res) => {
+            try {
+                const { agentId, endpoint } = req.body;
+                const result = await this.a2aLayer.registerAgent(agentId, endpoint);
+                res.json(result);
+            } catch (error) {
+                this.handleError(res, error, 'A2A agent registration');
+            }
+        });
+
         // Agent-to-Agent communication endpoints
         this.app.post('/a2a/message', async (req, res) => {
             try {

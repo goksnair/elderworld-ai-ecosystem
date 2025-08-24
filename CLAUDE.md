@@ -171,14 +171,29 @@ Every new session MUST load:
 
 **CRITICAL**: NO TASK PROGRESSION ALLOWED UNTIL A2A INFRASTRUCTURE IS FIXED
 
-## 🚫 ABSOLUTE PROHIBITIONS
+## 🚫 ABSOLUTE PROHIBITIONS & MANDATORY COMPLETION VERIFICATION
+
+### CORE PRINCIPLE: NO TASK IS COMPLETE UNTIL IT ACTUALLY WORKS
+
+**Reference: MANDATORY_COMPLETION_VERIFICATION_PROTOCOL.md for full details**
 
 ### For ALL Agents:
-- ❌ NO claiming completion without evidence
+- ❌ NO claiming completion without executable proof and evidence
 - ❌ NO ignoring network/infrastructure failures  
 - ❌ NO architectural descriptions instead of working solutions
 - ❌ NO partial solutions marked as complete
 - ❌ NO bypassing verification protocols
+- ❌ NO "minor remaining issues" dismissals
+- ❌ NO simulations claiming real system functionality
+- ❌ NO test failures being ignored or set aside
+
+### MANDATORY COMPLETION CHECKLIST:
+Before marking ANY task complete, MUST verify:
+1. [ ] Functionality test passes with zero errors
+2. [ ] End-to-end workflow demonstrated with logs  
+3. [ ] Evidence provided (commands, screenshots, test results)
+4. [ ] No shortcuts or assumptions made
+5. [ ] All error cases handled properly
 
 ### For Claude Code Specifically:
 - ❌ NO "SOLUTION COMPLETE" without end-to-end testing
