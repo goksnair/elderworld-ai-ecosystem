@@ -22,6 +22,11 @@ class StrategicDirectiveFilter:
     def __init__(self):
         """Initialize the strategic filtering system"""
         self.strategic_patterns = [
+            # Session startup triggers (HIGHEST PRIORITY)
+            r'^(begin session|start session|continue session|new session|resume session)$',
+            r'^(start work|begin work|start day|new day)$',
+            r'^(initialize|startup|boot|activate)$',
+            
             # Multi-step operations
             r'operational sequence|priority|strategic',
             r'coordination|alignment|phase-based',
@@ -67,7 +72,7 @@ class StrategicDirectiveFilter:
         Returns:
             bool: True if strategic filtering required, False otherwise
         """
-        user_input_lower = user_input.lower()
+        user_input_lower = user_input.lower().strip()
         
         # Check for strategic patterns
         for pattern in self.strategic_patterns:
@@ -84,6 +89,30 @@ class StrategicDirectiveFilter:
         ]
         
         return sum(complexity_indicators) >= 2
+    
+    def is_session_startup_trigger(self, user_input: str) -> bool:
+        """
+        Check if user input is a session startup trigger command
+        
+        Args:
+            user_input: Raw user input
+            
+        Returns:
+            bool: True if this is a session startup trigger
+        """
+        user_input_clean = user_input.lower().strip()
+        
+        startup_triggers = [
+            r'^(begin session|start session|continue session|new session|resume session)$',
+            r'^(start work|begin work|start day|new day)$', 
+            r'^(initialize|startup|boot|activate)$'
+        ]
+        
+        for trigger in startup_triggers:
+            if re.match(trigger, user_input_clean):
+                return True
+                
+        return False
     
     def create_strategic_context(self, user_input: str) -> Dict:
         """
@@ -223,6 +252,47 @@ Analyze this directive through the strategic lens and provide comprehensive impl
         if len(self.filtering_history) > 100:
             self.filtering_history = self.filtering_history[-100:]
     
+    def create_session_startup_prompt(self, user_input: str) -> str:
+        """
+        Create session startup prompt for immediate execution
+        
+        Args:
+            user_input: Startup trigger command
+            
+        Returns:
+            str: Formatted startup execution prompt
+        """
+        return f"""SESSION STARTUP TRIGGERED: {user_input.upper()}
+
+IMMEDIATE EXECUTION REQUIRED:
+
+**FOR CLAUDE CODE SESSIONS:**
+Execute the following command automatically:
+```bash
+python3 ai-models/session_protocol_enforcer.py --agent "claude-code" --check-all
+```
+
+**FOR GEMINI CLI SESSIONS:**
+Execute the following commands automatically:
+```bash
+python3 ai-models/daily_task_planner.py --morning-briefing --auto-prioritize
+```
+
+**EXPECTED OUTCOMES:**
+- ✅ All project protocols and context loaded automatically
+- ✅ Infrastructure health verified and operational
+- ✅ Daily priorities identified and agent assignments ready
+- ✅ Strategic filtering activated for subsequent directives
+- ✅ Session handover complete - ready for productive work
+
+**IMMEDIATE ACTIONS:**
+1. Run the appropriate startup command based on platform (Claude/Gemini)
+2. Display morning briefing with today's priorities
+3. Confirm all systems operational and ready for task delegation
+4. Proceed with highest priority tasks from automated daily plan
+
+This startup trigger eliminates all manual session setup and provides immediate operational readiness."""
+    
     def process_directive(self, user_input: str) -> Tuple[bool, Optional[str], Dict]:
         """
         Main processing function - determines if strategic filtering is required
@@ -233,6 +303,20 @@ Analyze this directive through the strategic lens and provide comprehensive impl
         Returns:
             Tuple: (requires_filtering, chief_of_staff_prompt, strategic_context)
         """
+        # Check for session startup triggers first
+        if self.is_session_startup_trigger(user_input):
+            startup_prompt = self.create_session_startup_prompt(user_input)
+            strategic_context = {
+                'processing_mode': 'SESSION_STARTUP',
+                'timestamp': datetime.now().isoformat(),
+                'trigger_command': user_input.lower().strip(),
+                'detected_patterns': ['session_startup'],
+                'business_domains': ['system_initialization'],
+                'complexity_score': 10  # High priority for immediate execution
+            }
+            self.log_filtering_decision(user_input, strategic_context, 'SESSION_STARTUP')
+            return True, startup_prompt, strategic_context
+        
         # Detect if strategic filtering is required
         requires_filtering = self.detect_strategic_directive(user_input)
         
