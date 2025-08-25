@@ -1,6 +1,4 @@
 {
-  "version": 2,
-  "name": "elderworld-website",
   "headers": [
     {
       "source": "/(.*)",
@@ -27,10 +25,5 @@
         }
       ]
     }
-  ],
-  "functions": {
-    "api/*.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
+  ]
 }
