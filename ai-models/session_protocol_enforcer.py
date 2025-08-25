@@ -259,13 +259,94 @@ class SessionProtocolEnforcer:
         """Validate agent identity and behavioral contract"""
         logger.info(f"📋 Validating behavioral contract for {self.agent_name}...")
         
-        if self.agent_name not in self.agent_contracts:
-            logger.warning(f"⚠️ No behavioral contract found for agent: {self.agent_name}")
-            return
+        # Check for new contract file format first
+        contract_path = self.base_dir / "agent_contracts" / f"{self.agent_name}.contract"
         
-        contract = self.agent_contracts[self.agent_name]
-        logger.info(f"✅ Agent identity confirmed: {contract['identity']}")
-        logger.info(f"📝 Behavioral contract loaded with {len(contract['forbidden'])} prohibitions")
+        if contract_path.exists():
+            try:
+                with open(contract_path, 'r') as f:
+                    contract_content = f.read()
+                
+                required_sections = [
+                    'IDENTITY',
+                    'REQUIRED ACTIONS', 
+                    'FORBIDDEN ACTIONS',
+                    'VERIFICATION REQUIREMENTS'
+                ]
+                
+                missing_sections = []
+                for section in required_sections:
+                    if section not in contract_content:
+                        missing_sections.append(section)
+                
+                if missing_sections:
+                    logger.warning(f"⚠️ Behavioral contract incomplete for {self.agent_name}. Missing: {', '.join(missing_sections)}")
+                else:
+                    logger.info(f"✅ Behavioral contract validated for {self.agent_name}")
+                    
+            except Exception as e:
+                logger.error(f"❌ Error validating behavioral contract: {e}")
+        
+        elif self.agent_name in self.agent_contracts:
+            # Fall back to old format
+            contract = self.agent_contracts[self.agent_name]
+            logger.info(f"✅ Agent identity confirmed: {contract['identity']}")
+            logger.info(f"📝 Behavioral contract loaded with {len(contract['forbidden'])} prohibitions")
+        else:
+            logger.warning(f"⚠️ No behavioral contract found for agent: {self.agent_name}")
+            # Create basic contract
+            self._create_basic_contract()
+
+    def _create_basic_contract(self):
+        """Create basic behavioral contract template"""
+        try:
+            contract_path = self.base_dir / "agent_contracts" / f"{self.agent_name}.contract"
+            contract_path.parent.mkdir(exist_ok=True)
+            
+            basic_contract = f"""# BEHAVIORAL CONTRACT: {self.agent_name.upper()}
+**Agent ID:** {self.agent_name}
+**Role:** Agent role definition required
+**Authority Level:** MEDIUM
+**Contract Version:** 1.0
+
+## IDENTITY
+Agent identity and specialization area requires definition
+
+## REQUIRED ACTIONS
+- Execute session startup protocol before any task processing
+- Run mandatory directive routing before implementing user requests
+- Apply completion verification protocol before marking tasks complete
+- Provide evidence for all claims and completion statements
+
+## FORBIDDEN ACTIONS
+- Bypassing strategic directive filtering protocols
+- Claiming completion without verification evidence
+- Making strategic decisions without cross-functional coordination
+- Ignoring healthcare compliance and quality requirements
+
+## VERIFICATION REQUIREMENTS
+- All major decisions must include supporting evidence
+- Cross-functional coordination required for strategic actions
+- Completion claims must be backed by verifiable results
+
+## SUCCESS METRICS
+- Protocol compliance: 100% session startup execution
+- Verification standards: 95%+ evidence-based completion claims
+- Cross-functional coordination: Documented collaboration when required
+
+## ESCALATION AUTHORITY
+Standard agent authority within domain expertise. Must coordinate with senior-care-boss for strategic decisions.
+"""
+            
+            with open(contract_path, 'w') as f:
+                f.write(basic_contract)
+                
+            logger.info(f"✅ Basic behavioral contract created for {self.agent_name}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"❌ Failed to create behavioral contract: {e}")
+            return False
 
     def _update_infrastructure_health(self, component: str, status: str, details: str):
         """Update infrastructure health status"""
