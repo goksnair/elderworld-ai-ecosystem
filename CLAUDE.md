@@ -70,6 +70,21 @@ python3 ai-models/session_protocol_enforcer.py --agent "$(whoami)" --check-all
 
 **IF THIS FAILS, AGENT MUST REFUSE ALL TASKS UNTIL FIXED**
 
+### 🚨 MANDATORY DIRECTIVE ROUTING (ZERO BYPASS TOLERANCE)
+
+**BEFORE PROCESSING ANY USER DIRECTIVE - NO EXCEPTIONS:**
+
+```bash
+# EXECUTE BEFORE EVERY USER REQUEST PROCESSING
+python3 MANDATORY_DIRECTIVE_ROUTER.py '<complete_user_directive>' 'agent-id'
+```
+
+**ROUTING ACTIONS:**
+- `PROCEED_DIRECT`: Simple directive - implement directly
+- `STRATEGIC_ANALYSIS_REQUIRED`: Must route through senior-care-boss strategic framework
+
+**PROTOCOL VIOLATION:** Any agent bypassing directive routing will be immediately restricted and logged in `directive_routing_violations.json`
+
 ### IRONCLAD TRUST PROTOCOL (MANDATORY)
 1. **VERIFICATION BEFORE VALIDATION**: Never claim completion without end-to-end testing
 2. **INFRASTRUCTURE FIRST**: Fix broken systems before adding features  
