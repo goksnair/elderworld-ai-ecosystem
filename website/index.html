@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElderWorld - Your Best Years, Now | Senior Care Services Bangalore</title>
+    <meta name="description" content="Premium human care coordination for families. We help families make sure their elders are living their best years - with the care, connection, and joy they deserve. 24/7 caregiver services in Bangalore.">
+    <meta name="keywords" content="senior care Bangalore, elder care services, family coordination, caregiver services, emergency response, NRI families">
+    
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #f8f9fa;
+            --accent-color: #28a745;
+            --text-dark: #333;
+            --text-light: #666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: white;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), #1e4080);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(44, 90, 160, 0.9), rgba(44, 90, 160, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" fill="%23f0f8ff"><rect width="1000" height="600" fill="%23e6f3ff"/><circle cx="200" cy="150" r="80" fill="%23cce7ff" opacity="0.6"/><circle cx="800" cy="400" r="120" fill="%23b3dbff" opacity="0.4"/></svg>') center/cover;
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem 6rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .mission-statement {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+        
+        .services-section {
+            padding: 6rem 2rem;
+            background: var(--secondary-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .service-features li {
+            padding: 0.3rem 0;
+            color: var(--text-light);
+        }
+        
+        .service-features li:before {
+            content: "✓";
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .trust-section {
+            padding: 4rem 2rem;
+            background: white;
+            text-align: center;
+        }
+        
+        .trust-elements {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .trust-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .trust-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .emergency-banner {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">ElderWorld</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#portal">Family Portal</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="emergency-banner">
+        🚨 24/7 Emergency Response Available | <5 Minute Response Time | Call: +91-80-1234-5678
+    </div>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Your Best Years, Now</h1>
+            <p class="subtitle">Premium Human Care Coordination for Families</p>
+            <div class="mission-statement">
+                "We help families make sure their elders are living their best years - with the care, connection, and joy they deserve."
+            </div>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Start Care Today</a>
+                <a href="#services" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2 class="section-title">Premium Human Care Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">👨‍⚕️</div>
+                    <h3>24/7 Caregiver Services</h3>
+                    <p>Certified caregivers providing companion care, meal preparation, and daily assistance with compassion and professionalism.</p>
+                    <ul class="service-features">
+                        <li>Certified professionals</li>
+                        <li>Background verified</li>
+                        <li>Specialized training</li>
+                        <li>Continuous monitoring</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Family Coordination</h3>
+                    <p>Real-time updates and communication for families across time zones. Stay connected from anywhere in the world.</p>
+                    <ul class="service-features">
+                        <li>Daily photo updates</li>
+                        <li>Video call coordination</li>
+                        <li>Progress reports</li>
+                        <li>Multi-timezone support</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚑</div>
+                    <h3>Emergency Response</h3>
+                    <p><5 minute response time with hospital coordination in Bangalore. Your family's safety is our priority.</p>
+                    <ul class="service-features">
+                        <li>Apollo Hospital partnership</li>
+                        <li>Manipal network access</li>
+                        <li>Fortis coordination</li>
+                        <li>108 Emergency Services</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-section">
+        <div class="container">
+            <h2 class="section-title">Trusted by Families Worldwide</h2>
+            <div class="trust-elements">
+                <div class="trust-item">
+                    <h4>🏥 Hospital Partnerships</h4>
+                    <p>Apollo • Manipal • Fortis</p>
+                </div>
+                <div class="trust-item">
+                    <h4>👨‍⚕️ Certified Caregivers</h4>
+                    <p>50+ Professional Staff</p>
+                </div>
+                <div class="trust-item">
+                    <h4>🌍 Global Families</h4>
+                    <p>US • Canada • India</p>
+                </div>
+                <div class="trust-item">
+                    <h4>⏰ Response Time</h4>
+                    <p><5 Minutes Emergency</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <h3>Start Your Family's Best Years Today</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>contact@elderworld.co</span>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <span>+91-80-1234-5678</span>
+                </div>
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>Bangalore, Karnataka</span>
+                </div>
+            </div>
+            <div class="cta-buttons" style="margin-top: 2rem;">
+                <a href="#portal" class="btn btn-primary">Family Portal Login</a>
+                <a href="mailto:contact@elderworld.co" class="btn btn-secondary">Schedule Consultation</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.8;">&copy; 2025 ElderWorld. Your Best Years, Now.</p>
+        </div>
+    </footer>
+</body>
+</html>

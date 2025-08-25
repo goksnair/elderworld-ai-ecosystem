@@ -1,0 +1,28 @@
+{
+  "name": "elderworld-website",
+  "version": "1.0.0",
+  "description": "ElderWorld Healthcare Marketing Website - Your Best Years, Now",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 3000",
+    "dev": "python3 -m http.server 3000",
+    "build": "echo 'Static site - no build required'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "eldercare",
+    "senior-care", 
+    "healthcare",
+    "family-coordination",
+    "bangalore",
+    "nri-families"
+  ],
+  "author": "ElderWorld Healthcare Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/senior-care-startup"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
