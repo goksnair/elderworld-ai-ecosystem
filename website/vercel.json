@@ -1,18 +1,6 @@
 {
   "version": 2,
   "name": "elderworld-website",
-  "builds": [
-    {
-      "src": "index.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -41,7 +29,7 @@
     }
   ],
   "functions": {
-    "website/api/*.js": {
+    "api/*.js": {
       "runtime": "nodejs18.x"
     }
   }
